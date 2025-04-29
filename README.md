@@ -10,7 +10,7 @@ Dashboards showing the migration from x86 to IBM LinuxONE and x86 to IBM Z displ
 
 ## Migrating from x86 to IBM LinuxONE
 
-Use the [IT Optimization with IBM LinuxONE dashboard](dashboards/IT%20Optimization%20with%20IBM%20LinuxONE.json).
+Use the [IT Optimization with IBM LinuxONE dashboard](dashboards/IT%20Optimization%20with%20IBM%20LinuxONE.json)
 
 ### Example of the Dashboard in Action
 
@@ -26,7 +26,7 @@ Additionally, here is a link to a live snaspshot of the dashboard from when a te
 
 ## Migrating from x86 to IBM Z
 
-Use the [IT Opimization with IBM Z dashboard](dashboards/IT%20Optimization%20with%20IBM%20Z.json).
+Use the [IT Opimization with IBM Z dashboard](dashboards/IT%20Optimization%20with%20IBM%20Z.json)
 
 ### Example
 
