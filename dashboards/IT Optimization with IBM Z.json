@@ -1,0 +1,5006 @@
+{
+  "annotations": {
+    "list": [
+      {
+        "builtIn": 1,
+        "datasource": {
+          "type": "grafana",
+          "uid": "-- Grafana --"
+        },
+        "enable": true,
+        "hide": true,
+        "iconColor": "rgba(0, 211, 255, 1)",
+        "name": "Annotations & Alerts",
+        "target": {
+          "limit": 100,
+          "matchAny": false,
+          "tags": [],
+          "type": "dashboard"
+        },
+        "type": "dashboard"
+      }
+    ]
+  },
+  "description": "Show IT Optimization when moving workloads from x86 to LinuxONE",
+  "editable": true,
+  "fiscalYearStartMonth": 0,
+  "graphTooltip": 1,
+  "id": 32,
+  "links": [],
+  "liveNow": true,
+  "panels": [
+    {
+      "datasource": {
+        "type": "prometheus",
+        "uid": "GcmvRd57k"
+      },
+      "gridPos": {
+        "h": 2,
+        "w": 24,
+        "x": 0,
+        "y": 0
+      },
+      "id": 52,
+      "options": {
+        "code": {
+          "language": "plaintext",
+          "showLineNumbers": false,
+          "showMiniMap": false
+        },
+        "content": "\n\n<h1 style=\"text-align: center; color: #2ecc71\">Application Performance Metrics</h1>",
+        "mode": "markdown"
+      },
+      "pluginVersion": "9.4.7",
+      "type": "text"
+    },
+    {
+      "datasource": {
+        "type": "influxdb",
+        "uid": "p59e2Y9Iz"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "fixedColor": "#808080",
+            "mode": "fixed"
+          },
+          "custom": {
+            "axisCenteredZero": false,
+            "axisColorMode": "text",
+            "axisLabel": "",
+            "axisPlacement": "auto",
+            "barAlignment": 0,
+            "drawStyle": "bars",
+            "fillOpacity": 0,
+            "gradientMode": "none",
+            "hideFrom": {
+              "legend": false,
+              "tooltip": false,
+              "viz": false
+            },
+            "lineInterpolation": "linear",
+            "lineWidth": 1,
+            "pointSize": 5,
+            "scaleDistribution": {
+              "type": "linear"
+            },
+            "showPoints": "auto",
+            "spanNulls": true,
+            "stacking": {
+              "group": "A",
+              "mode": "none"
+            },
+            "thresholdsStyle": {
+              "mode": "off"
+            }
+          },
+          "mappings": [],
+          "max": 1000,
+          "min": 0,
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "blue",
+                "value": null
+              }
+            ]
+          }
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 5,
+        "w": 12,
+        "x": 0,
+        "y": 2
+      },
+      "id": 1,
+      "interval": "1s",
+      "links": [],
+      "options": {
+        "legend": {
+          "calcs": [],
+          "displayMode": "list",
+          "placement": "bottom",
+          "showLegend": false
+        },
+        "tooltip": {
+          "mode": "single",
+          "sort": "none"
+        }
+      },
+      "pluginVersion": "9.4.7",
+      "targets": [
+        {
+          "alias": "Active VUs",
+          "datasource": {
+            "type": "influxdb",
+            "uid": "p59e2Y9Iz"
+          },
+          "dsType": "influxdb",
+          "groupBy": [
+            {
+              "params": [
+                "$__interval"
+              ],
+              "type": "time"
+            },
+            {
+              "params": [
+                "none"
+              ],
+              "type": "fill"
+            }
+          ],
+          "measurement": "vus",
+          "orderByTime": "ASC",
+          "policy": "default",
+          "refId": "A",
+          "resultFormat": "time_series",
+          "select": [
+            [
+              {
+                "params": [
+                  "value"
+                ],
+                "type": "field"
+              },
+              {
+                "params": [],
+                "type": "mean"
+              }
+            ]
+          ],
+          "tags": []
+        }
+      ],
+      "title": "x86 Virtual Users",
+      "transformations": [
+        {
+          "id": "filterFieldsByName",
+          "options": {
+            "include": {
+              "names": [
+                "Time",
+                "Active VUs"
+              ]
+            }
+          }
+        }
+      ],
+      "type": "timeseries"
+    },
+    {
+      "datasource": {
+        "type": "influxdb",
+        "uid": "VVOuNBpHk"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "fixedColor": "dark-blue",
+            "mode": "fixed"
+          },
+          "custom": {
+            "axisCenteredZero": false,
+            "axisColorMode": "text",
+            "axisLabel": "",
+            "axisPlacement": "auto",
+            "barAlignment": 0,
+            "drawStyle": "bars",
+            "fillOpacity": 0,
+            "gradientMode": "none",
+            "hideFrom": {
+              "legend": false,
+              "tooltip": false,
+              "viz": false
+            },
+            "lineInterpolation": "linear",
+            "lineWidth": 1,
+            "pointSize": 5,
+            "scaleDistribution": {
+              "type": "linear"
+            },
+            "showPoints": "auto",
+            "spanNulls": false,
+            "stacking": {
+              "group": "A",
+              "mode": "none"
+            },
+            "thresholdsStyle": {
+              "mode": "off"
+            }
+          },
+          "mappings": [],
+          "max": 1000,
+          "min": 0,
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "orange",
+                "value": null
+              }
+            ]
+          }
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 5,
+        "w": 12,
+        "x": 12,
+        "y": 2
+      },
+      "id": 110,
+      "interval": "1s",
+      "links": [],
+      "options": {
+        "legend": {
+          "calcs": [],
+          "displayMode": "list",
+          "placement": "bottom",
+          "showLegend": false
+        },
+        "tooltip": {
+          "mode": "single",
+          "sort": "none"
+        }
+      },
+      "pluginVersion": "9.4.7",
+      "targets": [
+        {
+          "alias": "Active VUs",
+          "datasource": {
+            "type": "influxdb",
+            "uid": "VVOuNBpHk"
+          },
+          "dsType": "influxdb",
+          "groupBy": [
+            {
+              "params": [
+                "$__interval"
+              ],
+              "type": "time"
+            },
+            {
+              "params": [
+                "none"
+              ],
+              "type": "fill"
+            }
+          ],
+          "measurement": "vus",
+          "orderByTime": "ASC",
+          "policy": "default",
+          "query": "SELECT mean(\"value\") FROM \"vus\" WHERE $timeFilter GROUP BY time($__interval) fill(none)",
+          "rawQuery": true,
+          "refId": "A",
+          "resultFormat": "time_series",
+          "select": [
+            [
+              {
+                "params": [
+                  "value"
+                ],
+                "type": "field"
+              },
+              {
+                "params": [],
+                "type": "mean"
+              }
+            ]
+          ],
+          "tags": []
+        }
+      ],
+      "title": "IBM Z Virtual Users",
+      "type": "timeseries"
+    },
+    {
+      "datasource": {
+        "type": "influxdb",
+        "uid": "p59e2Y9Iz"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "fixedColor": "#808080",
+            "mode": "fixed"
+          },
+          "custom": {
+            "axisCenteredZero": false,
+            "axisColorMode": "text",
+            "axisLabel": "",
+            "axisPlacement": "auto",
+            "barAlignment": 0,
+            "drawStyle": "bars",
+            "fillOpacity": 0,
+            "gradientMode": "none",
+            "hideFrom": {
+              "legend": false,
+              "tooltip": false,
+              "viz": false
+            },
+            "lineInterpolation": "linear",
+            "lineWidth": 1,
+            "pointSize": 5,
+            "scaleDistribution": {
+              "type": "linear"
+            },
+            "showPoints": "auto",
+            "spanNulls": false,
+            "stacking": {
+              "group": "A",
+              "mode": "none"
+            },
+            "thresholdsStyle": {
+              "mode": "off"
+            }
+          },
+          "mappings": [],
+          "max": 16000,
+          "min": 0,
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              },
+              {
+                "color": "red",
+                "value": 80
+              }
+            ]
+          }
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 6,
+        "w": 12,
+        "x": 0,
+        "y": 7
+      },
+      "id": 17,
+      "interval": "1s",
+      "links": [],
+      "options": {
+        "legend": {
+          "calcs": [],
+          "displayMode": "table",
+          "placement": "bottom",
+          "showLegend": true
+        },
+        "tooltip": {
+          "mode": "single",
+          "sort": "none"
+        }
+      },
+      "pluginVersion": "9.4.7",
+      "targets": [
+        {
+          "alias": "Requests per Interval",
+          "datasource": {
+            "type": "influxdb",
+            "uid": "p59e2Y9Iz"
+          },
+          "dsType": "influxdb",
+          "groupBy": [
+            {
+              "params": [
+                "$__interval"
+              ],
+              "type": "time"
+            },
+            {
+              "params": [
+                "null"
+              ],
+              "type": "fill"
+            }
+          ],
+          "measurement": "http_reqs",
+          "orderByTime": "ASC",
+          "policy": "default",
+          "refId": "A",
+          "resultFormat": "time_series",
+          "select": [
+            [
+              {
+                "params": [
+                  "value"
+                ],
+                "type": "field"
+              },
+              {
+                "params": [],
+                "type": "sum"
+              }
+            ]
+          ],
+          "tags": []
+        }
+      ],
+      "title": "x86 Requests per Second",
+      "transformations": [
+        {
+          "id": "calculateField",
+          "options": {
+            "alias": "interval_sec",
+            "binary": {
+              "left": "$__interval_ms",
+              "operator": "/",
+              "reducer": "sum",
+              "right": "1000"
+            },
+            "mode": "binary",
+            "reduce": {
+              "reducer": "sum"
+            }
+          }
+        },
+        {
+          "id": "calculateField",
+          "options": {
+            "alias": "Requests per Second",
+            "binary": {
+              "left": "Requests per Interval",
+              "operator": "/",
+              "reducer": "sum",
+              "right": "interval_sec"
+            },
+            "mode": "binary",
+            "reduce": {
+              "reducer": "sum"
+            },
+            "replaceFields": true
+          }
+        }
+      ],
+      "type": "timeseries"
+    },
+    {
+      "datasource": {
+        "type": "influxdb",
+        "uid": "VVOuNBpHk"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "fixedColor": "dark-blue",
+            "mode": "fixed"
+          },
+          "custom": {
+            "axisCenteredZero": false,
+            "axisColorMode": "text",
+            "axisLabel": "",
+            "axisPlacement": "auto",
+            "barAlignment": 0,
+            "drawStyle": "bars",
+            "fillOpacity": 0,
+            "gradientMode": "none",
+            "hideFrom": {
+              "legend": false,
+              "tooltip": false,
+              "viz": false
+            },
+            "lineInterpolation": "linear",
+            "lineWidth": 1,
+            "pointSize": 5,
+            "scaleDistribution": {
+              "type": "linear"
+            },
+            "showPoints": "auto",
+            "spanNulls": false,
+            "stacking": {
+              "group": "A",
+              "mode": "none"
+            },
+            "thresholdsStyle": {
+              "mode": "off"
+            }
+          },
+          "mappings": [],
+          "max": 16000,
+          "min": 0,
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              },
+              {
+                "color": "red",
+                "value": 80
+              }
+            ]
+          }
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 6,
+        "w": 12,
+        "x": 12,
+        "y": 7
+      },
+      "id": 111,
+      "interval": "1s",
+      "links": [],
+      "options": {
+        "legend": {
+          "calcs": [],
+          "displayMode": "table",
+          "placement": "bottom",
+          "showLegend": true
+        },
+        "tooltip": {
+          "mode": "single",
+          "sort": "none"
+        }
+      },
+      "pluginVersion": "9.4.7",
+      "targets": [
+        {
+          "alias": "Requests per Interval",
+          "datasource": {
+            "type": "influxdb",
+            "uid": "VVOuNBpHk"
+          },
+          "dsType": "influxdb",
+          "groupBy": [
+            {
+              "params": [
+                "$__interval"
+              ],
+              "type": "time"
+            },
+            {
+              "params": [
+                "null"
+              ],
+              "type": "fill"
+            }
+          ],
+          "measurement": "http_reqs",
+          "orderByTime": "ASC",
+          "policy": "default",
+          "query": "SELECT sum(\"value\") FROM \"http_reqs\" WHERE $timeFilter GROUP BY time($__interval) fill(null)",
+          "rawQuery": true,
+          "refId": "A",
+          "resultFormat": "time_series",
+          "select": [
+            [
+              {
+                "params": [
+                  "value"
+                ],
+                "type": "field"
+              },
+              {
+                "params": [],
+                "type": "sum"
+              }
+            ]
+          ],
+          "tags": []
+        }
+      ],
+      "title": "IBM Z Requests per Second",
+      "transformations": [
+        {
+          "id": "calculateField",
+          "options": {
+            "alias": "interval_sec",
+            "binary": {
+              "left": "$__interval_ms",
+              "operator": "/",
+              "reducer": "sum",
+              "right": "1000"
+            },
+            "mode": "binary",
+            "reduce": {
+              "reducer": "sum"
+            }
+          }
+        },
+        {
+          "id": "calculateField",
+          "options": {
+            "alias": "Requests per Second",
+            "binary": {
+              "left": "Requests per Interval",
+              "operator": "/",
+              "reducer": "sum",
+              "right": "interval_sec"
+            },
+            "mode": "binary",
+            "reduce": {
+              "reducer": "sum"
+            },
+            "replaceFields": true
+          }
+        }
+      ],
+      "type": "timeseries"
+    },
+    {
+      "datasource": {
+        "type": "influxdb",
+        "uid": "p59e2Y9Iz"
+      },
+      "description": "",
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "fixedColor": "#808080",
+            "mode": "fixed"
+          },
+          "custom": {
+            "axisCenteredZero": false,
+            "axisColorMode": "text",
+            "axisLabel": "",
+            "axisPlacement": "auto",
+            "barAlignment": 0,
+            "drawStyle": "bars",
+            "fillOpacity": 0,
+            "gradientMode": "none",
+            "hideFrom": {
+              "legend": false,
+              "tooltip": false,
+              "viz": false
+            },
+            "lineInterpolation": "linear",
+            "lineWidth": 1,
+            "pointSize": 5,
+            "scaleDistribution": {
+              "type": "linear"
+            },
+            "showPoints": "auto",
+            "spanNulls": false,
+            "stacking": {
+              "group": "A",
+              "mode": "none"
+            },
+            "thresholdsStyle": {
+              "mode": "off"
+            }
+          },
+          "mappings": [],
+          "max": 100,
+          "min": 0,
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              },
+              {
+                "color": "red",
+                "value": 80
+              }
+            ]
+          },
+          "unit": "ms"
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 6,
+        "w": 12,
+        "x": 0,
+        "y": 13
+      },
+      "id": 5,
+      "interval": "1s",
+      "links": [],
+      "options": {
+        "legend": {
+          "calcs": [],
+          "displayMode": "table",
+          "placement": "bottom",
+          "showLegend": true
+        },
+        "tooltip": {
+          "mode": "single",
+          "sort": "none"
+        }
+      },
+      "pluginVersion": "9.4.7",
+      "targets": [
+        {
+          "datasource": {
+            "type": "influxdb",
+            "uid": "p59e2Y9Iz"
+          },
+          "groupBy": [
+            {
+              "params": [
+                "$__interval"
+              ],
+              "type": "time"
+            },
+            {
+              "params": [
+                "null"
+              ],
+              "type": "fill"
+            }
+          ],
+          "hide": false,
+          "measurement": "http_req_duration",
+          "orderByTime": "ASC",
+          "policy": "default",
+          "refId": "A",
+          "resultFormat": "time_series",
+          "select": [
+            [
+              {
+                "params": [
+                  "value"
+                ],
+                "type": "field"
+              },
+              {
+                "params": [],
+                "type": "mean"
+              }
+            ]
+          ],
+          "tags": []
+        }
+      ],
+      "title": "x86 Request Duration",
+      "type": "timeseries"
+    },
+    {
+      "datasource": {
+        "type": "influxdb",
+        "uid": "VVOuNBpHk"
+      },
+      "description": "",
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "fixedColor": "dark-blue",
+            "mode": "fixed"
+          },
+          "custom": {
+            "axisCenteredZero": false,
+            "axisColorMode": "text",
+            "axisLabel": "",
+            "axisPlacement": "auto",
+            "barAlignment": 0,
+            "drawStyle": "bars",
+            "fillOpacity": 0,
+            "gradientMode": "none",
+            "hideFrom": {
+              "legend": false,
+              "tooltip": false,
+              "viz": false
+            },
+            "lineInterpolation": "linear",
+            "lineWidth": 1,
+            "pointSize": 5,
+            "scaleDistribution": {
+              "type": "linear"
+            },
+            "showPoints": "auto",
+            "spanNulls": false,
+            "stacking": {
+              "group": "A",
+              "mode": "none"
+            },
+            "thresholdsStyle": {
+              "mode": "off"
+            }
+          },
+          "mappings": [],
+          "max": 100,
+          "min": 0,
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              },
+              {
+                "color": "red",
+                "value": 80
+              }
+            ]
+          },
+          "unit": "ms"
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 6,
+        "w": 12,
+        "x": 12,
+        "y": 13
+      },
+      "id": 112,
+      "interval": "1s",
+      "links": [],
+      "options": {
+        "legend": {
+          "calcs": [],
+          "displayMode": "table",
+          "placement": "bottom",
+          "showLegend": true
+        },
+        "tooltip": {
+          "mode": "single",
+          "sort": "none"
+        }
+      },
+      "pluginVersion": "9.4.7",
+      "targets": [
+        {
+          "datasource": {
+            "type": "influxdb",
+            "uid": "VVOuNBpHk"
+          },
+          "groupBy": [
+            {
+              "params": [
+                "$__interval"
+              ],
+              "type": "time"
+            },
+            {
+              "params": [
+                "null"
+              ],
+              "type": "fill"
+            }
+          ],
+          "hide": false,
+          "measurement": "http_req_duration",
+          "orderByTime": "ASC",
+          "policy": "default",
+          "query": "SELECT mean(\"value\") FROM \"http_req_duration\" WHERE $timeFilter GROUP BY time($__interval) fill(null)",
+          "rawQuery": true,
+          "refId": "A",
+          "resultFormat": "time_series",
+          "select": [
+            [
+              {
+                "params": [
+                  "value"
+                ],
+                "type": "field"
+              },
+              {
+                "params": [],
+                "type": "mean"
+              }
+            ]
+          ],
+          "tags": []
+        }
+      ],
+      "title": "IBM Z Request Duration",
+      "type": "timeseries"
+    },
+    {
+      "datasource": {
+        "type": "datasource",
+        "uid": "-- Dashboard --"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "fixedColor": "#808080",
+            "mode": "fixed"
+          },
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              }
+            ]
+          },
+          "unit": "req/s"
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 3,
+        "w": 6,
+        "x": 0,
+        "y": 19
+      },
+      "id": 113,
+      "interval": "1s",
+      "links": [],
+      "options": {
+        "colorMode": "value",
+        "graphMode": "none",
+        "justifyMode": "auto",
+        "orientation": "auto",
+        "reduceOptions": {
+          "calcs": [
+            "mean"
+          ],
+          "fields": "/^Requests per Second$/",
+          "values": false
+        },
+        "textMode": "auto"
+      },
+      "pluginVersion": "9.4.7",
+      "targets": [
+        {
+          "datasource": {
+            "type": "datasource",
+            "uid": "-- Dashboard --"
+          },
+          "panelId": 17,
+          "refId": "A",
+          "withTransforms": false
+        }
+      ],
+      "title": "x86 Average Requests per Second",
+      "transformations": [
+        {
+          "id": "calculateField",
+          "options": {
+            "alias": "interval_sec",
+            "binary": {
+              "left": "$__interval_ms",
+              "operator": "/",
+              "reducer": "sum",
+              "right": "1000"
+            },
+            "mode": "binary",
+            "reduce": {
+              "reducer": "sum"
+            }
+          }
+        },
+        {
+          "id": "filterByValue",
+          "options": {
+            "filters": [
+              {
+                "config": {
+                  "id": "isNull",
+                  "options": {}
+                },
+                "fieldName": "Requests per Interval"
+              }
+            ],
+            "match": "any",
+            "type": "exclude"
+          }
+        },
+        {
+          "id": "calculateField",
+          "options": {
+            "alias": "Requests per Second",
+            "binary": {
+              "left": "Requests per Interval",
+              "operator": "/",
+              "reducer": "sum",
+              "right": "interval_sec"
+            },
+            "mode": "binary",
+            "reduce": {
+              "reducer": "sum"
+            }
+          }
+        }
+      ],
+      "type": "stat"
+    },
+    {
+      "datasource": {
+        "type": "datasource",
+        "uid": "-- Dashboard --"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "fixedColor": "#808080",
+            "mode": "fixed"
+          },
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              }
+            ]
+          },
+          "unit": "ms"
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 3,
+        "w": 6,
+        "x": 6,
+        "y": 19
+      },
+      "id": 115,
+      "interval": "1s",
+      "links": [],
+      "options": {
+        "colorMode": "value",
+        "graphMode": "none",
+        "justifyMode": "auto",
+        "orientation": "auto",
+        "reduceOptions": {
+          "calcs": [
+            "mean"
+          ],
+          "fields": "",
+          "values": false
+        },
+        "textMode": "auto"
+      },
+      "pluginVersion": "9.4.7",
+      "targets": [
+        {
+          "datasource": {
+            "type": "datasource",
+            "uid": "-- Dashboard --"
+          },
+          "panelId": 5,
+          "refId": "A"
+        }
+      ],
+      "title": "x86 Average Request Duration",
+      "transformations": [
+        {
+          "id": "filterByValue",
+          "options": {
+            "filters": [
+              {
+                "config": {
+                  "id": "isNull",
+                  "options": {}
+                },
+                "fieldName": "http_req_duration.mean"
+              }
+            ],
+            "match": "any",
+            "type": "exclude"
+          }
+        }
+      ],
+      "type": "stat"
+    },
+    {
+      "datasource": {
+        "type": "datasource",
+        "uid": "-- Dashboard --"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "fixedColor": "dark-blue",
+            "mode": "fixed"
+          },
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              }
+            ]
+          },
+          "unit": "req/s"
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 3,
+        "w": 6,
+        "x": 12,
+        "y": 19
+      },
+      "id": 116,
+      "interval": "1s",
+      "links": [],
+      "options": {
+        "colorMode": "value",
+        "graphMode": "none",
+        "justifyMode": "auto",
+        "orientation": "auto",
+        "reduceOptions": {
+          "calcs": [
+            "mean"
+          ],
+          "fields": "/^Requests per Second$/",
+          "values": false
+        },
+        "textMode": "auto"
+      },
+      "pluginVersion": "9.4.7",
+      "targets": [
+        {
+          "datasource": {
+            "type": "datasource",
+            "uid": "-- Dashboard --"
+          },
+          "panelId": 111,
+          "refId": "A",
+          "withTransforms": false
+        }
+      ],
+      "title": "IBM Z Average Requests per Second",
+      "transformations": [
+        {
+          "id": "calculateField",
+          "options": {
+            "alias": "interval_sec",
+            "binary": {
+              "left": "$__interval_ms",
+              "operator": "/",
+              "reducer": "sum",
+              "right": "1000"
+            },
+            "mode": "binary",
+            "reduce": {
+              "reducer": "sum"
+            }
+          }
+        },
+        {
+          "id": "filterByValue",
+          "options": {
+            "filters": [
+              {
+                "config": {
+                  "id": "isNull",
+                  "options": {}
+                },
+                "fieldName": "Requests per Interval"
+              }
+            ],
+            "match": "any",
+            "type": "exclude"
+          }
+        },
+        {
+          "id": "calculateField",
+          "options": {
+            "alias": "Requests per Second",
+            "binary": {
+              "left": "Requests per Interval",
+              "operator": "/",
+              "reducer": "sum",
+              "right": "interval_sec"
+            },
+            "mode": "binary",
+            "reduce": {
+              "reducer": "sum"
+            },
+            "replaceFields": false
+          }
+        }
+      ],
+      "type": "stat"
+    },
+    {
+      "datasource": {
+        "type": "datasource",
+        "uid": "-- Dashboard --"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "fixedColor": "dark-blue",
+            "mode": "fixed"
+          },
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              }
+            ]
+          },
+          "unit": "ms"
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 3,
+        "w": 6,
+        "x": 18,
+        "y": 19
+      },
+      "id": 117,
+      "interval": "1s",
+      "links": [],
+      "options": {
+        "colorMode": "value",
+        "graphMode": "none",
+        "justifyMode": "auto",
+        "orientation": "auto",
+        "reduceOptions": {
+          "calcs": [
+            "mean"
+          ],
+          "fields": "",
+          "values": false
+        },
+        "textMode": "auto"
+      },
+      "pluginVersion": "9.4.7",
+      "targets": [
+        {
+          "datasource": {
+            "type": "datasource",
+            "uid": "-- Dashboard --"
+          },
+          "panelId": 112,
+          "refId": "A"
+        }
+      ],
+      "title": "IBM Z Average Request Duration",
+      "type": "stat"
+    },
+    {
+      "datasource": {
+        "type": "prometheus",
+        "uid": "GcmvRd57k"
+      },
+      "gridPos": {
+        "h": 2,
+        "w": 24,
+        "x": 0,
+        "y": 22
+      },
+      "id": 54,
+      "options": {
+        "code": {
+          "language": "plaintext",
+          "showLineNumbers": false,
+          "showMiniMap": false
+        },
+        "content": "\n\n<h1 style=\"text-align: center; color: #2ecc71\">Application Environmental Metrics</h1>",
+        "mode": "markdown"
+      },
+      "pluginVersion": "9.4.7",
+      "type": "text"
+    },
+    {
+      "datasource": {
+        "type": "prometheus",
+        "uid": "ipRBv6P4k"
+      },
+      "description": "",
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "fixedColor": "#808080",
+            "mode": "fixed"
+          },
+          "mappings": [],
+          "thresholds": {
+            "mode": "percentage",
+            "steps": [
+              {
+                "color": "orange",
+                "value": null
+              },
+              {
+                "color": "#EAB839",
+                "value": 30
+              },
+              {
+                "color": "orange",
+                "value": 50
+              },
+              {
+                "color": "red",
+                "value": 80
+              }
+            ]
+          },
+          "unit": "W"
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 4,
+        "w": 8,
+        "x": 0,
+        "y": 24
+      },
+      "hideTimeOverride": false,
+      "id": 61,
+      "interval": "15s",
+      "options": {
+        "colorMode": "value",
+        "graphMode": "none",
+        "justifyMode": "auto",
+        "orientation": "auto",
+        "reduceOptions": {
+          "calcs": [
+            "max"
+          ],
+          "fields": "/^Total$/",
+          "values": false
+        },
+        "textMode": "auto"
+      },
+      "pluginVersion": "9.4.7",
+      "targets": [
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "ipRBv6P4k"
+          },
+          "editorMode": "code",
+          "expr": "ipmi_power_watts{id=\"103\"}",
+          "legendFormat": "__auto",
+          "range": true,
+          "refId": "A"
+        },
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "ipRBv6P4k"
+          },
+          "editorMode": "code",
+          "expr": "ipmi_power_watts{name=\"Avg Power\"}",
+          "hide": false,
+          "legendFormat": "__auto",
+          "range": true,
+          "refId": "B"
+        }
+      ],
+      "title": "x86 Power Consumption (Max)",
+      "transformations": [
+        {
+          "id": "calculateField",
+          "options": {
+            "mode": "reduceRow",
+            "reduce": {
+              "include": [
+                "{__name__=\"ipmi_power_watts\", id=\"103\", instance=\"10.11.0.191\", job=\"ipmi_exporter\", name=\"Sys Power\"}",
+                "{__name__=\"ipmi_power_watts\", id=\"103\", instance=\"10.11.0.192\", job=\"ipmi_exporter\", name=\"Sys Power\"}",
+                "{__name__=\"ipmi_power_watts\", id=\"103\", instance=\"10.11.0.193\", job=\"ipmi_exporter\", name=\"Sys Power\"}",
+                "{__name__=\"ipmi_power_watts\", id=\"103\", instance=\"10.11.0.194\", job=\"ipmi_exporter\", name=\"Sys Power\"}",
+                "{__name__=\"ipmi_power_watts\", id=\"103\", instance=\"10.11.0.196\", job=\"ipmi_exporter\", name=\"Sys Power\"}",
+                "{__name__=\"ipmi_power_watts\", id=\"5\", instance=\"10.11.0.195\", job=\"ipmi_exporter\", name=\"Avg Power\"}"
+              ],
+              "reducer": "sum"
+            },
+            "replaceFields": true
+          }
+        },
+        {
+          "id": "reduce",
+          "options": {
+            "includeTimeField": false,
+            "mode": "reduceFields",
+            "reducers": [
+              "max"
+            ]
+          }
+        }
+      ],
+      "type": "stat"
+    },
+    {
+      "datasource": {
+        "type": "datasource",
+        "uid": "-- Mixed --"
+      },
+      "description": "",
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "fixedColor": "orange",
+            "mode": "thresholds"
+          },
+          "decimals": 2,
+          "mappings": [],
+          "max": 100,
+          "min": 0,
+          "thresholds": {
+            "mode": "percentage",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              },
+              {
+                "color": "dark-blue",
+                "value": 50
+              }
+            ]
+          },
+          "unit": "percent"
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 7,
+        "w": 8,
+        "x": 8,
+        "y": 24
+      },
+      "hideTimeOverride": false,
+      "id": 75,
+      "interval": "15s",
+      "options": {
+        "orientation": "auto",
+        "reduceOptions": {
+          "calcs": [
+            "mean"
+          ],
+          "fields": "/^Savings Ratio \\* 100$/",
+          "values": false
+        },
+        "showThresholdLabels": false,
+        "showThresholdMarkers": true,
+        "text": {}
+      },
+      "pluginVersion": "9.4.7",
+      "targets": [
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "ipRBv6P4k"
+          },
+          "editorMode": "code",
+          "expr": "ipmi_power_watts{id=\"103\"}",
+          "legendFormat": "__auto",
+          "range": true,
+          "refId": "A"
+        },
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "ipRBv6P4k"
+          },
+          "editorMode": "code",
+          "expr": "ipmi_power_watts{name=\"Avg Power\"}",
+          "hide": false,
+          "legendFormat": "__auto",
+          "range": true,
+          "refId": "B"
+        },
+        {
+          "datasource": {
+            "type": "influxdb",
+            "uid": "pcyUYEpHk"
+          },
+          "hide": false,
+          "query": "SELECT mean(\"total-infrastructure-power-consumption\") FROM \"Energy Data\" WHERE $timeFilter AND  \"cpc\" = 'MENSA' GROUP BY time($__interval) fill(none)",
+          "rawQuery": true,
+          "refId": "C",
+          "resultFormat": "time_series"
+        },
+        {
+          "datasource": {
+            "type": "influxdb",
+            "uid": "pcyUYEpHk"
+          },
+          "hide": false,
+          "query": "SELECT mean(\"power-consumption\") FROM \"LPAR Metrics\" WHERE $timeFilter AND \"cpc\" = 'MENSA' AND \"lpar\" = 'MENSA03' GROUP BY time($__interval) fill(none)",
+          "rawQuery": true,
+          "refId": "D",
+          "resultFormat": "time_series"
+        }
+      ],
+      "title": "Energy saving from x86 to IBM Z",
+      "transformations": [
+        {
+          "id": "calculateField",
+          "options": {
+            "alias": "LinuxONE Total",
+            "mode": "reduceRow",
+            "reduce": {
+              "include": [
+                "LPAR Metrics.mean"
+              ],
+              "reducer": "sum"
+            }
+          }
+        },
+        {
+          "id": "reduce",
+          "options": {
+            "includeTimeField": false,
+            "mode": "reduceFields",
+            "reducers": [
+              "sum"
+            ]
+          }
+        },
+        {
+          "id": "calculateField",
+          "options": {
+            "alias": "x86Total",
+            "mode": "reduceRow",
+            "reduce": {
+              "include": [
+                "{__name__=\"ipmi_power_watts\", id=\"103\", instance=\"10.11.0.191\", job=\"ipmi_exporter\", name=\"Sys Power\"}",
+                "{__name__=\"ipmi_power_watts\", id=\"103\", instance=\"10.11.0.192\", job=\"ipmi_exporter\", name=\"Sys Power\"}",
+                "{__name__=\"ipmi_power_watts\", id=\"103\", instance=\"10.11.0.193\", job=\"ipmi_exporter\", name=\"Sys Power\"}",
+                "{__name__=\"ipmi_power_watts\", id=\"103\", instance=\"10.11.0.194\", job=\"ipmi_exporter\", name=\"Sys Power\"}",
+                "{__name__=\"ipmi_power_watts\", id=\"103\", instance=\"10.11.0.196\", job=\"ipmi_exporter\", name=\"Sys Power\"}",
+                "{__name__=\"ipmi_power_watts\", id=\"5\", instance=\"10.11.0.195\", job=\"ipmi_exporter\", name=\"Avg Power\"}"
+              ],
+              "reducer": "sum"
+            },
+            "replaceFields": false
+          }
+        },
+        {
+          "id": "calculateField",
+          "options": {
+            "alias": "Savings",
+            "binary": {
+              "left": "x86Total",
+              "operator": "-",
+              "reducer": "sum",
+              "right": "LinuxONE Total"
+            },
+            "mode": "binary",
+            "reduce": {
+              "reducer": "sum"
+            },
+            "replaceFields": false
+          }
+        },
+        {
+          "id": "calculateField",
+          "options": {
+            "alias": "Savings Ratio",
+            "binary": {
+              "left": "Savings",
+              "operator": "/",
+              "reducer": "sum",
+              "right": "x86Total"
+            },
+            "mode": "binary",
+            "reduce": {
+              "reducer": "sum"
+            },
+            "replaceFields": false
+          }
+        },
+        {
+          "id": "calculateField",
+          "options": {
+            "binary": {
+              "left": "Savings Ratio",
+              "operator": "*",
+              "reducer": "sum",
+              "right": "100"
+            },
+            "mode": "binary",
+            "reduce": {
+              "reducer": "sum"
+            },
+            "replaceFields": false
+          }
+        }
+      ],
+      "type": "gauge"
+    },
+    {
+      "datasource": {
+        "type": "influxdb",
+        "uid": "pcyUYEpHk"
+      },
+      "description": "",
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "fixedColor": "dark-blue",
+            "mode": "fixed"
+          },
+          "mappings": [
+            {
+              "options": {
+                "NaN": {
+                  "index": 0,
+                  "text": "0"
+                }
+              },
+              "type": "value"
+            }
+          ],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              },
+              {
+                "color": "orange",
+                "value": 3000
+              },
+              {
+                "color": "red",
+                "value": 4000
+              }
+            ]
+          },
+          "unit": "watt"
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 4,
+        "w": 8,
+        "x": 16,
+        "y": 24
+      },
+      "id": 63,
+      "interval": "15s",
+      "options": {
+        "colorMode": "value",
+        "graphMode": "none",
+        "justifyMode": "auto",
+        "orientation": "auto",
+        "reduceOptions": {
+          "calcs": [
+            "max"
+          ],
+          "fields": "/^lpar\\-power$/",
+          "values": false
+        },
+        "textMode": "auto"
+      },
+      "pluginVersion": "9.4.7",
+      "targets": [
+        {
+          "datasource": {
+            "type": "influxdb",
+            "uid": "pcyUYEpHk"
+          },
+          "query": "SELECT mean(\"power-consumption\") FROM \"LPAR Metrics\" WHERE $timeFilter AND \"cpc\" = 'MENSA' AND \"lpar\" = 'MENSA03' GROUP BY time($__interval) fill(none)",
+          "rawQuery": true,
+          "refId": "A",
+          "resultFormat": "time_series"
+        }
+      ],
+      "title": "IBM Z Power Consumption (Max)",
+      "transformations": [
+        {
+          "id": "filterFieldsByName",
+          "options": {
+            "include": {
+              "names": [
+                "Time",
+                "LPAR Metrics.mean"
+              ]
+            }
+          }
+        },
+        {
+          "id": "calculateField",
+          "options": {
+            "alias": "lpar-power",
+            "binary": {
+              "operator": "/",
+              "reducer": "sum"
+            },
+            "mode": "reduceRow",
+            "reduce": {
+              "include": [
+                "LPAR Metrics.mean"
+              ],
+              "reducer": "max"
+            },
+            "replaceFields": false
+          }
+        },
+        {
+          "id": "reduce",
+          "options": {
+            "includeTimeField": false,
+            "mode": "reduceFields",
+            "reducers": [
+              "max"
+            ]
+          }
+        }
+      ],
+      "type": "stat"
+    },
+    {
+      "datasource": {
+        "type": "datasource",
+        "uid": "-- Dashboard --"
+      },
+      "description": "",
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "fixedColor": "#808080",
+            "mode": "fixed"
+          },
+          "decimals": 0,
+          "mappings": [],
+          "thresholds": {
+            "mode": "percentage",
+            "steps": [
+              {
+                "color": "orange",
+                "value": null
+              },
+              {
+                "color": "#EAB839",
+                "value": 30
+              },
+              {
+                "color": "orange",
+                "value": 50
+              },
+              {
+                "color": "red",
+                "value": 80
+              }
+            ]
+          },
+          "unit": "watth"
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 4,
+        "w": 8,
+        "x": 0,
+        "y": 28
+      },
+      "hideTimeOverride": false,
+      "id": 92,
+      "interval": "15s",
+      "options": {
+        "colorMode": "value",
+        "graphMode": "none",
+        "justifyMode": "auto",
+        "orientation": "auto",
+        "reduceOptions": {
+          "calcs": [
+            "sum"
+          ],
+          "fields": "energy consumption",
+          "values": false
+        },
+        "textMode": "auto"
+      },
+      "pluginVersion": "9.4.7",
+      "targets": [
+        {
+          "datasource": {
+            "type": "datasource",
+            "uid": "-- Dashboard --"
+          },
+          "panelId": 61,
+          "refId": "A"
+        }
+      ],
+      "title": "x86 Energy Consumption",
+      "transformations": [
+        {
+          "id": "calculateField",
+          "options": {
+            "alias": "",
+            "mode": "reduceRow",
+            "reduce": {
+              "include": [
+                "{__name__=\"ipmi_power_watts\", id=\"103\", instance=\"10.11.0.191\", job=\"ipmi_exporter\", name=\"Sys Power\"}",
+                "{__name__=\"ipmi_power_watts\", id=\"103\", instance=\"10.11.0.192\", job=\"ipmi_exporter\", name=\"Sys Power\"}",
+                "{__name__=\"ipmi_power_watts\", id=\"103\", instance=\"10.11.0.193\", job=\"ipmi_exporter\", name=\"Sys Power\"}",
+                "{__name__=\"ipmi_power_watts\", id=\"103\", instance=\"10.11.0.194\", job=\"ipmi_exporter\", name=\"Sys Power\"}",
+                "{__name__=\"ipmi_power_watts\", id=\"103\", instance=\"10.11.0.196\", job=\"ipmi_exporter\", name=\"Sys Power\"}",
+                "{__name__=\"ipmi_power_watts\", id=\"5\", instance=\"10.11.0.195\", job=\"ipmi_exporter\", name=\"Avg Power\"}"
+              ],
+              "reducer": "sum"
+            },
+            "replaceFields": true
+          }
+        },
+        {
+          "id": "calculateField",
+          "options": {
+            "alias": "interval_sec",
+            "binary": {
+              "left": "$__interval_ms",
+              "operator": "/",
+              "reducer": "sum",
+              "right": "1000"
+            },
+            "mode": "binary",
+            "reduce": {
+              "reducer": "sum"
+            }
+          }
+        },
+        {
+          "id": "calculateField",
+          "options": {
+            "alias": "interval_seconds / seconds_per_hour",
+            "binary": {
+              "left": "interval_sec",
+              "operator": "/",
+              "reducer": "sum",
+              "right": "3600"
+            },
+            "mode": "binary",
+            "reduce": {
+              "reducer": "sum"
+            }
+          }
+        },
+        {
+          "id": "calculateField",
+          "options": {
+            "alias": "energy consumption",
+            "binary": {
+              "left": "Total",
+              "operator": "*",
+              "reducer": "sum",
+              "right": "interval_seconds / seconds_per_hour"
+            },
+            "mode": "binary",
+            "reduce": {
+              "reducer": "sum"
+            },
+            "replaceFields": false
+          }
+        }
+      ],
+      "type": "stat"
+    },
+    {
+      "datasource": {
+        "type": "datasource",
+        "uid": "-- Dashboard --"
+      },
+      "description": "",
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "fixedColor": "dark-blue",
+            "mode": "fixed"
+          },
+          "decimals": 0,
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              },
+              {
+                "color": "orange",
+                "value": 3000
+              },
+              {
+                "color": "red",
+                "value": 4000
+              }
+            ]
+          },
+          "unit": "watth"
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 4,
+        "w": 8,
+        "x": 16,
+        "y": 28
+      },
+      "id": 90,
+      "interval": "15s",
+      "options": {
+        "colorMode": "value",
+        "graphMode": "none",
+        "justifyMode": "auto",
+        "orientation": "auto",
+        "reduceOptions": {
+          "calcs": [
+            "sum"
+          ],
+          "fields": "energy consumption",
+          "values": false
+        },
+        "textMode": "auto"
+      },
+      "pluginVersion": "9.4.7",
+      "targets": [
+        {
+          "datasource": {
+            "type": "datasource",
+            "uid": "-- Dashboard --"
+          },
+          "panelId": 63,
+          "refId": "A"
+        }
+      ],
+      "title": "IBM Z Energy Consumption",
+      "transformations": [
+        {
+          "id": "filterFieldsByName",
+          "options": {
+            "include": {
+              "names": [
+                "Time",
+                "LPAR Metrics.mean"
+              ]
+            }
+          }
+        },
+        {
+          "id": "calculateField",
+          "options": {
+            "alias": "lpar-power",
+            "mode": "reduceRow",
+            "reduce": {
+              "include": [
+                "LPAR Metrics.mean"
+              ],
+              "reducer": "sum"
+            }
+          }
+        },
+        {
+          "id": "reduce",
+          "options": {
+            "includeTimeField": false,
+            "mode": "reduceFields",
+            "reducers": [
+              "sum"
+            ]
+          }
+        },
+        {
+          "id": "calculateField",
+          "options": {
+            "alias": "interval_sec",
+            "binary": {
+              "left": "$__interval_ms",
+              "operator": "/",
+              "reducer": "sum",
+              "right": "1000"
+            },
+            "mode": "binary",
+            "reduce": {
+              "reducer": "sum"
+            }
+          }
+        },
+        {
+          "id": "calculateField",
+          "options": {
+            "alias": "interval_seconds / seconds_per_hour",
+            "binary": {
+              "left": "interval_sec",
+              "operator": "/",
+              "reducer": "sum",
+              "right": "3600"
+            },
+            "mode": "binary",
+            "reduce": {
+              "reducer": "sum"
+            }
+          }
+        },
+        {
+          "id": "calculateField",
+          "options": {
+            "alias": "energy consumption",
+            "binary": {
+              "left": "lpar-power",
+              "operator": "*",
+              "reducer": "sum",
+              "right": "interval_seconds / seconds_per_hour"
+            },
+            "mode": "binary",
+            "reduce": {
+              "reducer": "sum"
+            },
+            "replaceFields": false
+          }
+        }
+      ],
+      "type": "stat"
+    },
+    {
+      "datasource": {
+        "type": "datasource",
+        "uid": "grafana"
+      },
+      "gridPos": {
+        "h": 5,
+        "w": 4,
+        "x": 8,
+        "y": 31
+      },
+      "id": 122,
+      "options": {
+        "code": {
+          "language": "plaintext",
+          "showLineNumbers": false,
+          "showMiniMap": false
+        },
+        "content": "<div style=\"display: flex; flex-wrap: wrap; justify-content: center; gap: 10px;\">\n  <img src=\"https://raw.githubusercontent.com/mmondics/media/refs/heads/main/images/sr650.png\" style=\"max-width: 30%; height: auto;\">\n  <img src=\"https://raw.githubusercontent.com/mmondics/media/refs/heads/main/images/sr650.png\" style=\"max-width: 30%; height: auto;\">\n  <img src=\"https://raw.githubusercontent.com/mmondics/media/refs/heads/main/images/sr650.png\" style=\"max-width: 30%; height: auto;\">\n  <img src=\"https://raw.githubusercontent.com/mmondics/media/refs/heads/main/images/sr650.png\" style=\"max-width: 30%; height: auto;\">\n  <img src=\"https://raw.githubusercontent.com/mmondics/media/refs/heads/main/images/sr650.png\" style=\"max-width: 30%; height: auto;\">\n  <img src=\"https://raw.githubusercontent.com/mmondics/media/refs/heads/main/images/sr650.png\" style=\"max-width: 30%; height: auto;\">\n</div>\n",
+        "mode": "markdown"
+      },
+      "pluginVersion": "9.4.7",
+      "title": "6 X86 Servers",
+      "type": "text"
+    },
+    {
+      "datasource": {
+        "type": "datasource",
+        "uid": "grafana"
+      },
+      "gridPos": {
+        "h": 5,
+        "w": 4,
+        "x": 12,
+        "y": 31
+      },
+      "id": 121,
+      "options": {
+        "code": {
+          "language": "plaintext",
+          "showLineNumbers": false,
+          "showMiniMap": false
+        },
+        "content": "<img src=\"https://www.ibm.com/demos/it-infrastructure/catalog/15/1502/thumb_400x320.png\" style=\"max-width: 100%; max-height: 100%; width: auto; height: auto; display: block; margin: auto;\">\n",
+        "mode": "markdown"
+      },
+      "pluginVersion": "9.4.7",
+      "title": "1  IBM Z LPAR",
+      "type": "text"
+    },
+    {
+      "datasource": {
+        "type": "datasource",
+        "uid": "-- Dashboard --"
+      },
+      "description": "",
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "fixedColor": "#808080",
+            "mode": "fixed"
+          },
+          "decimals": 0,
+          "mappings": [],
+          "thresholds": {
+            "mode": "percentage",
+            "steps": [
+              {
+                "color": "orange",
+                "value": null
+              },
+              {
+                "color": "#EAB839",
+                "value": 30
+              },
+              {
+                "color": "orange",
+                "value": 50
+              },
+              {
+                "color": "red",
+                "value": 80
+              }
+            ]
+          },
+          "unit": "masskg"
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 4,
+        "w": 8,
+        "x": 0,
+        "y": 32
+      },
+      "hideTimeOverride": false,
+      "id": 93,
+      "interval": "15s",
+      "options": {
+        "colorMode": "value",
+        "graphMode": "none",
+        "justifyMode": "auto",
+        "orientation": "auto",
+        "reduceOptions": {
+          "calcs": [
+            "sum"
+          ],
+          "fields": "carbon emissions",
+          "values": false
+        },
+        "textMode": "auto"
+      },
+      "pluginVersion": "9.4.7",
+      "targets": [
+        {
+          "datasource": {
+            "type": "datasource",
+            "uid": "-- Dashboard --"
+          },
+          "panelId": 61,
+          "refId": "A"
+        }
+      ],
+      "title": "x86 Carbon Emissions",
+      "transformations": [
+        {
+          "id": "calculateField",
+          "options": {
+            "mode": "reduceRow",
+            "reduce": {
+              "include": [
+                "{__name__=\"ipmi_power_watts\", id=\"103\", instance=\"10.11.0.191\", job=\"ipmi_exporter\", name=\"Sys Power\"}",
+                "{__name__=\"ipmi_power_watts\", id=\"103\", instance=\"10.11.0.192\", job=\"ipmi_exporter\", name=\"Sys Power\"}",
+                "{__name__=\"ipmi_power_watts\", id=\"103\", instance=\"10.11.0.193\", job=\"ipmi_exporter\", name=\"Sys Power\"}",
+                "{__name__=\"ipmi_power_watts\", id=\"103\", instance=\"10.11.0.194\", job=\"ipmi_exporter\", name=\"Sys Power\"}",
+                "{__name__=\"ipmi_power_watts\", id=\"103\", instance=\"10.11.0.196\", job=\"ipmi_exporter\", name=\"Sys Power\"}",
+                "{__name__=\"ipmi_power_watts\", id=\"5\", instance=\"10.11.0.195\", job=\"ipmi_exporter\", name=\"Avg Power\"}"
+              ],
+              "reducer": "sum"
+            },
+            "replaceFields": true
+          }
+        },
+        {
+          "id": "calculateField",
+          "options": {
+            "alias": "interval_sec",
+            "binary": {
+              "left": "$__interval_ms",
+              "operator": "/",
+              "reducer": "sum",
+              "right": "1000"
+            },
+            "mode": "binary",
+            "reduce": {
+              "reducer": "sum"
+            }
+          }
+        },
+        {
+          "id": "calculateField",
+          "options": {
+            "alias": "interval_seconds / seconds_per_hour",
+            "binary": {
+              "left": "interval_sec",
+              "operator": "/",
+              "reducer": "sum",
+              "right": "3600"
+            },
+            "mode": "binary",
+            "reduce": {
+              "reducer": "sum"
+            }
+          }
+        },
+        {
+          "id": "calculateField",
+          "options": {
+            "alias": "energy consumption",
+            "binary": {
+              "left": "Total",
+              "operator": "*",
+              "reducer": "sum",
+              "right": "interval_seconds / seconds_per_hour"
+            },
+            "mode": "binary",
+            "reduce": {
+              "reducer": "sum"
+            }
+          }
+        },
+        {
+          "id": "calculateField",
+          "options": {
+            "alias": "carbon emissions",
+            "binary": {
+              "left": "energy consumption",
+              "operator": "*",
+              "reducer": "sum",
+              "right": "0.00025"
+            },
+            "mode": "binary",
+            "reduce": {
+              "reducer": "sum"
+            },
+            "replaceFields": false
+          }
+        }
+      ],
+      "type": "stat"
+    },
+    {
+      "datasource": {
+        "type": "datasource",
+        "uid": "-- Dashboard --"
+      },
+      "description": "",
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "fixedColor": "dark-blue",
+            "mode": "fixed"
+          },
+          "decimals": 0,
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              },
+              {
+                "color": "orange",
+                "value": 3000
+              },
+              {
+                "color": "red",
+                "value": 4000
+              }
+            ]
+          },
+          "unit": "masskg"
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 4,
+        "w": 8,
+        "x": 16,
+        "y": 32
+      },
+      "id": 91,
+      "interval": "15s",
+      "options": {
+        "colorMode": "value",
+        "graphMode": "none",
+        "justifyMode": "auto",
+        "orientation": "auto",
+        "reduceOptions": {
+          "calcs": [
+            "sum"
+          ],
+          "fields": "/^carbon_L1$/",
+          "values": false
+        },
+        "textMode": "auto"
+      },
+      "pluginVersion": "9.4.7",
+      "targets": [
+        {
+          "datasource": {
+            "type": "datasource",
+            "uid": "-- Dashboard --"
+          },
+          "panelId": 63,
+          "refId": "A"
+        }
+      ],
+      "title": "IBM Z Carbon Emissions",
+      "transformations": [
+        {
+          "id": "filterFieldsByName",
+          "options": {
+            "include": {
+              "names": [
+                "Time",
+                "LPAR Metrics.mean"
+              ]
+            }
+          }
+        },
+        {
+          "id": "calculateField",
+          "options": {
+            "alias": "lpar-power",
+            "mode": "reduceRow",
+            "reduce": {
+              "include": [
+                "LPAR Metrics.mean"
+              ],
+              "reducer": "sum"
+            }
+          }
+        },
+        {
+          "id": "calculateField",
+          "options": {
+            "alias": "interval_sec",
+            "binary": {
+              "left": "$__interval_ms",
+              "operator": "/",
+              "reducer": "sum",
+              "right": "1000"
+            },
+            "mode": "binary",
+            "reduce": {
+              "reducer": "sum"
+            }
+          }
+        },
+        {
+          "id": "calculateField",
+          "options": {
+            "alias": "interval_seconds / seconds_per_hour",
+            "binary": {
+              "left": "interval_sec",
+              "operator": "/",
+              "reducer": "sum",
+              "right": "3600"
+            },
+            "mode": "binary",
+            "reduce": {
+              "reducer": "sum"
+            }
+          }
+        },
+        {
+          "id": "calculateField",
+          "options": {
+            "alias": "energy consumption",
+            "binary": {
+              "left": "lpar-power",
+              "operator": "*",
+              "reducer": "sum",
+              "right": "interval_seconds / seconds_per_hour"
+            },
+            "mode": "binary",
+            "reduce": {
+              "reducer": "sum"
+            }
+          }
+        },
+        {
+          "id": "calculateField",
+          "options": {
+            "alias": "carbon_L1",
+            "binary": {
+              "left": "energy consumption",
+              "operator": "*",
+              "reducer": "sum",
+              "right": "0.00025"
+            },
+            "mode": "binary",
+            "reduce": {
+              "reducer": "sum"
+            }
+          }
+        },
+        {
+          "id": "calculateField",
+          "options": {
+            "alias": "14",
+            "mode": "reduceRow",
+            "reduce": {
+              "reducer": "max"
+            }
+          }
+        }
+      ],
+      "type": "stat"
+    },
+    {
+      "datasource": {
+        "type": "prometheus",
+        "uid": "GcmvRd57k"
+      },
+      "gridPos": {
+        "h": 2,
+        "w": 24,
+        "x": 0,
+        "y": 36
+      },
+      "id": 56,
+      "options": {
+        "code": {
+          "language": "plaintext",
+          "showLineNumbers": false,
+          "showMiniMap": false
+        },
+        "content": "\n\n<h1 style=\"text-align: center; color: #2ecc71\">Infrastructure Monitoring Metrics</h1>",
+        "mode": "markdown"
+      },
+      "pluginVersion": "9.4.7",
+      "type": "text"
+    },
+    {
+      "datasource": {
+        "type": "datasource",
+        "uid": "-- Dashboard --"
+      },
+      "description": "",
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "palette-classic"
+          },
+          "custom": {
+            "axisCenteredZero": false,
+            "axisColorMode": "text",
+            "axisLabel": "",
+            "axisPlacement": "auto",
+            "axisSoftMax": 2500,
+            "axisSoftMin": 0,
+            "barAlignment": 0,
+            "drawStyle": "line",
+            "fillOpacity": 8,
+            "gradientMode": "none",
+            "hideFrom": {
+              "legend": false,
+              "tooltip": false,
+              "viz": false
+            },
+            "lineInterpolation": "linear",
+            "lineStyle": {
+              "fill": "solid"
+            },
+            "lineWidth": 1,
+            "pointSize": 3,
+            "scaleDistribution": {
+              "type": "linear"
+            },
+            "showPoints": "always",
+            "spanNulls": false,
+            "stacking": {
+              "group": "A",
+              "mode": "none"
+            },
+            "thresholdsStyle": {
+              "mode": "area"
+            }
+          },
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              },
+              {
+                "color": "#EAB839",
+                "value": 1000
+              },
+              {
+                "color": "red",
+                "value": 2000
+              }
+            ]
+          },
+          "unit": "watt"
+        },
+        "overrides": [
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "Total"
+            },
+            "properties": [
+              {
+                "id": "color",
+                "value": {
+                  "fixedColor": "#ffffff",
+                  "mode": "fixed"
+                }
+              }
+            ]
+          }
+        ]
+      },
+      "gridPos": {
+        "h": 6,
+        "w": 12,
+        "x": 0,
+        "y": 38
+      },
+      "hideTimeOverride": false,
+      "id": 66,
+      "interval": "15s",
+      "options": {
+        "legend": {
+          "calcs": [],
+          "displayMode": "list",
+          "placement": "right",
+          "showLegend": false
+        },
+        "tooltip": {
+          "mode": "multi",
+          "sort": "desc"
+        }
+      },
+      "pluginVersion": "9.0.1",
+      "targets": [
+        {
+          "datasource": {
+            "type": "datasource",
+            "uid": "-- Dashboard --"
+          },
+          "panelId": 61,
+          "refId": "A"
+        }
+      ],
+      "title": "x86 Power Consumption",
+      "transformations": [
+        {
+          "id": "calculateField",
+          "options": {
+            "mode": "reduceRow",
+            "reduce": {
+              "include": [
+                "{__name__=\"ipmi_power_watts\", id=\"103\", instance=\"10.11.0.191\", job=\"ipmi_exporter\", name=\"Sys Power\"}",
+                "{__name__=\"ipmi_power_watts\", id=\"103\", instance=\"10.11.0.192\", job=\"ipmi_exporter\", name=\"Sys Power\"}",
+                "{__name__=\"ipmi_power_watts\", id=\"103\", instance=\"10.11.0.193\", job=\"ipmi_exporter\", name=\"Sys Power\"}",
+                "{__name__=\"ipmi_power_watts\", id=\"103\", instance=\"10.11.0.194\", job=\"ipmi_exporter\", name=\"Sys Power\"}",
+                "{__name__=\"ipmi_power_watts\", id=\"103\", instance=\"10.11.0.196\", job=\"ipmi_exporter\", name=\"Sys Power\"}",
+                "{__name__=\"ipmi_power_watts\", id=\"5\", instance=\"10.11.0.195\", job=\"ipmi_exporter\", name=\"Avg Power\"}"
+              ],
+              "reducer": "sum"
+            },
+            "replaceFields": false
+          }
+        }
+      ],
+      "type": "timeseries"
+    },
+    {
+      "datasource": {
+        "type": "datasource",
+        "uid": "-- Dashboard --"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "fixedColor": "dark-blue",
+            "mode": "fixed"
+          },
+          "custom": {
+            "axisCenteredZero": false,
+            "axisColorMode": "text",
+            "axisLabel": "",
+            "axisPlacement": "auto",
+            "barAlignment": 0,
+            "drawStyle": "line",
+            "fillOpacity": 0,
+            "gradientMode": "none",
+            "hideFrom": {
+              "legend": false,
+              "tooltip": false,
+              "viz": false
+            },
+            "lineInterpolation": "linear",
+            "lineStyle": {
+              "fill": "solid"
+            },
+            "lineWidth": 1,
+            "pointSize": 3,
+            "scaleDistribution": {
+              "type": "linear"
+            },
+            "showPoints": "always",
+            "spanNulls": true,
+            "stacking": {
+              "group": "A",
+              "mode": "none"
+            },
+            "thresholdsStyle": {
+              "mode": "area"
+            }
+          },
+          "mappings": [],
+          "max": 2500,
+          "min": 0,
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              },
+              {
+                "color": "#EAB839",
+                "value": 1000
+              },
+              {
+                "color": "red",
+                "value": 2000
+              }
+            ]
+          },
+          "unit": "watt"
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 6,
+        "w": 12,
+        "x": 12,
+        "y": 38
+      },
+      "id": 81,
+      "interval": "15s",
+      "options": {
+        "legend": {
+          "calcs": [],
+          "displayMode": "list",
+          "placement": "bottom",
+          "showLegend": false
+        },
+        "tooltip": {
+          "mode": "single",
+          "sort": "none"
+        }
+      },
+      "targets": [
+        {
+          "datasource": {
+            "type": "datasource",
+            "uid": "-- Dashboard --"
+          },
+          "panelId": 63,
+          "refId": "A"
+        }
+      ],
+      "title": "IBM Z Power Consumption",
+      "transformations": [
+        {
+          "id": "filterFieldsByName",
+          "options": {
+            "include": {
+              "names": [
+                "Time",
+                "LPAR Metrics.mean"
+              ]
+            }
+          }
+        },
+        {
+          "id": "calculateField",
+          "options": {
+            "alias": "power-consumption",
+            "binary": {
+              "left": "Energy Data.total-infrastructure-power-consumption",
+              "operator": "/",
+              "reducer": "sum",
+              "right": "16"
+            },
+            "mode": "reduceRow",
+            "reduce": {
+              "include": [
+                "LPAR Metrics.mean"
+              ],
+              "reducer": "mean"
+            },
+            "replaceFields": true
+          }
+        }
+      ],
+      "type": "timeseries"
+    },
+    {
+      "datasource": {
+        "type": "prometheus",
+        "uid": "ipRBv6P4k"
+      },
+      "gridPos": {
+        "h": 3,
+        "w": 12,
+        "x": 0,
+        "y": 44
+      },
+      "hideTimeOverride": true,
+      "id": 125,
+      "maxDataPoints": 10,
+      "options": {
+        "code": {
+          "language": "plaintext",
+          "showLineNumbers": false,
+          "showMiniMap": false
+        },
+        "content": "<br>\n<h2><center><p style=\"color: gray;\">VMware vSphere (RHEL 9 VMware ESXi)</p></center></h2>",
+        "mode": "html"
+      },
+      "pluginVersion": "9.4.7",
+      "targets": [
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "ipRBv6P4k"
+          },
+          "editorMode": "code",
+          "expr": "zhmc_partition_description{cpc=\"INDUS\"}",
+          "groupBy": [
+            {
+              "params": [
+                "$__interval"
+              ],
+              "type": "time"
+            },
+            {
+              "params": [
+                "null"
+              ],
+              "type": "fill"
+            }
+          ],
+          "legendFormat": "__auto",
+          "orderByTime": "ASC",
+          "policy": "default",
+          "range": true,
+          "refId": "A",
+          "resultFormat": "time_series",
+          "select": [
+            [
+              {
+                "params": [
+                  "value"
+                ],
+                "type": "field"
+              },
+              {
+                "params": [],
+                "type": "mean"
+              }
+            ]
+          ],
+          "tags": []
+        }
+      ],
+      "timeFrom": "5m",
+      "title": "x86 Red Hat OpenShift Cluster",
+      "transformations": [],
+      "type": "text"
+    },
+    {
+      "datasource": {
+        "type": "prometheus",
+        "uid": "ipRBv6P4k"
+      },
+      "gridPos": {
+        "h": 3,
+        "w": 12,
+        "x": 12,
+        "y": 44
+      },
+      "hideTimeOverride": true,
+      "id": 119,
+      "maxDataPoints": 10,
+      "options": {
+        "code": {
+          "language": "plaintext",
+          "showLineNumbers": false,
+          "showMiniMap": false
+        },
+        "content": "<br>\n<h2><center><p style=\"color: blue;\">KVM (RHEL 9 KVM)</p></center></h2>",
+        "mode": "html"
+      },
+      "pluginVersion": "9.4.7",
+      "targets": [
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "ipRBv6P4k"
+          },
+          "editorMode": "code",
+          "expr": "zhmc_partition_description{cpc=\"INDUS\"}",
+          "groupBy": [
+            {
+              "params": [
+                "$__interval"
+              ],
+              "type": "time"
+            },
+            {
+              "params": [
+                "null"
+              ],
+              "type": "fill"
+            }
+          ],
+          "legendFormat": "__auto",
+          "orderByTime": "ASC",
+          "policy": "default",
+          "range": true,
+          "refId": "A",
+          "resultFormat": "time_series",
+          "select": [
+            [
+              {
+                "params": [
+                  "value"
+                ],
+                "type": "field"
+              },
+              {
+                "params": [],
+                "type": "mean"
+              }
+            ]
+          ],
+          "tags": []
+        }
+      ],
+      "timeFrom": "5m",
+      "title": "IBM Z Red Hat OpenShift Cluster",
+      "transformations": [],
+      "type": "text"
+    },
+    {
+      "datasource": {
+        "type": "prometheus",
+        "uid": "ipRBv6P4k"
+      },
+      "description": "",
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "thresholds"
+          },
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "#676566",
+                "value": null
+              }
+            ]
+          }
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 3,
+        "w": 10,
+        "x": 0,
+        "y": 47
+      },
+      "id": 104,
+      "interval": "15s",
+      "options": {
+        "colorMode": "background",
+        "graphMode": "none",
+        "justifyMode": "auto",
+        "orientation": "auto",
+        "reduceOptions": {
+          "calcs": [
+            "lastNotNull"
+          ],
+          "fields": "",
+          "values": false
+        },
+        "textMode": "auto"
+      },
+      "pluginVersion": "9.4.7",
+      "targets": [
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "ipRBv6P4k"
+          },
+          "editorMode": "builder",
+          "expr": "hrDeviceType{instance=\"10.11.0.181\", hrDeviceType=\"1.3.6.1.2.1.25.3.1.3\"}",
+          "legendFormat": "__auto",
+          "range": true,
+          "refId": "A"
+        },
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "ipRBv6P4k"
+          },
+          "editorMode": "builder",
+          "expr": "hrDeviceType{instance=\"10.11.0.182\", hrDeviceType=\"1.3.6.1.2.1.25.3.1.3\"}",
+          "hide": false,
+          "legendFormat": "__auto",
+          "range": true,
+          "refId": "B"
+        },
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "ipRBv6P4k"
+          },
+          "editorMode": "builder",
+          "expr": "hrDeviceType{instance=\"10.11.0.183\", hrDeviceType=\"1.3.6.1.2.1.25.3.1.3\"}",
+          "hide": false,
+          "legendFormat": "__auto",
+          "range": true,
+          "refId": "C"
+        },
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "ipRBv6P4k"
+          },
+          "editorMode": "builder",
+          "expr": "hrDeviceType{instance=\"10.11.0.184\", hrDeviceType=\"1.3.6.1.2.1.25.3.1.3\"}",
+          "hide": false,
+          "legendFormat": "__auto",
+          "range": true,
+          "refId": "D"
+        },
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "ipRBv6P4k"
+          },
+          "editorMode": "builder",
+          "expr": "hrDeviceType{instance=\"10.11.0.185\", hrDeviceType=\"1.3.6.1.2.1.25.3.1.3\"}",
+          "hide": false,
+          "legendFormat": "__auto",
+          "range": true,
+          "refId": "E"
+        },
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "ipRBv6P4k"
+          },
+          "editorMode": "builder",
+          "expr": "hrDeviceType{instance=\"10.11.0.186\", hrDeviceType=\"1.3.6.1.2.1.25.3.1.3\"}",
+          "hide": false,
+          "legendFormat": "__auto",
+          "range": true,
+          "refId": "F"
+        }
+      ],
+      "title": "Total x86 CPU Cores",
+      "transformations": [
+        {
+          "id": "calculateField",
+          "options": {
+            "mode": "reduceRow",
+            "reduce": {
+              "include": [],
+              "reducer": "sum"
+            },
+            "replaceFields": true
+          }
+        },
+        {
+          "id": "calculateField",
+          "options": {
+            "binary": {
+              "left": "Total",
+              "operator": "/",
+              "reducer": "sum",
+              "right": "2"
+            },
+            "mode": "binary",
+            "reduce": {
+              "reducer": "sum"
+            },
+            "replaceFields": true
+          }
+        }
+      ],
+      "type": "stat"
+    },
+    {
+      "datasource": {
+        "type": "prometheus",
+        "uid": "ipRBv6P4k"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "thresholds"
+          },
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "dark-blue",
+                "value": null
+              }
+            ]
+          }
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 3,
+        "w": 4,
+        "x": 10,
+        "y": 47
+      },
+      "id": 109,
+      "interval": "15s",
+      "options": {
+        "colorMode": "value",
+        "graphMode": "none",
+        "justifyMode": "auto",
+        "orientation": "auto",
+        "reduceOptions": {
+          "calcs": [
+            "lastNotNull"
+          ],
+          "fields": "",
+          "values": false
+        },
+        "text": {},
+        "textMode": "auto"
+      },
+      "pluginVersion": "9.4.7",
+      "targets": [
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "ipRBv6P4k"
+          },
+          "editorMode": "builder",
+          "expr": "hrDeviceType{hrDeviceType=\"1.3.6.1.2.1.25.3.1.3\"}",
+          "legendFormat": "__auto",
+          "range": true,
+          "refId": "A"
+        },
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "ipRBv6P4k"
+          },
+          "editorMode": "builder",
+          "expr": "zhmc_partition_ifl_processor_count{cpc=\"MENSA\", partition=\"MENSA03\"}",
+          "hide": false,
+          "legendFormat": "__auto",
+          "range": true,
+          "refId": "B"
+        }
+      ],
+      "title": "Consolidation Factor",
+      "transformations": [
+        {
+          "id": "calculateField",
+          "options": {
+            "alias": "x86 total",
+            "mode": "reduceRow",
+            "reduce": {
+              "include": [
+                "{__name__=\"hrDeviceType\", hrDeviceIndex=\"1\", hrDeviceType=\"1.3.6.1.2.1.25.3.1.3\", instance=\"10.11.0.181\", job=\"snmp\"}",
+                "{__name__=\"hrDeviceType\", hrDeviceIndex=\"1\", hrDeviceType=\"1.3.6.1.2.1.25.3.1.3\", instance=\"10.11.0.182\", job=\"snmp\"}",
+                "{__name__=\"hrDeviceType\", hrDeviceIndex=\"96\", hrDeviceType=\"1.3.6.1.2.1.25.3.1.3\", instance=\"10.11.0.184\", job=\"snmp\"}",
+                "{__name__=\"hrDeviceType\", hrDeviceIndex=\"96\", hrDeviceType=\"1.3.6.1.2.1.25.3.1.3\", instance=\"10.11.0.186\", job=\"snmp\"}",
+                "{__name__=\"hrDeviceType\", hrDeviceIndex=\"97\", hrDeviceType=\"1.3.6.1.2.1.25.3.1.3\", instance=\"10.11.0.182\", job=\"snmp\"}",
+                "{__name__=\"hrDeviceType\", hrDeviceIndex=\"98\", hrDeviceType=\"1.3.6.1.2.1.25.3.1.3\", instance=\"10.11.0.182\", job=\"snmp\"}",
+                "{__name__=\"hrDeviceType\", hrDeviceIndex=\"99\", hrDeviceType=\"1.3.6.1.2.1.25.3.1.3\", instance=\"10.11.0.182\", job=\"snmp\"}",
+                "{__name__=\"hrDeviceType\", hrDeviceIndex=\"96\", hrDeviceType=\"1.3.6.1.2.1.25.3.1.3\", instance=\"10.11.0.183\", job=\"snmp\"}",
+                "{__name__=\"hrDeviceType\", hrDeviceIndex=\"96\", hrDeviceType=\"1.3.6.1.2.1.25.3.1.3\", instance=\"10.11.0.182\", job=\"snmp\"}",
+                "{__name__=\"hrDeviceType\", hrDeviceIndex=\"95\", hrDeviceType=\"1.3.6.1.2.1.25.3.1.3\", instance=\"10.11.0.186\", job=\"snmp\"}",
+                "{__name__=\"hrDeviceType\", hrDeviceIndex=\"95\", hrDeviceType=\"1.3.6.1.2.1.25.3.1.3\", instance=\"10.11.0.184\", job=\"snmp\"}",
+                "{__name__=\"hrDeviceType\", hrDeviceIndex=\"95\", hrDeviceType=\"1.3.6.1.2.1.25.3.1.3\", instance=\"10.11.0.183\", job=\"snmp\"}",
+                "{__name__=\"hrDeviceType\", hrDeviceIndex=\"95\", hrDeviceType=\"1.3.6.1.2.1.25.3.1.3\", instance=\"10.11.0.182\", job=\"snmp\"}",
+                "{__name__=\"hrDeviceType\", hrDeviceIndex=\"94\", hrDeviceType=\"1.3.6.1.2.1.25.3.1.3\", instance=\"10.11.0.186\", job=\"snmp\"}",
+                "{__name__=\"hrDeviceType\", hrDeviceIndex=\"94\", hrDeviceType=\"1.3.6.1.2.1.25.3.1.3\", instance=\"10.11.0.184\", job=\"snmp\"}",
+                "{__name__=\"hrDeviceType\", hrDeviceIndex=\"94\", hrDeviceType=\"1.3.6.1.2.1.25.3.1.3\", instance=\"10.11.0.183\", job=\"snmp\"}",
+                "{__name__=\"hrDeviceType\", hrDeviceIndex=\"94\", hrDeviceType=\"1.3.6.1.2.1.25.3.1.3\", instance=\"10.11.0.182\", job=\"snmp\"}",
+                "{__name__=\"hrDeviceType\", hrDeviceIndex=\"93\", hrDeviceType=\"1.3.6.1.2.1.25.3.1.3\", instance=\"10.11.0.186\", job=\"snmp\"}",
+                "{__name__=\"hrDeviceType\", hrDeviceIndex=\"93\", hrDeviceType=\"1.3.6.1.2.1.25.3.1.3\", instance=\"10.11.0.184\", job=\"snmp\"}",
+                "{__name__=\"hrDeviceType\", hrDeviceIndex=\"93\", hrDeviceType=\"1.3.6.1.2.1.25.3.1.3\", instance=\"10.11.0.183\", job=\"snmp\"}",
+                "{__name__=\"hrDeviceType\", hrDeviceIndex=\"93\", hrDeviceType=\"1.3.6.1.2.1.25.3.1.3\", instance=\"10.11.0.182\", job=\"snmp\"}",
+                "{__name__=\"hrDeviceType\", hrDeviceIndex=\"92\", hrDeviceType=\"1.3.6.1.2.1.25.3.1.3\", instance=\"10.11.0.186\", job=\"snmp\"}",
+                "{__name__=\"hrDeviceType\", hrDeviceIndex=\"92\", hrDeviceType=\"1.3.6.1.2.1.25.3.1.3\", instance=\"10.11.0.184\", job=\"snmp\"}",
+                "{__name__=\"hrDeviceType\", hrDeviceIndex=\"92\", hrDeviceType=\"1.3.6.1.2.1.25.3.1.3\", instance=\"10.11.0.183\", job=\"snmp\"}",
+                "{__name__=\"hrDeviceType\", hrDeviceIndex=\"92\", hrDeviceType=\"1.3.6.1.2.1.25.3.1.3\", instance=\"10.11.0.182\", job=\"snmp\"}",
+                "{__name__=\"hrDeviceType\", hrDeviceIndex=\"91\", hrDeviceType=\"1.3.6.1.2.1.25.3.1.3\", instance=\"10.11.0.186\", job=\"snmp\"}",
+                "{__name__=\"hrDeviceType\", hrDeviceIndex=\"91\", hrDeviceType=\"1.3.6.1.2.1.25.3.1.3\", instance=\"10.11.0.184\", job=\"snmp\"}",
+                "{__name__=\"hrDeviceType\", hrDeviceIndex=\"91\", hrDeviceType=\"1.3.6.1.2.1.25.3.1.3\", instance=\"10.11.0.182\", job=\"snmp\"}",
+                "{__name__=\"hrDeviceType\", hrDeviceIndex=\"91\", hrDeviceType=\"1.3.6.1.2.1.25.3.1.3\", instance=\"10.11.0.183\", job=\"snmp\"}",
+                "{__name__=\"hrDeviceType\", hrDeviceIndex=\"90\", hrDeviceType=\"1.3.6.1.2.1.25.3.1.3\", instance=\"10.11.0.186\", job=\"snmp\"}",
+                "{__name__=\"hrDeviceType\", hrDeviceIndex=\"90\", hrDeviceType=\"1.3.6.1.2.1.25.3.1.3\", instance=\"10.11.0.184\", job=\"snmp\"}",
+                "{__name__=\"hrDeviceType\", hrDeviceIndex=\"90\", hrDeviceType=\"1.3.6.1.2.1.25.3.1.3\", instance=\"10.11.0.183\", job=\"snmp\"}",
+                "{__name__=\"hrDeviceType\", hrDeviceIndex=\"90\", hrDeviceType=\"1.3.6.1.2.1.25.3.1.3\", instance=\"10.11.0.182\", job=\"snmp\"}",
+                "{__name__=\"hrDeviceType\", hrDeviceIndex=\"9\", hrDeviceType=\"1.3.6.1.2.1.25.3.1.3\", instance=\"10.11.0.186\", job=\"snmp\"}",
+                "{__name__=\"hrDeviceType\", hrDeviceIndex=\"9\", hrDeviceType=\"1.3.6.1.2.1.25.3.1.3\", instance=\"10.11.0.185\", job=\"snmp\"}",
+                "{__name__=\"hrDeviceType\", hrDeviceIndex=\"9\", hrDeviceType=\"1.3.6.1.2.1.25.3.1.3\", instance=\"10.11.0.184\", job=\"snmp\"}",
+                "{__name__=\"hrDeviceType\", hrDeviceIndex=\"9\", hrDeviceType=\"1.3.6.1.2.1.25.3.1.3\", instance=\"10.11.0.183\", job=\"snmp\"}",
+                "{__name__=\"hrDeviceType\", hrDeviceIndex=\"9\", hrDeviceType=\"1.3.6.1.2.1.25.3.1.3\", instance=\"10.11.0.182\", job=\"snmp\"}",
+                "{__name__=\"hrDeviceType\", hrDeviceIndex=\"9\", hrDeviceType=\"1.3.6.1.2.1.25.3.1.3\", instance=\"10.11.0.181\", job=\"snmp\"}",
+                "{__name__=\"hrDeviceType\", hrDeviceIndex=\"89\", hrDeviceType=\"1.3.6.1.2.1.25.3.1.3\", instance=\"10.11.0.186\", job=\"snmp\"}",
+                "{__name__=\"hrDeviceType\", hrDeviceIndex=\"89\", hrDeviceType=\"1.3.6.1.2.1.25.3.1.3\", instance=\"10.11.0.184\", job=\"snmp\"}",
+                "{__name__=\"hrDeviceType\", hrDeviceIndex=\"89\", hrDeviceType=\"1.3.6.1.2.1.25.3.1.3\", instance=\"10.11.0.183\", job=\"snmp\"}",
+                "{__name__=\"hrDeviceType\", hrDeviceIndex=\"89\", hrDeviceType=\"1.3.6.1.2.1.25.3.1.3\", instance=\"10.11.0.182\", job=\"snmp\"}",
+                "{__name__=\"hrDeviceType\", hrDeviceIndex=\"88\", hrDeviceType=\"1.3.6.1.2.1.25.3.1.3\", instance=\"10.11.0.186\", job=\"snmp\"}",
+                "{__name__=\"hrDeviceType\", hrDeviceIndex=\"88\", hrDeviceType=\"1.3.6.1.2.1.25.3.1.3\", instance=\"10.11.0.184\", job=\"snmp\"}",
+                "{__name__=\"hrDeviceType\", hrDeviceIndex=\"88\", hrDeviceType=\"1.3.6.1.2.1.25.3.1.3\", instance=\"10.11.0.183\", job=\"snmp\"}",
+                "{__name__=\"hrDeviceType\", hrDeviceIndex=\"88\", hrDeviceType=\"1.3.6.1.2.1.25.3.1.3\", instance=\"10.11.0.182\", job=\"snmp\"}",
+                "{__name__=\"hrDeviceType\", hrDeviceIndex=\"87\", hrDeviceType=\"1.3.6.1.2.1.25.3.1.3\", instance=\"10.11.0.186\", job=\"snmp\"}",
+                "{__name__=\"hrDeviceType\", hrDeviceIndex=\"87\", hrDeviceType=\"1.3.6.1.2.1.25.3.1.3\", instance=\"10.11.0.184\", job=\"snmp\"}",
+                "{__name__=\"hrDeviceType\", hrDeviceIndex=\"87\", hrDeviceType=\"1.3.6.1.2.1.25.3.1.3\", instance=\"10.11.0.183\", job=\"snmp\"}",
+                "{__name__=\"hrDeviceType\", hrDeviceIndex=\"87\", hrDeviceType=\"1.3.6.1.2.1.25.3.1.3\", instance=\"10.11.0.182\", job=\"snmp\"}",
+                "{__name__=\"hrDeviceType\", hrDeviceIndex=\"86\", hrDeviceType=\"1.3.6.1.2.1.25.3.1.3\", instance=\"10.11.0.186\", job=\"snmp\"}",
+                "{__name__=\"hrDeviceType\", hrDeviceIndex=\"86\", hrDeviceType=\"1.3.6.1.2.1.25.3.1.3\", instance=\"10.11.0.184\", job=\"snmp\"}",
+                "{__name__=\"hrDeviceType\", hrDeviceIndex=\"86\", hrDeviceType=\"1.3.6.1.2.1.25.3.1.3\", instance=\"10.11.0.183\", job=\"snmp\"}",
+                "{__name__=\"hrDeviceType\", hrDeviceIndex=\"86\", hrDeviceType=\"1.3.6.1.2.1.25.3.1.3\", instance=\"10.11.0.182\", job=\"snmp\"}",
+                "{__name__=\"hrDeviceType\", hrDeviceIndex=\"85\", hrDeviceType=\"1.3.6.1.2.1.25.3.1.3\", instance=\"10.11.0.186\", job=\"snmp\"}",
+                "{__name__=\"hrDeviceType\", hrDeviceIndex=\"85\", hrDeviceType=\"1.3.6.1.2.1.25.3.1.3\", instance=\"10.11.0.184\", job=\"snmp\"}",
+                "{__name__=\"hrDeviceType\", hrDeviceIndex=\"85\", hrDeviceType=\"1.3.6.1.2.1.25.3.1.3\", instance=\"10.11.0.183\", job=\"snmp\"}",
+                "{__name__=\"hrDeviceType\", hrDeviceIndex=\"85\", hrDeviceType=\"1.3.6.1.2.1.25.3.1.3\", instance=\"10.11.0.182\", job=\"snmp\"}",
+                "{__name__=\"hrDeviceType\", hrDeviceIndex=\"84\", hrDeviceType=\"1.3.6.1.2.1.25.3.1.3\", instance=\"10.11.0.186\", job=\"snmp\"}",
+                "{__name__=\"hrDeviceType\", hrDeviceIndex=\"84\", hrDeviceType=\"1.3.6.1.2.1.25.3.1.3\", instance=\"10.11.0.184\", job=\"snmp\"}",
+                "{__name__=\"hrDeviceType\", hrDeviceIndex=\"84\", hrDeviceType=\"1.3.6.1.2.1.25.3.1.3\", instance=\"10.11.0.183\", job=\"snmp\"}",
+                "{__name__=\"hrDeviceType\", hrDeviceIndex=\"84\", hrDeviceType=\"1.3.6.1.2.1.25.3.1.3\", instance=\"10.11.0.182\", job=\"snmp\"}",
+                "{__name__=\"hrDeviceType\", hrDeviceIndex=\"83\", hrDeviceType=\"1.3.6.1.2.1.25.3.1.3\", instance=\"10.11.0.186\", job=\"snmp\"}",
+                "{__name__=\"hrDeviceType\", hrDeviceIndex=\"83\", hrDeviceType=\"1.3.6.1.2.1.25.3.1.3\", instance=\"10.11.0.184\", job=\"snmp\"}",
+                "{__name__=\"hrDeviceType\", hrDeviceIndex=\"83\", hrDeviceType=\"1.3.6.1.2.1.25.3.1.3\", instance=\"10.11.0.183\", job=\"snmp\"}",
+                "{__name__=\"hrDeviceType\", hrDeviceIndex=\"82\", hrDeviceType=\"1.3.6.1.2.1.25.3.1.3\", instance=\"10.11.0.186\", job=\"snmp\"}",
+                "{__name__=\"hrDeviceType\", hrDeviceIndex=\"83\", hrDeviceType=\"1.3.6.1.2.1.25.3.1.3\", instance=\"10.11.0.182\", job=\"snmp\"}",
+                "{__name__=\"hrDeviceType\", hrDeviceIndex=\"82\", hrDeviceType=\"1.3.6.1.2.1.25.3.1.3\", instance=\"10.11.0.184\", job=\"snmp\"}",
+                "{__name__=\"hrDeviceType\", hrDeviceIndex=\"82\", hrDeviceType=\"1.3.6.1.2.1.25.3.1.3\", instance=\"10.11.0.183\", job=\"snmp\"}",
+                "{__name__=\"hrDeviceType\", hrDeviceIndex=\"82\", hrDeviceType=\"1.3.6.1.2.1.25.3.1.3\", instance=\"10.11.0.182\", job=\"snmp\"}",
+                "{__name__=\"hrDeviceType\", hrDeviceIndex=\"81\", hrDeviceType=\"1.3.6.1.2.1.25.3.1.3\", instance=\"10.11.0.186\", job=\"snmp\"}",
+                "{__name__=\"hrDeviceType\", hrDeviceIndex=\"81\", hrDeviceType=\"1.3.6.1.2.1.25.3.1.3\", instance=\"10.11.0.184\", job=\"snmp\"}",
+                "{__name__=\"hrDeviceType\", hrDeviceIndex=\"81\", hrDeviceType=\"1.3.6.1.2.1.25.3.1.3\", instance=\"10.11.0.183\", job=\"snmp\"}",
+                "{__name__=\"hrDeviceType\", hrDeviceIndex=\"81\", hrDeviceType=\"1.3.6.1.2.1.25.3.1.3\", instance=\"10.11.0.182\", job=\"snmp\"}",
+                "{__name__=\"hrDeviceType\", hrDeviceIndex=\"80\", hrDeviceType=\"1.3.6.1.2.1.25.3.1.3\", instance=\"10.11.0.186\", job=\"snmp\"}",
+                "{__name__=\"hrDeviceType\", hrDeviceIndex=\"80\", hrDeviceType=\"1.3.6.1.2.1.25.3.1.3\", instance=\"10.11.0.184\", job=\"snmp\"}",
+                "{__name__=\"hrDeviceType\", hrDeviceIndex=\"80\", hrDeviceType=\"1.3.6.1.2.1.25.3.1.3\", instance=\"10.11.0.183\", job=\"snmp\"}",
+                "{__name__=\"hrDeviceType\", hrDeviceIndex=\"80\", hrDeviceType=\"1.3.6.1.2.1.25.3.1.3\", instance=\"10.11.0.182\", job=\"snmp\"}",
+                "{__name__=\"hrDeviceType\", hrDeviceIndex=\"8\", hrDeviceType=\"1.3.6.1.2.1.25.3.1.3\", instance=\"10.11.0.186\", job=\"snmp\"}",
+                "{__name__=\"hrDeviceType\", hrDeviceIndex=\"8\", hrDeviceType=\"1.3.6.1.2.1.25.3.1.3\", instance=\"10.11.0.185\", job=\"snmp\"}",
+                "{__name__=\"hrDeviceType\", hrDeviceIndex=\"8\", hrDeviceType=\"1.3.6.1.2.1.25.3.1.3\", instance=\"10.11.0.184\", job=\"snmp\"}",
+                "{__name__=\"hrDeviceType\", hrDeviceIndex=\"8\", hrDeviceType=\"1.3.6.1.2.1.25.3.1.3\", instance=\"10.11.0.183\", job=\"snmp\"}",
+                "{__name__=\"hrDeviceType\", hrDeviceIndex=\"8\", hrDeviceType=\"1.3.6.1.2.1.25.3.1.3\", instance=\"10.11.0.182\", job=\"snmp\"}",
+                "{__name__=\"hrDeviceType\", hrDeviceIndex=\"8\", hrDeviceType=\"1.3.6.1.2.1.25.3.1.3\", instance=\"10.11.0.181\", job=\"snmp\"}",
+                "{__name__=\"hrDeviceType\", hrDeviceIndex=\"79\", hrDeviceType=\"1.3.6.1.2.1.25.3.1.3\", instance=\"10.11.0.186\", job=\"snmp\"}",
+                "{__name__=\"hrDeviceType\", hrDeviceIndex=\"79\", hrDeviceType=\"1.3.6.1.2.1.25.3.1.3\", instance=\"10.11.0.184\", job=\"snmp\"}",
+                "{__name__=\"hrDeviceType\", hrDeviceIndex=\"79\", hrDeviceType=\"1.3.6.1.2.1.25.3.1.3\", instance=\"10.11.0.183\", job=\"snmp\"}",
+                "{__name__=\"hrDeviceType\", hrDeviceIndex=\"79\", hrDeviceType=\"1.3.6.1.2.1.25.3.1.3\", instance=\"10.11.0.182\", job=\"snmp\"}",
+                "{__name__=\"hrDeviceType\", hrDeviceIndex=\"78\", hrDeviceType=\"1.3.6.1.2.1.25.3.1.3\", instance=\"10.11.0.186\", job=\"snmp\"}",
+                "{__name__=\"hrDeviceType\", hrDeviceIndex=\"78\", hrDeviceType=\"1.3.6.1.2.1.25.3.1.3\", instance=\"10.11.0.184\", job=\"snmp\"}",
+                "{__name__=\"hrDeviceType\", hrDeviceIndex=\"78\", hrDeviceType=\"1.3.6.1.2.1.25.3.1.3\", instance=\"10.11.0.183\", job=\"snmp\"}",
+                "{__name__=\"hrDeviceType\", hrDeviceIndex=\"78\", hrDeviceType=\"1.3.6.1.2.1.25.3.1.3\", instance=\"10.11.0.182\", job=\"snmp\"}",
+                "{__name__=\"hrDeviceType\", hrDeviceIndex=\"77\", hrDeviceType=\"1.3.6.1.2.1.25.3.1.3\", instance=\"10.11.0.186\", job=\"snmp\"}",
+                "{__name__=\"hrDeviceType\", hrDeviceIndex=\"77\", hrDeviceType=\"1.3.6.1.2.1.25.3.1.3\", instance=\"10.11.0.184\", job=\"snmp\"}",
+                "{__name__=\"hrDeviceType\", hrDeviceIndex=\"77\", hrDeviceType=\"1.3.6.1.2.1.25.3.1.3\", instance=\"10.11.0.183\", job=\"snmp\"}",
+                "{__name__=\"hrDeviceType\", hrDeviceIndex=\"77\", hrDeviceType=\"1.3.6.1.2.1.25.3.1.3\", instance=\"10.11.0.182\", job=\"snmp\"}",
+                "{__name__=\"hrDeviceType\", hrDeviceIndex=\"76\", hrDeviceType=\"1.3.6.1.2.1.25.3.1.3\", instance=\"10.11.0.186\", job=\"snmp\"}",
+                "{__name__=\"hrDeviceType\", hrDeviceIndex=\"76\", hrDeviceType=\"1.3.6.1.2.1.25.3.1.3\", instance=\"10.11.0.184\", job=\"snmp\"}",
+                "{__name__=\"hrDeviceType\", hrDeviceIndex=\"76\", hrDeviceType=\"1.3.6.1.2.1.25.3.1.3\", instance=\"10.11.0.183\", job=\"snmp\"}",
+                "{__name__=\"hrDeviceType\", hrDeviceIndex=\"76\", hrDeviceType=\"1.3.6.1.2.1.25.3.1.3\", instance=\"10.11.0.182\", job=\"snmp\"}",
+                "{__name__=\"hrDeviceType\", hrDeviceIndex=\"75\", hrDeviceType=\"1.3.6.1.2.1.25.3.1.3\", instance=\"10.11.0.186\", job=\"snmp\"}",
+                "{__name__=\"hrDeviceType\", hrDeviceIndex=\"75\", hrDeviceType=\"1.3.6.1.2.1.25.3.1.3\", instance=\"10.11.0.184\", job=\"snmp\"}",
+                "{__name__=\"hrDeviceType\", hrDeviceIndex=\"75\", hrDeviceType=\"1.3.6.1.2.1.25.3.1.3\", instance=\"10.11.0.183\", job=\"snmp\"}",
+                "{__name__=\"hrDeviceType\", hrDeviceIndex=\"75\", hrDeviceType=\"1.3.6.1.2.1.25.3.1.3\", instance=\"10.11.0.182\", job=\"snmp\"}",
+                "{__name__=\"hrDeviceType\", hrDeviceIndex=\"74\", hrDeviceType=\"1.3.6.1.2.1.25.3.1.3\", instance=\"10.11.0.186\", job=\"snmp\"}",
+                "{__name__=\"hrDeviceType\", hrDeviceIndex=\"74\", hrDeviceType=\"1.3.6.1.2.1.25.3.1.3\", instance=\"10.11.0.184\", job=\"snmp\"}",
+                "{__name__=\"hrDeviceType\", hrDeviceIndex=\"74\", hrDeviceType=\"1.3.6.1.2.1.25.3.1.3\", instance=\"10.11.0.183\", job=\"snmp\"}",
+                "{__name__=\"hrDeviceType\", hrDeviceIndex=\"74\", hrDeviceType=\"1.3.6.1.2.1.25.3.1.3\", instance=\"10.11.0.182\", job=\"snmp\"}",
+                "{__name__=\"hrDeviceType\", hrDeviceIndex=\"73\", hrDeviceType=\"1.3.6.1.2.1.25.3.1.3\", instance=\"10.11.0.186\", job=\"snmp\"}",
+                "{__name__=\"hrDeviceType\", hrDeviceIndex=\"73\", hrDeviceType=\"1.3.6.1.2.1.25.3.1.3\", instance=\"10.11.0.184\", job=\"snmp\"}",
+                "{__name__=\"hrDeviceType\", hrDeviceIndex=\"73\", hrDeviceType=\"1.3.6.1.2.1.25.3.1.3\", instance=\"10.11.0.183\", job=\"snmp\"}",
+                "{__name__=\"hrDeviceType\", hrDeviceIndex=\"73\", hrDeviceType=\"1.3.6.1.2.1.25.3.1.3\", instance=\"10.11.0.182\", job=\"snmp\"}",
+                "{__name__=\"hrDeviceType\", hrDeviceIndex=\"72\", hrDeviceType=\"1.3.6.1.2.1.25.3.1.3\", instance=\"10.11.0.186\", job=\"snmp\"}",
+                "{__name__=\"hrDeviceType\", hrDeviceIndex=\"72\", hrDeviceType=\"1.3.6.1.2.1.25.3.1.3\", instance=\"10.11.0.184\", job=\"snmp\"}",
+                "{__name__=\"hrDeviceType\", hrDeviceIndex=\"72\", hrDeviceType=\"1.3.6.1.2.1.25.3.1.3\", instance=\"10.11.0.183\", job=\"snmp\"}",
+                "{__name__=\"hrDeviceType\", hrDeviceIndex=\"72\", hrDeviceType=\"1.3.6.1.2.1.25.3.1.3\", instance=\"10.11.0.182\", job=\"snmp\"}",
+                "{__name__=\"hrDeviceType\", hrDeviceIndex=\"71\", hrDeviceType=\"1.3.6.1.2.1.25.3.1.3\", instance=\"10.11.0.186\", job=\"snmp\"}",
+                "{__name__=\"hrDeviceType\", hrDeviceIndex=\"71\", hrDeviceType=\"1.3.6.1.2.1.25.3.1.3\", instance=\"10.11.0.184\", job=\"snmp\"}",
+                "{__name__=\"hrDeviceType\", hrDeviceIndex=\"71\", hrDeviceType=\"1.3.6.1.2.1.25.3.1.3\", instance=\"10.11.0.183\", job=\"snmp\"}",
+                "{__name__=\"hrDeviceType\", hrDeviceIndex=\"71\", hrDeviceType=\"1.3.6.1.2.1.25.3.1.3\", instance=\"10.11.0.182\", job=\"snmp\"}",
+                "{__name__=\"hrDeviceType\", hrDeviceIndex=\"70\", hrDeviceType=\"1.3.6.1.2.1.25.3.1.3\", instance=\"10.11.0.186\", job=\"snmp\"}",
+                "{__name__=\"hrDeviceType\", hrDeviceIndex=\"70\", hrDeviceType=\"1.3.6.1.2.1.25.3.1.3\", instance=\"10.11.0.184\", job=\"snmp\"}",
+                "{__name__=\"hrDeviceType\", hrDeviceIndex=\"70\", hrDeviceType=\"1.3.6.1.2.1.25.3.1.3\", instance=\"10.11.0.183\", job=\"snmp\"}",
+                "{__name__=\"hrDeviceType\", hrDeviceIndex=\"70\", hrDeviceType=\"1.3.6.1.2.1.25.3.1.3\", instance=\"10.11.0.182\", job=\"snmp\"}",
+                "{__name__=\"hrDeviceType\", hrDeviceIndex=\"7\", hrDeviceType=\"1.3.6.1.2.1.25.3.1.3\", instance=\"10.11.0.186\", job=\"snmp\"}",
+                "{__name__=\"hrDeviceType\", hrDeviceIndex=\"7\", hrDeviceType=\"1.3.6.1.2.1.25.3.1.3\", instance=\"10.11.0.185\", job=\"snmp\"}",
+                "{__name__=\"hrDeviceType\", hrDeviceIndex=\"7\", hrDeviceType=\"1.3.6.1.2.1.25.3.1.3\", instance=\"10.11.0.184\", job=\"snmp\"}",
+                "{__name__=\"hrDeviceType\", hrDeviceIndex=\"7\", hrDeviceType=\"1.3.6.1.2.1.25.3.1.3\", instance=\"10.11.0.183\", job=\"snmp\"}",
+                "{__name__=\"hrDeviceType\", hrDeviceIndex=\"7\", hrDeviceType=\"1.3.6.1.2.1.25.3.1.3\", instance=\"10.11.0.182\", job=\"snmp\"}",
+                "{__name__=\"hrDeviceType\", hrDeviceIndex=\"7\", hrDeviceType=\"1.3.6.1.2.1.25.3.1.3\", instance=\"10.11.0.181\", job=\"snmp\"}",
+                "{__name__=\"hrDeviceType\", hrDeviceIndex=\"69\", hrDeviceType=\"1.3.6.1.2.1.25.3.1.3\", instance=\"10.11.0.186\", job=\"snmp\"}",
+                "{__name__=\"hrDeviceType\", hrDeviceIndex=\"69\", hrDeviceType=\"1.3.6.1.2.1.25.3.1.3\", instance=\"10.11.0.184\", job=\"snmp\"}",
+                "{__name__=\"hrDeviceType\", hrDeviceIndex=\"69\", hrDeviceType=\"1.3.6.1.2.1.25.3.1.3\", instance=\"10.11.0.183\", job=\"snmp\"}",
+                "{__name__=\"hrDeviceType\", hrDeviceIndex=\"69\", hrDeviceType=\"1.3.6.1.2.1.25.3.1.3\", instance=\"10.11.0.182\", job=\"snmp\"}",
+                "{__name__=\"hrDeviceType\", hrDeviceIndex=\"68\", hrDeviceType=\"1.3.6.1.2.1.25.3.1.3\", instance=\"10.11.0.186\", job=\"snmp\"}",
+                "{__name__=\"hrDeviceType\", hrDeviceIndex=\"68\", hrDeviceType=\"1.3.6.1.2.1.25.3.1.3\", instance=\"10.11.0.184\", job=\"snmp\"}",
+                "{__name__=\"hrDeviceType\", hrDeviceIndex=\"68\", hrDeviceType=\"1.3.6.1.2.1.25.3.1.3\", instance=\"10.11.0.183\", job=\"snmp\"}",
+                "{__name__=\"hrDeviceType\", hrDeviceIndex=\"68\", hrDeviceType=\"1.3.6.1.2.1.25.3.1.3\", instance=\"10.11.0.182\", job=\"snmp\"}",
+                "{__name__=\"hrDeviceType\", hrDeviceIndex=\"67\", hrDeviceType=\"1.3.6.1.2.1.25.3.1.3\", instance=\"10.11.0.186\", job=\"snmp\"}",
+                "{__name__=\"hrDeviceType\", hrDeviceIndex=\"67\", hrDeviceType=\"1.3.6.1.2.1.25.3.1.3\", instance=\"10.11.0.184\", job=\"snmp\"}",
+                "{__name__=\"hrDeviceType\", hrDeviceIndex=\"67\", hrDeviceType=\"1.3.6.1.2.1.25.3.1.3\", instance=\"10.11.0.183\", job=\"snmp\"}",
+                "{__name__=\"hrDeviceType\", hrDeviceIndex=\"66\", hrDeviceType=\"1.3.6.1.2.1.25.3.1.3\", instance=\"10.11.0.186\", job=\"snmp\"}",
+                "{__name__=\"hrDeviceType\", hrDeviceIndex=\"67\", hrDeviceType=\"1.3.6.1.2.1.25.3.1.3\", instance=\"10.11.0.182\", job=\"snmp\"}",
+                "{__name__=\"hrDeviceType\", hrDeviceIndex=\"66\", hrDeviceType=\"1.3.6.1.2.1.25.3.1.3\", instance=\"10.11.0.184\", job=\"snmp\"}",
+                "{__name__=\"hrDeviceType\", hrDeviceIndex=\"66\", hrDeviceType=\"1.3.6.1.2.1.25.3.1.3\", instance=\"10.11.0.183\", job=\"snmp\"}",
+                "{__name__=\"hrDeviceType\", hrDeviceIndex=\"66\", hrDeviceType=\"1.3.6.1.2.1.25.3.1.3\", instance=\"10.11.0.182\", job=\"snmp\"}",
+                "{__name__=\"hrDeviceType\", hrDeviceIndex=\"65\", hrDeviceType=\"1.3.6.1.2.1.25.3.1.3\", instance=\"10.11.0.186\", job=\"snmp\"}",
+                "{__name__=\"hrDeviceType\", hrDeviceIndex=\"65\", hrDeviceType=\"1.3.6.1.2.1.25.3.1.3\", instance=\"10.11.0.184\", job=\"snmp\"}",
+                "{__name__=\"hrDeviceType\", hrDeviceIndex=\"65\", hrDeviceType=\"1.3.6.1.2.1.25.3.1.3\", instance=\"10.11.0.183\", job=\"snmp\"}",
+                "{__name__=\"hrDeviceType\", hrDeviceIndex=\"65\", hrDeviceType=\"1.3.6.1.2.1.25.3.1.3\", instance=\"10.11.0.182\", job=\"snmp\"}",
+                "{__name__=\"hrDeviceType\", hrDeviceIndex=\"64\", hrDeviceType=\"1.3.6.1.2.1.25.3.1.3\", instance=\"10.11.0.186\", job=\"snmp\"}",
+                "{__name__=\"hrDeviceType\", hrDeviceIndex=\"64\", hrDeviceType=\"1.3.6.1.2.1.25.3.1.3\", instance=\"10.11.0.184\", job=\"snmp\"}",
+                "{__name__=\"hrDeviceType\", hrDeviceIndex=\"64\", hrDeviceType=\"1.3.6.1.2.1.25.3.1.3\", instance=\"10.11.0.183\", job=\"snmp\"}",
+                "{__name__=\"hrDeviceType\", hrDeviceIndex=\"64\", hrDeviceType=\"1.3.6.1.2.1.25.3.1.3\", instance=\"10.11.0.182\", job=\"snmp\"}",
+                "{__name__=\"hrDeviceType\", hrDeviceIndex=\"64\", hrDeviceType=\"1.3.6.1.2.1.25.3.1.3\", instance=\"10.11.0.181\", job=\"snmp\"}",
+                "{__name__=\"hrDeviceType\", hrDeviceIndex=\"63\", hrDeviceType=\"1.3.6.1.2.1.25.3.1.3\", instance=\"10.11.0.186\", job=\"snmp\"}",
+                "{__name__=\"hrDeviceType\", hrDeviceIndex=\"63\", hrDeviceType=\"1.3.6.1.2.1.25.3.1.3\", instance=\"10.11.0.184\", job=\"snmp\"}",
+                "{__name__=\"hrDeviceType\", hrDeviceIndex=\"63\", hrDeviceType=\"1.3.6.1.2.1.25.3.1.3\", instance=\"10.11.0.183\", job=\"snmp\"}",
+                "{__name__=\"hrDeviceType\", hrDeviceIndex=\"63\", hrDeviceType=\"1.3.6.1.2.1.25.3.1.3\", instance=\"10.11.0.182\", job=\"snmp\"}",
+                "{__name__=\"hrDeviceType\", hrDeviceIndex=\"63\", hrDeviceType=\"1.3.6.1.2.1.25.3.1.3\", instance=\"10.11.0.181\", job=\"snmp\"}",
+                "{__name__=\"hrDeviceType\", hrDeviceIndex=\"62\", hrDeviceType=\"1.3.6.1.2.1.25.3.1.3\", instance=\"10.11.0.186\", job=\"snmp\"}",
+                "{__name__=\"hrDeviceType\", hrDeviceIndex=\"62\", hrDeviceType=\"1.3.6.1.2.1.25.3.1.3\", instance=\"10.11.0.184\", job=\"snmp\"}",
+                "{__name__=\"hrDeviceType\", hrDeviceIndex=\"62\", hrDeviceType=\"1.3.6.1.2.1.25.3.1.3\", instance=\"10.11.0.183\", job=\"snmp\"}",
+                "{__name__=\"hrDeviceType\", hrDeviceIndex=\"62\", hrDeviceType=\"1.3.6.1.2.1.25.3.1.3\", instance=\"10.11.0.182\", job=\"snmp\"}",
+                "{__name__=\"hrDeviceType\", hrDeviceIndex=\"62\", hrDeviceType=\"1.3.6.1.2.1.25.3.1.3\", instance=\"10.11.0.181\", job=\"snmp\"}",
+                "{__name__=\"hrDeviceType\", hrDeviceIndex=\"61\", hrDeviceType=\"1.3.6.1.2.1.25.3.1.3\", instance=\"10.11.0.186\", job=\"snmp\"}",
+                "{__name__=\"hrDeviceType\", hrDeviceIndex=\"61\", hrDeviceType=\"1.3.6.1.2.1.25.3.1.3\", instance=\"10.11.0.184\", job=\"snmp\"}",
+                "{__name__=\"hrDeviceType\", hrDeviceIndex=\"61\", hrDeviceType=\"1.3.6.1.2.1.25.3.1.3\", instance=\"10.11.0.183\", job=\"snmp\"}",
+                "{__name__=\"hrDeviceType\", hrDeviceIndex=\"61\", hrDeviceType=\"1.3.6.1.2.1.25.3.1.3\", instance=\"10.11.0.182\", job=\"snmp\"}",
+                "{__name__=\"hrDeviceType\", hrDeviceIndex=\"61\", hrDeviceType=\"1.3.6.1.2.1.25.3.1.3\", instance=\"10.11.0.181\", job=\"snmp\"}",
+                "{__name__=\"hrDeviceType\", hrDeviceIndex=\"60\", hrDeviceType=\"1.3.6.1.2.1.25.3.1.3\", instance=\"10.11.0.186\", job=\"snmp\"}",
+                "{__name__=\"hrDeviceType\", hrDeviceIndex=\"60\", hrDeviceType=\"1.3.6.1.2.1.25.3.1.3\", instance=\"10.11.0.184\", job=\"snmp\"}",
+                "{__name__=\"hrDeviceType\", hrDeviceIndex=\"60\", hrDeviceType=\"1.3.6.1.2.1.25.3.1.3\", instance=\"10.11.0.183\", job=\"snmp\"}",
+                "{__name__=\"hrDeviceType\", hrDeviceIndex=\"60\", hrDeviceType=\"1.3.6.1.2.1.25.3.1.3\", instance=\"10.11.0.182\", job=\"snmp\"}",
+                "{__name__=\"hrDeviceType\", hrDeviceIndex=\"60\", hrDeviceType=\"1.3.6.1.2.1.25.3.1.3\", instance=\"10.11.0.181\", job=\"snmp\"}",
+                "{__name__=\"hrDeviceType\", hrDeviceIndex=\"6\", hrDeviceType=\"1.3.6.1.2.1.25.3.1.3\", instance=\"10.11.0.186\", job=\"snmp\"}",
+                "{__name__=\"hrDeviceType\", hrDeviceIndex=\"6\", hrDeviceType=\"1.3.6.1.2.1.25.3.1.3\", instance=\"10.11.0.185\", job=\"snmp\"}",
+                "{__name__=\"hrDeviceType\", hrDeviceIndex=\"6\", hrDeviceType=\"1.3.6.1.2.1.25.3.1.3\", instance=\"10.11.0.184\", job=\"snmp\"}",
+                "{__name__=\"hrDeviceType\", hrDeviceIndex=\"6\", hrDeviceType=\"1.3.6.1.2.1.25.3.1.3\", instance=\"10.11.0.183\", job=\"snmp\"}",
+                "{__name__=\"hrDeviceType\", hrDeviceIndex=\"6\", hrDeviceType=\"1.3.6.1.2.1.25.3.1.3\", instance=\"10.11.0.182\", job=\"snmp\"}",
+                "{__name__=\"hrDeviceType\", hrDeviceIndex=\"6\", hrDeviceType=\"1.3.6.1.2.1.25.3.1.3\", instance=\"10.11.0.181\", job=\"snmp\"}",
+                "{__name__=\"hrDeviceType\", hrDeviceIndex=\"59\", hrDeviceType=\"1.3.6.1.2.1.25.3.1.3\", instance=\"10.11.0.186\", job=\"snmp\"}",
+                "{__name__=\"hrDeviceType\", hrDeviceIndex=\"59\", hrDeviceType=\"1.3.6.1.2.1.25.3.1.3\", instance=\"10.11.0.184\", job=\"snmp\"}",
+                "{__name__=\"hrDeviceType\", hrDeviceIndex=\"59\", hrDeviceType=\"1.3.6.1.2.1.25.3.1.3\", instance=\"10.11.0.183\", job=\"snmp\"}",
+                "{__name__=\"hrDeviceType\", hrDeviceIndex=\"59\", hrDeviceType=\"1.3.6.1.2.1.25.3.1.3\", instance=\"10.11.0.182\", job=\"snmp\"}",
+                "{__name__=\"hrDeviceType\", hrDeviceIndex=\"59\", hrDeviceType=\"1.3.6.1.2.1.25.3.1.3\", instance=\"10.11.0.181\", job=\"snmp\"}",
+                "{__name__=\"hrDeviceType\", hrDeviceIndex=\"58\", hrDeviceType=\"1.3.6.1.2.1.25.3.1.3\", instance=\"10.11.0.186\", job=\"snmp\"}",
+                "{__name__=\"hrDeviceType\", hrDeviceIndex=\"58\", hrDeviceType=\"1.3.6.1.2.1.25.3.1.3\", instance=\"10.11.0.184\", job=\"snmp\"}",
+                "{__name__=\"hrDeviceType\", hrDeviceIndex=\"58\", hrDeviceType=\"1.3.6.1.2.1.25.3.1.3\", instance=\"10.11.0.183\", job=\"snmp\"}",
+                "{__name__=\"hrDeviceType\", hrDeviceIndex=\"58\", hrDeviceType=\"1.3.6.1.2.1.25.3.1.3\", instance=\"10.11.0.182\", job=\"snmp\"}",
+                "{__name__=\"hrDeviceType\", hrDeviceIndex=\"58\", hrDeviceType=\"1.3.6.1.2.1.25.3.1.3\", instance=\"10.11.0.181\", job=\"snmp\"}",
+                "{__name__=\"hrDeviceType\", hrDeviceIndex=\"57\", hrDeviceType=\"1.3.6.1.2.1.25.3.1.3\", instance=\"10.11.0.186\", job=\"snmp\"}",
+                "{__name__=\"hrDeviceType\", hrDeviceIndex=\"57\", hrDeviceType=\"1.3.6.1.2.1.25.3.1.3\", instance=\"10.11.0.184\", job=\"snmp\"}",
+                "{__name__=\"hrDeviceType\", hrDeviceIndex=\"57\", hrDeviceType=\"1.3.6.1.2.1.25.3.1.3\", instance=\"10.11.0.183\", job=\"snmp\"}",
+                "{__name__=\"hrDeviceType\", hrDeviceIndex=\"57\", hrDeviceType=\"1.3.6.1.2.1.25.3.1.3\", instance=\"10.11.0.182\", job=\"snmp\"}",
+                "{__name__=\"hrDeviceType\", hrDeviceIndex=\"57\", hrDeviceType=\"1.3.6.1.2.1.25.3.1.3\", instance=\"10.11.0.181\", job=\"snmp\"}",
+                "{__name__=\"hrDeviceType\", hrDeviceIndex=\"56\", hrDeviceType=\"1.3.6.1.2.1.25.3.1.3\", instance=\"10.11.0.186\", job=\"snmp\"}",
+                "{__name__=\"hrDeviceType\", hrDeviceIndex=\"56\", hrDeviceType=\"1.3.6.1.2.1.25.3.1.3\", instance=\"10.11.0.184\", job=\"snmp\"}",
+                "{__name__=\"hrDeviceType\", hrDeviceIndex=\"56\", hrDeviceType=\"1.3.6.1.2.1.25.3.1.3\", instance=\"10.11.0.183\", job=\"snmp\"}",
+                "{__name__=\"hrDeviceType\", hrDeviceIndex=\"56\", hrDeviceType=\"1.3.6.1.2.1.25.3.1.3\", instance=\"10.11.0.182\", job=\"snmp\"}",
+                "{__name__=\"hrDeviceType\", hrDeviceIndex=\"56\", hrDeviceType=\"1.3.6.1.2.1.25.3.1.3\", instance=\"10.11.0.181\", job=\"snmp\"}",
+                "{__name__=\"hrDeviceType\", hrDeviceIndex=\"55\", hrDeviceType=\"1.3.6.1.2.1.25.3.1.3\", instance=\"10.11.0.184\", job=\"snmp\"}",
+                "{__name__=\"hrDeviceType\", hrDeviceIndex=\"55\", hrDeviceType=\"1.3.6.1.2.1.25.3.1.3\", instance=\"10.11.0.186\", job=\"snmp\"}",
+                "{__name__=\"hrDeviceType\", hrDeviceIndex=\"55\", hrDeviceType=\"1.3.6.1.2.1.25.3.1.3\", instance=\"10.11.0.182\", job=\"snmp\"}",
+                "{__name__=\"hrDeviceType\", hrDeviceIndex=\"55\", hrDeviceType=\"1.3.6.1.2.1.25.3.1.3\", instance=\"10.11.0.183\", job=\"snmp\"}",
+                "{__name__=\"hrDeviceType\", hrDeviceIndex=\"55\", hrDeviceType=\"1.3.6.1.2.1.25.3.1.3\", instance=\"10.11.0.181\", job=\"snmp\"}",
+                "{__name__=\"hrDeviceType\", hrDeviceIndex=\"54\", hrDeviceType=\"1.3.6.1.2.1.25.3.1.3\", instance=\"10.11.0.186\", job=\"snmp\"}",
+                "{__name__=\"hrDeviceType\", hrDeviceIndex=\"54\", hrDeviceType=\"1.3.6.1.2.1.25.3.1.3\", instance=\"10.11.0.184\", job=\"snmp\"}",
+                "{__name__=\"hrDeviceType\", hrDeviceIndex=\"54\", hrDeviceType=\"1.3.6.1.2.1.25.3.1.3\", instance=\"10.11.0.183\", job=\"snmp\"}",
+                "{__name__=\"hrDeviceType\", hrDeviceIndex=\"54\", hrDeviceType=\"1.3.6.1.2.1.25.3.1.3\", instance=\"10.11.0.182\", job=\"snmp\"}",
+                "{__name__=\"hrDeviceType\", hrDeviceIndex=\"54\", hrDeviceType=\"1.3.6.1.2.1.25.3.1.3\", instance=\"10.11.0.181\", job=\"snmp\"}",
+                "{__name__=\"hrDeviceType\", hrDeviceIndex=\"53\", hrDeviceType=\"1.3.6.1.2.1.25.3.1.3\", instance=\"10.11.0.186\", job=\"snmp\"}",
+                "{__name__=\"hrDeviceType\", hrDeviceIndex=\"53\", hrDeviceType=\"1.3.6.1.2.1.25.3.1.3\", instance=\"10.11.0.184\", job=\"snmp\"}",
+                "{__name__=\"hrDeviceType\", hrDeviceIndex=\"53\", hrDeviceType=\"1.3.6.1.2.1.25.3.1.3\", instance=\"10.11.0.183\", job=\"snmp\"}",
+                "{__name__=\"hrDeviceType\", hrDeviceIndex=\"53\", hrDeviceType=\"1.3.6.1.2.1.25.3.1.3\", instance=\"10.11.0.182\", job=\"snmp\"}",
+                "{__name__=\"hrDeviceType\", hrDeviceIndex=\"53\", hrDeviceType=\"1.3.6.1.2.1.25.3.1.3\", instance=\"10.11.0.181\", job=\"snmp\"}",
+                "{__name__=\"hrDeviceType\", hrDeviceIndex=\"52\", hrDeviceType=\"1.3.6.1.2.1.25.3.1.3\", instance=\"10.11.0.186\", job=\"snmp\"}",
+                "{__name__=\"hrDeviceType\", hrDeviceIndex=\"52\", hrDeviceType=\"1.3.6.1.2.1.25.3.1.3\", instance=\"10.11.0.184\", job=\"snmp\"}",
+                "{__name__=\"hrDeviceType\", hrDeviceIndex=\"52\", hrDeviceType=\"1.3.6.1.2.1.25.3.1.3\", instance=\"10.11.0.183\", job=\"snmp\"}",
+                "{__name__=\"hrDeviceType\", hrDeviceIndex=\"52\", hrDeviceType=\"1.3.6.1.2.1.25.3.1.3\", instance=\"10.11.0.182\", job=\"snmp\"}",
+                "{__name__=\"hrDeviceType\", hrDeviceIndex=\"52\", hrDeviceType=\"1.3.6.1.2.1.25.3.1.3\", instance=\"10.11.0.181\", job=\"snmp\"}",
+                "{__name__=\"hrDeviceType\", hrDeviceIndex=\"51\", hrDeviceType=\"1.3.6.1.2.1.25.3.1.3\", instance=\"10.11.0.186\", job=\"snmp\"}",
+                "{__name__=\"hrDeviceType\", hrDeviceIndex=\"51\", hrDeviceType=\"1.3.6.1.2.1.25.3.1.3\", instance=\"10.11.0.184\", job=\"snmp\"}",
+                "{__name__=\"hrDeviceType\", hrDeviceIndex=\"51\", hrDeviceType=\"1.3.6.1.2.1.25.3.1.3\", instance=\"10.11.0.183\", job=\"snmp\"}",
+                "{__name__=\"hrDeviceType\", hrDeviceIndex=\"51\", hrDeviceType=\"1.3.6.1.2.1.25.3.1.3\", instance=\"10.11.0.182\", job=\"snmp\"}",
+                "{__name__=\"hrDeviceType\", hrDeviceIndex=\"51\", hrDeviceType=\"1.3.6.1.2.1.25.3.1.3\", instance=\"10.11.0.181\", job=\"snmp\"}",
+                "{__name__=\"hrDeviceType\", hrDeviceIndex=\"50\", hrDeviceType=\"1.3.6.1.2.1.25.3.1.3\", instance=\"10.11.0.184\", job=\"snmp\"}",
+                "{__name__=\"hrDeviceType\", hrDeviceIndex=\"50\", hrDeviceType=\"1.3.6.1.2.1.25.3.1.3\", instance=\"10.11.0.186\", job=\"snmp\"}",
+                "{__name__=\"hrDeviceType\", hrDeviceIndex=\"50\", hrDeviceType=\"1.3.6.1.2.1.25.3.1.3\", instance=\"10.11.0.183\", job=\"snmp\"}",
+                "{__name__=\"hrDeviceType\", hrDeviceIndex=\"50\", hrDeviceType=\"1.3.6.1.2.1.25.3.1.3\", instance=\"10.11.0.182\", job=\"snmp\"}",
+                "{__name__=\"hrDeviceType\", hrDeviceIndex=\"50\", hrDeviceType=\"1.3.6.1.2.1.25.3.1.3\", instance=\"10.11.0.181\", job=\"snmp\"}",
+                "{__name__=\"hrDeviceType\", hrDeviceIndex=\"5\", hrDeviceType=\"1.3.6.1.2.1.25.3.1.3\", instance=\"10.11.0.186\", job=\"snmp\"}",
+                "{__name__=\"hrDeviceType\", hrDeviceIndex=\"5\", hrDeviceType=\"1.3.6.1.2.1.25.3.1.3\", instance=\"10.11.0.185\", job=\"snmp\"}",
+                "{__name__=\"hrDeviceType\", hrDeviceIndex=\"5\", hrDeviceType=\"1.3.6.1.2.1.25.3.1.3\", instance=\"10.11.0.184\", job=\"snmp\"}",
+                "{__name__=\"hrDeviceType\", hrDeviceIndex=\"5\", hrDeviceType=\"1.3.6.1.2.1.25.3.1.3\", instance=\"10.11.0.182\", job=\"snmp\"}",
+                "{__name__=\"hrDeviceType\", hrDeviceIndex=\"5\", hrDeviceType=\"1.3.6.1.2.1.25.3.1.3\", instance=\"10.11.0.183\", job=\"snmp\"}",
+                "{__name__=\"hrDeviceType\", hrDeviceIndex=\"5\", hrDeviceType=\"1.3.6.1.2.1.25.3.1.3\", instance=\"10.11.0.181\", job=\"snmp\"}",
+                "{__name__=\"hrDeviceType\", hrDeviceIndex=\"49\", hrDeviceType=\"1.3.6.1.2.1.25.3.1.3\", instance=\"10.11.0.186\", job=\"snmp\"}",
+                "{__name__=\"hrDeviceType\", hrDeviceIndex=\"49\", hrDeviceType=\"1.3.6.1.2.1.25.3.1.3\", instance=\"10.11.0.184\", job=\"snmp\"}",
+                "{__name__=\"hrDeviceType\", hrDeviceIndex=\"49\", hrDeviceType=\"1.3.6.1.2.1.25.3.1.3\", instance=\"10.11.0.183\", job=\"snmp\"}",
+                "{__name__=\"hrDeviceType\", hrDeviceIndex=\"49\", hrDeviceType=\"1.3.6.1.2.1.25.3.1.3\", instance=\"10.11.0.181\", job=\"snmp\"}",
+                "{__name__=\"hrDeviceType\", hrDeviceIndex=\"49\", hrDeviceType=\"1.3.6.1.2.1.25.3.1.3\", instance=\"10.11.0.182\", job=\"snmp\"}",
+                "{__name__=\"hrDeviceType\", hrDeviceIndex=\"48\", hrDeviceType=\"1.3.6.1.2.1.25.3.1.3\", instance=\"10.11.0.186\", job=\"snmp\"}",
+                "{__name__=\"hrDeviceType\", hrDeviceIndex=\"48\", hrDeviceType=\"1.3.6.1.2.1.25.3.1.3\", instance=\"10.11.0.185\", job=\"snmp\"}",
+                "{__name__=\"hrDeviceType\", hrDeviceIndex=\"48\", hrDeviceType=\"1.3.6.1.2.1.25.3.1.3\", instance=\"10.11.0.183\", job=\"snmp\"}",
+                "{__name__=\"hrDeviceType\", hrDeviceIndex=\"48\", hrDeviceType=\"1.3.6.1.2.1.25.3.1.3\", instance=\"10.11.0.184\", job=\"snmp\"}",
+                "{__name__=\"hrDeviceType\", hrDeviceIndex=\"48\", hrDeviceType=\"1.3.6.1.2.1.25.3.1.3\", instance=\"10.11.0.182\", job=\"snmp\"}",
+                "{__name__=\"hrDeviceType\", hrDeviceIndex=\"47\", hrDeviceType=\"1.3.6.1.2.1.25.3.1.3\", instance=\"10.11.0.185\", job=\"snmp\"}",
+                "{__name__=\"hrDeviceType\", hrDeviceIndex=\"48\", hrDeviceType=\"1.3.6.1.2.1.25.3.1.3\", instance=\"10.11.0.181\", job=\"snmp\"}",
+                "{__name__=\"hrDeviceType\", hrDeviceIndex=\"47\", hrDeviceType=\"1.3.6.1.2.1.25.3.1.3\", instance=\"10.11.0.186\", job=\"snmp\"}",
+                "{__name__=\"hrDeviceType\", hrDeviceIndex=\"47\", hrDeviceType=\"1.3.6.1.2.1.25.3.1.3\", instance=\"10.11.0.184\", job=\"snmp\"}",
+                "{__name__=\"hrDeviceType\", hrDeviceIndex=\"47\", hrDeviceType=\"1.3.6.1.2.1.25.3.1.3\", instance=\"10.11.0.183\", job=\"snmp\"}",
+                "{__name__=\"hrDeviceType\", hrDeviceIndex=\"47\", hrDeviceType=\"1.3.6.1.2.1.25.3.1.3\", instance=\"10.11.0.181\", job=\"snmp\"}",
+                "{__name__=\"hrDeviceType\", hrDeviceIndex=\"47\", hrDeviceType=\"1.3.6.1.2.1.25.3.1.3\", instance=\"10.11.0.182\", job=\"snmp\"}",
+                "{__name__=\"hrDeviceType\", hrDeviceIndex=\"46\", hrDeviceType=\"1.3.6.1.2.1.25.3.1.3\", instance=\"10.11.0.186\", job=\"snmp\"}",
+                "{__name__=\"hrDeviceType\", hrDeviceIndex=\"46\", hrDeviceType=\"1.3.6.1.2.1.25.3.1.3\", instance=\"10.11.0.185\", job=\"snmp\"}",
+                "{__name__=\"hrDeviceType\", hrDeviceIndex=\"46\", hrDeviceType=\"1.3.6.1.2.1.25.3.1.3\", instance=\"10.11.0.183\", job=\"snmp\"}",
+                "{__name__=\"hrDeviceType\", hrDeviceIndex=\"46\", hrDeviceType=\"1.3.6.1.2.1.25.3.1.3\", instance=\"10.11.0.184\", job=\"snmp\"}",
+                "{__name__=\"hrDeviceType\", hrDeviceIndex=\"45\", hrDeviceType=\"1.3.6.1.2.1.25.3.1.3\", instance=\"10.11.0.186\", job=\"snmp\"}",
+                "{__name__=\"hrDeviceType\", hrDeviceIndex=\"46\", hrDeviceType=\"1.3.6.1.2.1.25.3.1.3\", instance=\"10.11.0.182\", job=\"snmp\"}",
+                "{__name__=\"hrDeviceType\", hrDeviceIndex=\"46\", hrDeviceType=\"1.3.6.1.2.1.25.3.1.3\", instance=\"10.11.0.181\", job=\"snmp\"}",
+                "{__name__=\"hrDeviceType\", hrDeviceIndex=\"45\", hrDeviceType=\"1.3.6.1.2.1.25.3.1.3\", instance=\"10.11.0.185\", job=\"snmp\"}",
+                "{__name__=\"hrDeviceType\", hrDeviceIndex=\"45\", hrDeviceType=\"1.3.6.1.2.1.25.3.1.3\", instance=\"10.11.0.183\", job=\"snmp\"}",
+                "{__name__=\"hrDeviceType\", hrDeviceIndex=\"45\", hrDeviceType=\"1.3.6.1.2.1.25.3.1.3\", instance=\"10.11.0.184\", job=\"snmp\"}",
+                "{__name__=\"hrDeviceType\", hrDeviceIndex=\"45\", hrDeviceType=\"1.3.6.1.2.1.25.3.1.3\", instance=\"10.11.0.182\", job=\"snmp\"}",
+                "{__name__=\"hrDeviceType\", hrDeviceIndex=\"45\", hrDeviceType=\"1.3.6.1.2.1.25.3.1.3\", instance=\"10.11.0.181\", job=\"snmp\"}",
+                "{__name__=\"hrDeviceType\", hrDeviceIndex=\"44\", hrDeviceType=\"1.3.6.1.2.1.25.3.1.3\", instance=\"10.11.0.185\", job=\"snmp\"}",
+                "{__name__=\"hrDeviceType\", hrDeviceIndex=\"44\", hrDeviceType=\"1.3.6.1.2.1.25.3.1.3\", instance=\"10.11.0.186\", job=\"snmp\"}",
+                "{__name__=\"hrDeviceType\", hrDeviceIndex=\"44\", hrDeviceType=\"1.3.6.1.2.1.25.3.1.3\", instance=\"10.11.0.184\", job=\"snmp\"}",
+                "{__name__=\"hrDeviceType\", hrDeviceIndex=\"44\", hrDeviceType=\"1.3.6.1.2.1.25.3.1.3\", instance=\"10.11.0.183\", job=\"snmp\"}",
+                "{__name__=\"hrDeviceType\", hrDeviceIndex=\"44\", hrDeviceType=\"1.3.6.1.2.1.25.3.1.3\", instance=\"10.11.0.182\", job=\"snmp\"}",
+                "{__name__=\"hrDeviceType\", hrDeviceIndex=\"44\", hrDeviceType=\"1.3.6.1.2.1.25.3.1.3\", instance=\"10.11.0.181\", job=\"snmp\"}",
+                "{__name__=\"hrDeviceType\", hrDeviceIndex=\"43\", hrDeviceType=\"1.3.6.1.2.1.25.3.1.3\", instance=\"10.11.0.185\", job=\"snmp\"}",
+                "{__name__=\"hrDeviceType\", hrDeviceIndex=\"43\", hrDeviceType=\"1.3.6.1.2.1.25.3.1.3\", instance=\"10.11.0.186\", job=\"snmp\"}",
+                "{__name__=\"hrDeviceType\", hrDeviceIndex=\"43\", hrDeviceType=\"1.3.6.1.2.1.25.3.1.3\", instance=\"10.11.0.184\", job=\"snmp\"}",
+                "{__name__=\"hrDeviceType\", hrDeviceIndex=\"43\", hrDeviceType=\"1.3.6.1.2.1.25.3.1.3\", instance=\"10.11.0.183\", job=\"snmp\"}",
+                "{__name__=\"hrDeviceType\", hrDeviceIndex=\"43\", hrDeviceType=\"1.3.6.1.2.1.25.3.1.3\", instance=\"10.11.0.181\", job=\"snmp\"}",
+                "{__name__=\"hrDeviceType\", hrDeviceIndex=\"43\", hrDeviceType=\"1.3.6.1.2.1.25.3.1.3\", instance=\"10.11.0.182\", job=\"snmp\"}",
+                "{__name__=\"hrDeviceType\", hrDeviceIndex=\"42\", hrDeviceType=\"1.3.6.1.2.1.25.3.1.3\", instance=\"10.11.0.186\", job=\"snmp\"}",
+                "{__name__=\"hrDeviceType\", hrDeviceIndex=\"42\", hrDeviceType=\"1.3.6.1.2.1.25.3.1.3\", instance=\"10.11.0.185\", job=\"snmp\"}",
+                "{__name__=\"hrDeviceType\", hrDeviceIndex=\"42\", hrDeviceType=\"1.3.6.1.2.1.25.3.1.3\", instance=\"10.11.0.183\", job=\"snmp\"}",
+                "{__name__=\"hrDeviceType\", hrDeviceIndex=\"42\", hrDeviceType=\"1.3.6.1.2.1.25.3.1.3\", instance=\"10.11.0.184\", job=\"snmp\"}",
+                "{__name__=\"hrDeviceType\", hrDeviceIndex=\"42\", hrDeviceType=\"1.3.6.1.2.1.25.3.1.3\", instance=\"10.11.0.182\", job=\"snmp\"}",
+                "{__name__=\"hrDeviceType\", hrDeviceIndex=\"42\", hrDeviceType=\"1.3.6.1.2.1.25.3.1.3\", instance=\"10.11.0.181\", job=\"snmp\"}",
+                "{__name__=\"hrDeviceType\", hrDeviceIndex=\"41\", hrDeviceType=\"1.3.6.1.2.1.25.3.1.3\", instance=\"10.11.0.185\", job=\"snmp\"}",
+                "{__name__=\"hrDeviceType\", hrDeviceIndex=\"41\", hrDeviceType=\"1.3.6.1.2.1.25.3.1.3\", instance=\"10.11.0.186\", job=\"snmp\"}",
+                "{__name__=\"hrDeviceType\", hrDeviceIndex=\"41\", hrDeviceType=\"1.3.6.1.2.1.25.3.1.3\", instance=\"10.11.0.184\", job=\"snmp\"}",
+                "{__name__=\"hrDeviceType\", hrDeviceIndex=\"41\", hrDeviceType=\"1.3.6.1.2.1.25.3.1.3\", instance=\"10.11.0.183\", job=\"snmp\"}",
+                "{__name__=\"hrDeviceType\", hrDeviceIndex=\"41\", hrDeviceType=\"1.3.6.1.2.1.25.3.1.3\", instance=\"10.11.0.181\", job=\"snmp\"}",
+                "{__name__=\"hrDeviceType\", hrDeviceIndex=\"41\", hrDeviceType=\"1.3.6.1.2.1.25.3.1.3\", instance=\"10.11.0.182\", job=\"snmp\"}",
+                "{__name__=\"hrDeviceType\", hrDeviceIndex=\"40\", hrDeviceType=\"1.3.6.1.2.1.25.3.1.3\", instance=\"10.11.0.186\", job=\"snmp\"}",
+                "{__name__=\"hrDeviceType\", hrDeviceIndex=\"40\", hrDeviceType=\"1.3.6.1.2.1.25.3.1.3\", instance=\"10.11.0.185\", job=\"snmp\"}",
+                "{__name__=\"hrDeviceType\", hrDeviceIndex=\"40\", hrDeviceType=\"1.3.6.1.2.1.25.3.1.3\", instance=\"10.11.0.183\", job=\"snmp\"}",
+                "{__name__=\"hrDeviceType\", hrDeviceIndex=\"40\", hrDeviceType=\"1.3.6.1.2.1.25.3.1.3\", instance=\"10.11.0.184\", job=\"snmp\"}",
+                "{__name__=\"hrDeviceType\", hrDeviceIndex=\"40\", hrDeviceType=\"1.3.6.1.2.1.25.3.1.3\", instance=\"10.11.0.182\", job=\"snmp\"}",
+                "{__name__=\"hrDeviceType\", hrDeviceIndex=\"40\", hrDeviceType=\"1.3.6.1.2.1.25.3.1.3\", instance=\"10.11.0.181\", job=\"snmp\"}",
+                "{__name__=\"hrDeviceType\", hrDeviceIndex=\"4\", hrDeviceType=\"1.3.6.1.2.1.25.3.1.3\", instance=\"10.11.0.185\", job=\"snmp\"}",
+                "{__name__=\"hrDeviceType\", hrDeviceIndex=\"4\", hrDeviceType=\"1.3.6.1.2.1.25.3.1.3\", instance=\"10.11.0.186\", job=\"snmp\"}",
+                "{__name__=\"hrDeviceType\", hrDeviceIndex=\"4\", hrDeviceType=\"1.3.6.1.2.1.25.3.1.3\", instance=\"10.11.0.184\", job=\"snmp\"}",
+                "{__name__=\"hrDeviceType\", hrDeviceIndex=\"4\", hrDeviceType=\"1.3.6.1.2.1.25.3.1.3\", instance=\"10.11.0.183\", job=\"snmp\"}",
+                "{__name__=\"hrDeviceType\", hrDeviceIndex=\"4\", hrDeviceType=\"1.3.6.1.2.1.25.3.1.3\", instance=\"10.11.0.181\", job=\"snmp\"}",
+                "{__name__=\"hrDeviceType\", hrDeviceIndex=\"4\", hrDeviceType=\"1.3.6.1.2.1.25.3.1.3\", instance=\"10.11.0.182\", job=\"snmp\"}",
+                "{__name__=\"hrDeviceType\", hrDeviceIndex=\"39\", hrDeviceType=\"1.3.6.1.2.1.25.3.1.3\", instance=\"10.11.0.186\", job=\"snmp\"}",
+                "{__name__=\"hrDeviceType\", hrDeviceIndex=\"39\", hrDeviceType=\"1.3.6.1.2.1.25.3.1.3\", instance=\"10.11.0.185\", job=\"snmp\"}",
+                "{__name__=\"hrDeviceType\", hrDeviceIndex=\"39\", hrDeviceType=\"1.3.6.1.2.1.25.3.1.3\", instance=\"10.11.0.183\", job=\"snmp\"}",
+                "{__name__=\"hrDeviceType\", hrDeviceIndex=\"39\", hrDeviceType=\"1.3.6.1.2.1.25.3.1.3\", instance=\"10.11.0.184\", job=\"snmp\"}",
+                "{__name__=\"hrDeviceType\", hrDeviceIndex=\"39\", hrDeviceType=\"1.3.6.1.2.1.25.3.1.3\", instance=\"10.11.0.182\", job=\"snmp\"}",
+                "{__name__=\"hrDeviceType\", hrDeviceIndex=\"39\", hrDeviceType=\"1.3.6.1.2.1.25.3.1.3\", instance=\"10.11.0.181\", job=\"snmp\"}",
+                "{__name__=\"hrDeviceType\", hrDeviceIndex=\"38\", hrDeviceType=\"1.3.6.1.2.1.25.3.1.3\", instance=\"10.11.0.185\", job=\"snmp\"}",
+                "{__name__=\"hrDeviceType\", hrDeviceIndex=\"38\", hrDeviceType=\"1.3.6.1.2.1.25.3.1.3\", instance=\"10.11.0.186\", job=\"snmp\"}",
+                "{__name__=\"hrDeviceType\", hrDeviceIndex=\"38\", hrDeviceType=\"1.3.6.1.2.1.25.3.1.3\", instance=\"10.11.0.184\", job=\"snmp\"}",
+                "{__name__=\"hrDeviceType\", hrDeviceIndex=\"38\", hrDeviceType=\"1.3.6.1.2.1.25.3.1.3\", instance=\"10.11.0.183\", job=\"snmp\"}",
+                "{__name__=\"hrDeviceType\", hrDeviceIndex=\"38\", hrDeviceType=\"1.3.6.1.2.1.25.3.1.3\", instance=\"10.11.0.181\", job=\"snmp\"}",
+                "{__name__=\"hrDeviceType\", hrDeviceIndex=\"38\", hrDeviceType=\"1.3.6.1.2.1.25.3.1.3\", instance=\"10.11.0.182\", job=\"snmp\"}",
+                "{__name__=\"hrDeviceType\", hrDeviceIndex=\"37\", hrDeviceType=\"1.3.6.1.2.1.25.3.1.3\", instance=\"10.11.0.186\", job=\"snmp\"}",
+                "{__name__=\"hrDeviceType\", hrDeviceIndex=\"37\", hrDeviceType=\"1.3.6.1.2.1.25.3.1.3\", instance=\"10.11.0.185\", job=\"snmp\"}",
+                "{__name__=\"hrDeviceType\", hrDeviceIndex=\"37\", hrDeviceType=\"1.3.6.1.2.1.25.3.1.3\", instance=\"10.11.0.183\", job=\"snmp\"}",
+                "{__name__=\"hrDeviceType\", hrDeviceIndex=\"37\", hrDeviceType=\"1.3.6.1.2.1.25.3.1.3\", instance=\"10.11.0.184\", job=\"snmp\"}",
+                "{__name__=\"hrDeviceType\", hrDeviceIndex=\"37\", hrDeviceType=\"1.3.6.1.2.1.25.3.1.3\", instance=\"10.11.0.182\", job=\"snmp\"}",
+                "{__name__=\"hrDeviceType\", hrDeviceIndex=\"37\", hrDeviceType=\"1.3.6.1.2.1.25.3.1.3\", instance=\"10.11.0.181\", job=\"snmp\"}",
+                "{__name__=\"hrDeviceType\", hrDeviceIndex=\"36\", hrDeviceType=\"1.3.6.1.2.1.25.3.1.3\", instance=\"10.11.0.185\", job=\"snmp\"}",
+                "{__name__=\"hrDeviceType\", hrDeviceIndex=\"36\", hrDeviceType=\"1.3.6.1.2.1.25.3.1.3\", instance=\"10.11.0.186\", job=\"snmp\"}",
+                "{__name__=\"hrDeviceType\", hrDeviceIndex=\"36\", hrDeviceType=\"1.3.6.1.2.1.25.3.1.3\", instance=\"10.11.0.184\", job=\"snmp\"}",
+                "{__name__=\"hrDeviceType\", hrDeviceIndex=\"36\", hrDeviceType=\"1.3.6.1.2.1.25.3.1.3\", instance=\"10.11.0.183\", job=\"snmp\"}",
+                "{__name__=\"hrDeviceType\", hrDeviceIndex=\"36\", hrDeviceType=\"1.3.6.1.2.1.25.3.1.3\", instance=\"10.11.0.181\", job=\"snmp\"}",
+                "{__name__=\"hrDeviceType\", hrDeviceIndex=\"36\", hrDeviceType=\"1.3.6.1.2.1.25.3.1.3\", instance=\"10.11.0.182\", job=\"snmp\"}",
+                "{__name__=\"hrDeviceType\", hrDeviceIndex=\"35\", hrDeviceType=\"1.3.6.1.2.1.25.3.1.3\", instance=\"10.11.0.186\", job=\"snmp\"}",
+                "{__name__=\"hrDeviceType\", hrDeviceIndex=\"35\", hrDeviceType=\"1.3.6.1.2.1.25.3.1.3\", instance=\"10.11.0.185\", job=\"snmp\"}",
+                "{__name__=\"hrDeviceType\", hrDeviceIndex=\"35\", hrDeviceType=\"1.3.6.1.2.1.25.3.1.3\", instance=\"10.11.0.183\", job=\"snmp\"}",
+                "{__name__=\"hrDeviceType\", hrDeviceIndex=\"35\", hrDeviceType=\"1.3.6.1.2.1.25.3.1.3\", instance=\"10.11.0.184\", job=\"snmp\"}",
+                "{__name__=\"hrDeviceType\", hrDeviceIndex=\"35\", hrDeviceType=\"1.3.6.1.2.1.25.3.1.3\", instance=\"10.11.0.182\", job=\"snmp\"}",
+                "{__name__=\"hrDeviceType\", hrDeviceIndex=\"35\", hrDeviceType=\"1.3.6.1.2.1.25.3.1.3\", instance=\"10.11.0.181\", job=\"snmp\"}",
+                "{__name__=\"hrDeviceType\", hrDeviceIndex=\"34\", hrDeviceType=\"1.3.6.1.2.1.25.3.1.3\", instance=\"10.11.0.185\", job=\"snmp\"}",
+                "{__name__=\"hrDeviceType\", hrDeviceIndex=\"34\", hrDeviceType=\"1.3.6.1.2.1.25.3.1.3\", instance=\"10.11.0.186\", job=\"snmp\"}",
+                "{__name__=\"hrDeviceType\", hrDeviceIndex=\"34\", hrDeviceType=\"1.3.6.1.2.1.25.3.1.3\", instance=\"10.11.0.184\", job=\"snmp\"}",
+                "{__name__=\"hrDeviceType\", hrDeviceIndex=\"34\", hrDeviceType=\"1.3.6.1.2.1.25.3.1.3\", instance=\"10.11.0.183\", job=\"snmp\"}",
+                "{__name__=\"hrDeviceType\", hrDeviceIndex=\"34\", hrDeviceType=\"1.3.6.1.2.1.25.3.1.3\", instance=\"10.11.0.181\", job=\"snmp\"}",
+                "{__name__=\"hrDeviceType\", hrDeviceIndex=\"34\", hrDeviceType=\"1.3.6.1.2.1.25.3.1.3\", instance=\"10.11.0.182\", job=\"snmp\"}",
+                "{__name__=\"hrDeviceType\", hrDeviceIndex=\"33\", hrDeviceType=\"1.3.6.1.2.1.25.3.1.3\", instance=\"10.11.0.186\", job=\"snmp\"}",
+                "{__name__=\"hrDeviceType\", hrDeviceIndex=\"33\", hrDeviceType=\"1.3.6.1.2.1.25.3.1.3\", instance=\"10.11.0.185\", job=\"snmp\"}",
+                "{__name__=\"hrDeviceType\", hrDeviceIndex=\"33\", hrDeviceType=\"1.3.6.1.2.1.25.3.1.3\", instance=\"10.11.0.183\", job=\"snmp\"}",
+                "{__name__=\"hrDeviceType\", hrDeviceIndex=\"33\", hrDeviceType=\"1.3.6.1.2.1.25.3.1.3\", instance=\"10.11.0.184\", job=\"snmp\"}",
+                "{__name__=\"hrDeviceType\", hrDeviceIndex=\"33\", hrDeviceType=\"1.3.6.1.2.1.25.3.1.3\", instance=\"10.11.0.182\", job=\"snmp\"}",
+                "{__name__=\"hrDeviceType\", hrDeviceIndex=\"33\", hrDeviceType=\"1.3.6.1.2.1.25.3.1.3\", instance=\"10.11.0.181\", job=\"snmp\"}",
+                "{__name__=\"hrDeviceType\", hrDeviceIndex=\"32\", hrDeviceType=\"1.3.6.1.2.1.25.3.1.3\", instance=\"10.11.0.185\", job=\"snmp\"}",
+                "{__name__=\"hrDeviceType\", hrDeviceIndex=\"32\", hrDeviceType=\"1.3.6.1.2.1.25.3.1.3\", instance=\"10.11.0.186\", job=\"snmp\"}",
+                "{__name__=\"hrDeviceType\", hrDeviceIndex=\"32\", hrDeviceType=\"1.3.6.1.2.1.25.3.1.3\", instance=\"10.11.0.184\", job=\"snmp\"}",
+                "{__name__=\"hrDeviceType\", hrDeviceIndex=\"32\", hrDeviceType=\"1.3.6.1.2.1.25.3.1.3\", instance=\"10.11.0.183\", job=\"snmp\"}",
+                "{__name__=\"hrDeviceType\", hrDeviceIndex=\"32\", hrDeviceType=\"1.3.6.1.2.1.25.3.1.3\", instance=\"10.11.0.181\", job=\"snmp\"}",
+                "{__name__=\"hrDeviceType\", hrDeviceIndex=\"32\", hrDeviceType=\"1.3.6.1.2.1.25.3.1.3\", instance=\"10.11.0.182\", job=\"snmp\"}",
+                "{__name__=\"hrDeviceType\", hrDeviceIndex=\"31\", hrDeviceType=\"1.3.6.1.2.1.25.3.1.3\", instance=\"10.11.0.186\", job=\"snmp\"}",
+                "{__name__=\"hrDeviceType\", hrDeviceIndex=\"31\", hrDeviceType=\"1.3.6.1.2.1.25.3.1.3\", instance=\"10.11.0.185\", job=\"snmp\"}",
+                "{__name__=\"hrDeviceType\", hrDeviceIndex=\"31\", hrDeviceType=\"1.3.6.1.2.1.25.3.1.3\", instance=\"10.11.0.183\", job=\"snmp\"}",
+                "{__name__=\"hrDeviceType\", hrDeviceIndex=\"31\", hrDeviceType=\"1.3.6.1.2.1.25.3.1.3\", instance=\"10.11.0.184\", job=\"snmp\"}",
+                "{__name__=\"hrDeviceType\", hrDeviceIndex=\"31\", hrDeviceType=\"1.3.6.1.2.1.25.3.1.3\", instance=\"10.11.0.182\", job=\"snmp\"}",
+                "{__name__=\"hrDeviceType\", hrDeviceIndex=\"31\", hrDeviceType=\"1.3.6.1.2.1.25.3.1.3\", instance=\"10.11.0.181\", job=\"snmp\"}",
+                "{__name__=\"hrDeviceType\", hrDeviceIndex=\"30\", hrDeviceType=\"1.3.6.1.2.1.25.3.1.3\", instance=\"10.11.0.185\", job=\"snmp\"}",
+                "{__name__=\"hrDeviceType\", hrDeviceIndex=\"30\", hrDeviceType=\"1.3.6.1.2.1.25.3.1.3\", instance=\"10.11.0.186\", job=\"snmp\"}",
+                "{__name__=\"hrDeviceType\", hrDeviceIndex=\"30\", hrDeviceType=\"1.3.6.1.2.1.25.3.1.3\", instance=\"10.11.0.184\", job=\"snmp\"}",
+                "{__name__=\"hrDeviceType\", hrDeviceIndex=\"30\", hrDeviceType=\"1.3.6.1.2.1.25.3.1.3\", instance=\"10.11.0.183\", job=\"snmp\"}",
+                "{__name__=\"hrDeviceType\", hrDeviceIndex=\"30\", hrDeviceType=\"1.3.6.1.2.1.25.3.1.3\", instance=\"10.11.0.181\", job=\"snmp\"}",
+                "{__name__=\"hrDeviceType\", hrDeviceIndex=\"30\", hrDeviceType=\"1.3.6.1.2.1.25.3.1.3\", instance=\"10.11.0.182\", job=\"snmp\"}",
+                "{__name__=\"hrDeviceType\", hrDeviceIndex=\"3\", hrDeviceType=\"1.3.6.1.2.1.25.3.1.3\", instance=\"10.11.0.186\", job=\"snmp\"}",
+                "{__name__=\"hrDeviceType\", hrDeviceIndex=\"3\", hrDeviceType=\"1.3.6.1.2.1.25.3.1.3\", instance=\"10.11.0.185\", job=\"snmp\"}",
+                "{__name__=\"hrDeviceType\", hrDeviceIndex=\"3\", hrDeviceType=\"1.3.6.1.2.1.25.3.1.3\", instance=\"10.11.0.183\", job=\"snmp\"}",
+                "{__name__=\"hrDeviceType\", hrDeviceIndex=\"3\", hrDeviceType=\"1.3.6.1.2.1.25.3.1.3\", instance=\"10.11.0.184\", job=\"snmp\"}",
+                "{__name__=\"hrDeviceType\", hrDeviceIndex=\"3\", hrDeviceType=\"1.3.6.1.2.1.25.3.1.3\", instance=\"10.11.0.182\", job=\"snmp\"}",
+                "{__name__=\"hrDeviceType\", hrDeviceIndex=\"3\", hrDeviceType=\"1.3.6.1.2.1.25.3.1.3\", instance=\"10.11.0.181\", job=\"snmp\"}",
+                "{__name__=\"hrDeviceType\", hrDeviceIndex=\"29\", hrDeviceType=\"1.3.6.1.2.1.25.3.1.3\", instance=\"10.11.0.185\", job=\"snmp\"}",
+                "{__name__=\"hrDeviceType\", hrDeviceIndex=\"29\", hrDeviceType=\"1.3.6.1.2.1.25.3.1.3\", instance=\"10.11.0.186\", job=\"snmp\"}",
+                "{__name__=\"hrDeviceType\", hrDeviceIndex=\"29\", hrDeviceType=\"1.3.6.1.2.1.25.3.1.3\", instance=\"10.11.0.184\", job=\"snmp\"}",
+                "{__name__=\"hrDeviceType\", hrDeviceIndex=\"29\", hrDeviceType=\"1.3.6.1.2.1.25.3.1.3\", instance=\"10.11.0.183\", job=\"snmp\"}",
+                "{__name__=\"hrDeviceType\", hrDeviceIndex=\"29\", hrDeviceType=\"1.3.6.1.2.1.25.3.1.3\", instance=\"10.11.0.181\", job=\"snmp\"}",
+                "{__name__=\"hrDeviceType\", hrDeviceIndex=\"29\", hrDeviceType=\"1.3.6.1.2.1.25.3.1.3\", instance=\"10.11.0.182\", job=\"snmp\"}",
+                "{__name__=\"hrDeviceType\", hrDeviceIndex=\"28\", hrDeviceType=\"1.3.6.1.2.1.25.3.1.3\", instance=\"10.11.0.186\", job=\"snmp\"}",
+                "{__name__=\"hrDeviceType\", hrDeviceIndex=\"28\", hrDeviceType=\"1.3.6.1.2.1.25.3.1.3\", instance=\"10.11.0.185\", job=\"snmp\"}",
+                "{__name__=\"hrDeviceType\", hrDeviceIndex=\"28\", hrDeviceType=\"1.3.6.1.2.1.25.3.1.3\", instance=\"10.11.0.183\", job=\"snmp\"}",
+                "{__name__=\"hrDeviceType\", hrDeviceIndex=\"28\", hrDeviceType=\"1.3.6.1.2.1.25.3.1.3\", instance=\"10.11.0.184\", job=\"snmp\"}",
+                "{__name__=\"hrDeviceType\", hrDeviceIndex=\"28\", hrDeviceType=\"1.3.6.1.2.1.25.3.1.3\", instance=\"10.11.0.182\", job=\"snmp\"}",
+                "{__name__=\"hrDeviceType\", hrDeviceIndex=\"28\", hrDeviceType=\"1.3.6.1.2.1.25.3.1.3\", instance=\"10.11.0.181\", job=\"snmp\"}",
+                "{__name__=\"hrDeviceType\", hrDeviceIndex=\"27\", hrDeviceType=\"1.3.6.1.2.1.25.3.1.3\", instance=\"10.11.0.185\", job=\"snmp\"}",
+                "{__name__=\"hrDeviceType\", hrDeviceIndex=\"27\", hrDeviceType=\"1.3.6.1.2.1.25.3.1.3\", instance=\"10.11.0.186\", job=\"snmp\"}",
+                "{__name__=\"hrDeviceType\", hrDeviceIndex=\"27\", hrDeviceType=\"1.3.6.1.2.1.25.3.1.3\", instance=\"10.11.0.184\", job=\"snmp\"}",
+                "{__name__=\"hrDeviceType\", hrDeviceIndex=\"27\", hrDeviceType=\"1.3.6.1.2.1.25.3.1.3\", instance=\"10.11.0.183\", job=\"snmp\"}",
+                "{__name__=\"hrDeviceType\", hrDeviceIndex=\"27\", hrDeviceType=\"1.3.6.1.2.1.25.3.1.3\", instance=\"10.11.0.182\", job=\"snmp\"}",
+                "{__name__=\"hrDeviceType\", hrDeviceIndex=\"27\", hrDeviceType=\"1.3.6.1.2.1.25.3.1.3\", instance=\"10.11.0.181\", job=\"snmp\"}",
+                "{__name__=\"hrDeviceType\", hrDeviceIndex=\"26\", hrDeviceType=\"1.3.6.1.2.1.25.3.1.3\", instance=\"10.11.0.185\", job=\"snmp\"}",
+                "{__name__=\"hrDeviceType\", hrDeviceIndex=\"26\", hrDeviceType=\"1.3.6.1.2.1.25.3.1.3\", instance=\"10.11.0.186\", job=\"snmp\"}",
+                "{__name__=\"hrDeviceType\", hrDeviceIndex=\"26\", hrDeviceType=\"1.3.6.1.2.1.25.3.1.3\", instance=\"10.11.0.184\", job=\"snmp\"}",
+                "{__name__=\"hrDeviceType\", hrDeviceIndex=\"26\", hrDeviceType=\"1.3.6.1.2.1.25.3.1.3\", instance=\"10.11.0.183\", job=\"snmp\"}",
+                "{__name__=\"hrDeviceType\", hrDeviceIndex=\"26\", hrDeviceType=\"1.3.6.1.2.1.25.3.1.3\", instance=\"10.11.0.181\", job=\"snmp\"}",
+                "{__name__=\"hrDeviceType\", hrDeviceIndex=\"26\", hrDeviceType=\"1.3.6.1.2.1.25.3.1.3\", instance=\"10.11.0.182\", job=\"snmp\"}",
+                "{__name__=\"hrDeviceType\", hrDeviceIndex=\"25\", hrDeviceType=\"1.3.6.1.2.1.25.3.1.3\", instance=\"10.11.0.186\", job=\"snmp\"}",
+                "{__name__=\"hrDeviceType\", hrDeviceIndex=\"25\", hrDeviceType=\"1.3.6.1.2.1.25.3.1.3\", instance=\"10.11.0.185\", job=\"snmp\"}",
+                "{__name__=\"hrDeviceType\", hrDeviceIndex=\"25\", hrDeviceType=\"1.3.6.1.2.1.25.3.1.3\", instance=\"10.11.0.183\", job=\"snmp\"}",
+                "{__name__=\"hrDeviceType\", hrDeviceIndex=\"25\", hrDeviceType=\"1.3.6.1.2.1.25.3.1.3\", instance=\"10.11.0.184\", job=\"snmp\"}",
+                "{__name__=\"hrDeviceType\", hrDeviceIndex=\"25\", hrDeviceType=\"1.3.6.1.2.1.25.3.1.3\", instance=\"10.11.0.182\", job=\"snmp\"}",
+                "{__name__=\"hrDeviceType\", hrDeviceIndex=\"25\", hrDeviceType=\"1.3.6.1.2.1.25.3.1.3\", instance=\"10.11.0.181\", job=\"snmp\"}",
+                "{__name__=\"hrDeviceType\", hrDeviceIndex=\"24\", hrDeviceType=\"1.3.6.1.2.1.25.3.1.3\", instance=\"10.11.0.185\", job=\"snmp\"}",
+                "{__name__=\"hrDeviceType\", hrDeviceIndex=\"24\", hrDeviceType=\"1.3.6.1.2.1.25.3.1.3\", instance=\"10.11.0.186\", job=\"snmp\"}",
+                "{__name__=\"hrDeviceType\", hrDeviceIndex=\"24\", hrDeviceType=\"1.3.6.1.2.1.25.3.1.3\", instance=\"10.11.0.184\", job=\"snmp\"}",
+                "{__name__=\"hrDeviceType\", hrDeviceIndex=\"24\", hrDeviceType=\"1.3.6.1.2.1.25.3.1.3\", instance=\"10.11.0.183\", job=\"snmp\"}",
+                "{__name__=\"hrDeviceType\", hrDeviceIndex=\"24\", hrDeviceType=\"1.3.6.1.2.1.25.3.1.3\", instance=\"10.11.0.181\", job=\"snmp\"}",
+                "{__name__=\"hrDeviceType\", hrDeviceIndex=\"24\", hrDeviceType=\"1.3.6.1.2.1.25.3.1.3\", instance=\"10.11.0.182\", job=\"snmp\"}",
+                "{__name__=\"hrDeviceType\", hrDeviceIndex=\"23\", hrDeviceType=\"1.3.6.1.2.1.25.3.1.3\", instance=\"10.11.0.186\", job=\"snmp\"}",
+                "{__name__=\"hrDeviceType\", hrDeviceIndex=\"23\", hrDeviceType=\"1.3.6.1.2.1.25.3.1.3\", instance=\"10.11.0.185\", job=\"snmp\"}",
+                "{__name__=\"hrDeviceType\", hrDeviceIndex=\"23\", hrDeviceType=\"1.3.6.1.2.1.25.3.1.3\", instance=\"10.11.0.184\", job=\"snmp\"}",
+                "{__name__=\"hrDeviceType\", hrDeviceIndex=\"23\", hrDeviceType=\"1.3.6.1.2.1.25.3.1.3\", instance=\"10.11.0.183\", job=\"snmp\"}",
+                "{__name__=\"hrDeviceType\", hrDeviceIndex=\"23\", hrDeviceType=\"1.3.6.1.2.1.25.3.1.3\", instance=\"10.11.0.181\", job=\"snmp\"}",
+                "{__name__=\"hrDeviceType\", hrDeviceIndex=\"23\", hrDeviceType=\"1.3.6.1.2.1.25.3.1.3\", instance=\"10.11.0.182\", job=\"snmp\"}",
+                "{__name__=\"hrDeviceType\", hrDeviceIndex=\"22\", hrDeviceType=\"1.3.6.1.2.1.25.3.1.3\", instance=\"10.11.0.186\", job=\"snmp\"}",
+                "{__name__=\"hrDeviceType\", hrDeviceIndex=\"22\", hrDeviceType=\"1.3.6.1.2.1.25.3.1.3\", instance=\"10.11.0.185\", job=\"snmp\"}",
+                "{__name__=\"hrDeviceType\", hrDeviceIndex=\"22\", hrDeviceType=\"1.3.6.1.2.1.25.3.1.3\", instance=\"10.11.0.183\", job=\"snmp\"}",
+                "{__name__=\"hrDeviceType\", hrDeviceIndex=\"22\", hrDeviceType=\"1.3.6.1.2.1.25.3.1.3\", instance=\"10.11.0.184\", job=\"snmp\"}",
+                "{__name__=\"hrDeviceType\", hrDeviceIndex=\"22\", hrDeviceType=\"1.3.6.1.2.1.25.3.1.3\", instance=\"10.11.0.182\", job=\"snmp\"}",
+                "{__name__=\"hrDeviceType\", hrDeviceIndex=\"22\", hrDeviceType=\"1.3.6.1.2.1.25.3.1.3\", instance=\"10.11.0.181\", job=\"snmp\"}",
+                "{__name__=\"hrDeviceType\", hrDeviceIndex=\"21\", hrDeviceType=\"1.3.6.1.2.1.25.3.1.3\", instance=\"10.11.0.185\", job=\"snmp\"}",
+                "{__name__=\"hrDeviceType\", hrDeviceIndex=\"21\", hrDeviceType=\"1.3.6.1.2.1.25.3.1.3\", instance=\"10.11.0.186\", job=\"snmp\"}",
+                "{__name__=\"hrDeviceType\", hrDeviceIndex=\"21\", hrDeviceType=\"1.3.6.1.2.1.25.3.1.3\", instance=\"10.11.0.184\", job=\"snmp\"}",
+                "{__name__=\"hrDeviceType\", hrDeviceIndex=\"21\", hrDeviceType=\"1.3.6.1.2.1.25.3.1.3\", instance=\"10.11.0.183\", job=\"snmp\"}",
+                "{__name__=\"hrDeviceType\", hrDeviceIndex=\"21\", hrDeviceType=\"1.3.6.1.2.1.25.3.1.3\", instance=\"10.11.0.181\", job=\"snmp\"}",
+                "{__name__=\"hrDeviceType\", hrDeviceIndex=\"21\", hrDeviceType=\"1.3.6.1.2.1.25.3.1.3\", instance=\"10.11.0.182\", job=\"snmp\"}",
+                "{__name__=\"hrDeviceType\", hrDeviceIndex=\"20\", hrDeviceType=\"1.3.6.1.2.1.25.3.1.3\", instance=\"10.11.0.186\", job=\"snmp\"}",
+                "{__name__=\"hrDeviceType\", hrDeviceIndex=\"20\", hrDeviceType=\"1.3.6.1.2.1.25.3.1.3\", instance=\"10.11.0.185\", job=\"snmp\"}",
+                "{__name__=\"hrDeviceType\", hrDeviceIndex=\"20\", hrDeviceType=\"1.3.6.1.2.1.25.3.1.3\", instance=\"10.11.0.183\", job=\"snmp\"}",
+                "{__name__=\"hrDeviceType\", hrDeviceIndex=\"20\", hrDeviceType=\"1.3.6.1.2.1.25.3.1.3\", instance=\"10.11.0.184\", job=\"snmp\"}",
+                "{__name__=\"hrDeviceType\", hrDeviceIndex=\"20\", hrDeviceType=\"1.3.6.1.2.1.25.3.1.3\", instance=\"10.11.0.182\", job=\"snmp\"}",
+                "{__name__=\"hrDeviceType\", hrDeviceIndex=\"20\", hrDeviceType=\"1.3.6.1.2.1.25.3.1.3\", instance=\"10.11.0.181\", job=\"snmp\"}",
+                "{__name__=\"hrDeviceType\", hrDeviceIndex=\"2\", hrDeviceType=\"1.3.6.1.2.1.25.3.1.3\", instance=\"10.11.0.185\", job=\"snmp\"}",
+                "{__name__=\"hrDeviceType\", hrDeviceIndex=\"2\", hrDeviceType=\"1.3.6.1.2.1.25.3.1.3\", instance=\"10.11.0.186\", job=\"snmp\"}",
+                "{__name__=\"hrDeviceType\", hrDeviceIndex=\"2\", hrDeviceType=\"1.3.6.1.2.1.25.3.1.3\", instance=\"10.11.0.184\", job=\"snmp\"}",
+                "{__name__=\"hrDeviceType\", hrDeviceIndex=\"2\", hrDeviceType=\"1.3.6.1.2.1.25.3.1.3\", instance=\"10.11.0.183\", job=\"snmp\"}",
+                "{__name__=\"hrDeviceType\", hrDeviceIndex=\"2\", hrDeviceType=\"1.3.6.1.2.1.25.3.1.3\", instance=\"10.11.0.181\", job=\"snmp\"}",
+                "{__name__=\"hrDeviceType\", hrDeviceIndex=\"2\", hrDeviceType=\"1.3.6.1.2.1.25.3.1.3\", instance=\"10.11.0.182\", job=\"snmp\"}",
+                "{__name__=\"hrDeviceType\", hrDeviceIndex=\"19\", hrDeviceType=\"1.3.6.1.2.1.25.3.1.3\", instance=\"10.11.0.186\", job=\"snmp\"}",
+                "{__name__=\"hrDeviceType\", hrDeviceIndex=\"19\", hrDeviceType=\"1.3.6.1.2.1.25.3.1.3\", instance=\"10.11.0.185\", job=\"snmp\"}",
+                "{__name__=\"hrDeviceType\", hrDeviceIndex=\"19\", hrDeviceType=\"1.3.6.1.2.1.25.3.1.3\", instance=\"10.11.0.183\", job=\"snmp\"}",
+                "{__name__=\"hrDeviceType\", hrDeviceIndex=\"19\", hrDeviceType=\"1.3.6.1.2.1.25.3.1.3\", instance=\"10.11.0.184\", job=\"snmp\"}",
+                "{__name__=\"hrDeviceType\", hrDeviceIndex=\"19\", hrDeviceType=\"1.3.6.1.2.1.25.3.1.3\", instance=\"10.11.0.182\", job=\"snmp\"}",
+                "{__name__=\"hrDeviceType\", hrDeviceIndex=\"19\", hrDeviceType=\"1.3.6.1.2.1.25.3.1.3\", instance=\"10.11.0.181\", job=\"snmp\"}",
+                "{__name__=\"hrDeviceType\", hrDeviceIndex=\"18\", hrDeviceType=\"1.3.6.1.2.1.25.3.1.3\", instance=\"10.11.0.185\", job=\"snmp\"}",
+                "{__name__=\"hrDeviceType\", hrDeviceIndex=\"18\", hrDeviceType=\"1.3.6.1.2.1.25.3.1.3\", instance=\"10.11.0.186\", job=\"snmp\"}",
+                "{__name__=\"hrDeviceType\", hrDeviceIndex=\"18\", hrDeviceType=\"1.3.6.1.2.1.25.3.1.3\", instance=\"10.11.0.184\", job=\"snmp\"}",
+                "{__name__=\"hrDeviceType\", hrDeviceIndex=\"18\", hrDeviceType=\"1.3.6.1.2.1.25.3.1.3\", instance=\"10.11.0.183\", job=\"snmp\"}",
+                "{__name__=\"hrDeviceType\", hrDeviceIndex=\"18\", hrDeviceType=\"1.3.6.1.2.1.25.3.1.3\", instance=\"10.11.0.181\", job=\"snmp\"}",
+                "{__name__=\"hrDeviceType\", hrDeviceIndex=\"18\", hrDeviceType=\"1.3.6.1.2.1.25.3.1.3\", instance=\"10.11.0.182\", job=\"snmp\"}",
+                "{__name__=\"hrDeviceType\", hrDeviceIndex=\"17\", hrDeviceType=\"1.3.6.1.2.1.25.3.1.3\", instance=\"10.11.0.186\", job=\"snmp\"}",
+                "{__name__=\"hrDeviceType\", hrDeviceIndex=\"17\", hrDeviceType=\"1.3.6.1.2.1.25.3.1.3\", instance=\"10.11.0.185\", job=\"snmp\"}",
+                "{__name__=\"hrDeviceType\", hrDeviceIndex=\"17\", hrDeviceType=\"1.3.6.1.2.1.25.3.1.3\", instance=\"10.11.0.183\", job=\"snmp\"}",
+                "{__name__=\"hrDeviceType\", hrDeviceIndex=\"17\", hrDeviceType=\"1.3.6.1.2.1.25.3.1.3\", instance=\"10.11.0.184\", job=\"snmp\"}",
+                "{__name__=\"hrDeviceType\", hrDeviceIndex=\"17\", hrDeviceType=\"1.3.6.1.2.1.25.3.1.3\", instance=\"10.11.0.182\", job=\"snmp\"}",
+                "{__name__=\"hrDeviceType\", hrDeviceIndex=\"17\", hrDeviceType=\"1.3.6.1.2.1.25.3.1.3\", instance=\"10.11.0.181\", job=\"snmp\"}",
+                "{__name__=\"hrDeviceType\", hrDeviceIndex=\"16\", hrDeviceType=\"1.3.6.1.2.1.25.3.1.3\", instance=\"10.11.0.185\", job=\"snmp\"}",
+                "{__name__=\"hrDeviceType\", hrDeviceIndex=\"16\", hrDeviceType=\"1.3.6.1.2.1.25.3.1.3\", instance=\"10.11.0.186\", job=\"snmp\"}",
+                "{__name__=\"hrDeviceType\", hrDeviceIndex=\"16\", hrDeviceType=\"1.3.6.1.2.1.25.3.1.3\", instance=\"10.11.0.184\", job=\"snmp\"}",
+                "{__name__=\"hrDeviceType\", hrDeviceIndex=\"16\", hrDeviceType=\"1.3.6.1.2.1.25.3.1.3\", instance=\"10.11.0.183\", job=\"snmp\"}",
+                "{__name__=\"hrDeviceType\", hrDeviceIndex=\"16\", hrDeviceType=\"1.3.6.1.2.1.25.3.1.3\", instance=\"10.11.0.181\", job=\"snmp\"}",
+                "{__name__=\"hrDeviceType\", hrDeviceIndex=\"16\", hrDeviceType=\"1.3.6.1.2.1.25.3.1.3\", instance=\"10.11.0.182\", job=\"snmp\"}",
+                "{__name__=\"hrDeviceType\", hrDeviceIndex=\"15\", hrDeviceType=\"1.3.6.1.2.1.25.3.1.3\", instance=\"10.11.0.186\", job=\"snmp\"}",
+                "{__name__=\"hrDeviceType\", hrDeviceIndex=\"15\", hrDeviceType=\"1.3.6.1.2.1.25.3.1.3\", instance=\"10.11.0.185\", job=\"snmp\"}",
+                "{__name__=\"hrDeviceType\", hrDeviceIndex=\"15\", hrDeviceType=\"1.3.6.1.2.1.25.3.1.3\", instance=\"10.11.0.183\", job=\"snmp\"}",
+                "{__name__=\"hrDeviceType\", hrDeviceIndex=\"15\", hrDeviceType=\"1.3.6.1.2.1.25.3.1.3\", instance=\"10.11.0.184\", job=\"snmp\"}",
+                "{__name__=\"hrDeviceType\", hrDeviceIndex=\"15\", hrDeviceType=\"1.3.6.1.2.1.25.3.1.3\", instance=\"10.11.0.182\", job=\"snmp\"}",
+                "{__name__=\"hrDeviceType\", hrDeviceIndex=\"15\", hrDeviceType=\"1.3.6.1.2.1.25.3.1.3\", instance=\"10.11.0.181\", job=\"snmp\"}",
+                "{__name__=\"hrDeviceType\", hrDeviceIndex=\"14\", hrDeviceType=\"1.3.6.1.2.1.25.3.1.3\", instance=\"10.11.0.185\", job=\"snmp\"}",
+                "{__name__=\"hrDeviceType\", hrDeviceIndex=\"14\", hrDeviceType=\"1.3.6.1.2.1.25.3.1.3\", instance=\"10.11.0.186\", job=\"snmp\"}",
+                "{__name__=\"hrDeviceType\", hrDeviceIndex=\"14\", hrDeviceType=\"1.3.6.1.2.1.25.3.1.3\", instance=\"10.11.0.184\", job=\"snmp\"}",
+                "{__name__=\"hrDeviceType\", hrDeviceIndex=\"14\", hrDeviceType=\"1.3.6.1.2.1.25.3.1.3\", instance=\"10.11.0.183\", job=\"snmp\"}",
+                "{__name__=\"hrDeviceType\", hrDeviceIndex=\"14\", hrDeviceType=\"1.3.6.1.2.1.25.3.1.3\", instance=\"10.11.0.181\", job=\"snmp\"}",
+                "{__name__=\"hrDeviceType\", hrDeviceIndex=\"14\", hrDeviceType=\"1.3.6.1.2.1.25.3.1.3\", instance=\"10.11.0.182\", job=\"snmp\"}",
+                "{__name__=\"hrDeviceType\", hrDeviceIndex=\"13\", hrDeviceType=\"1.3.6.1.2.1.25.3.1.3\", instance=\"10.11.0.186\", job=\"snmp\"}",
+                "{__name__=\"hrDeviceType\", hrDeviceIndex=\"13\", hrDeviceType=\"1.3.6.1.2.1.25.3.1.3\", instance=\"10.11.0.185\", job=\"snmp\"}",
+                "{__name__=\"hrDeviceType\", hrDeviceIndex=\"13\", hrDeviceType=\"1.3.6.1.2.1.25.3.1.3\", instance=\"10.11.0.183\", job=\"snmp\"}",
+                "{__name__=\"hrDeviceType\", hrDeviceIndex=\"13\", hrDeviceType=\"1.3.6.1.2.1.25.3.1.3\", instance=\"10.11.0.184\", job=\"snmp\"}",
+                "{__name__=\"hrDeviceType\", hrDeviceIndex=\"13\", hrDeviceType=\"1.3.6.1.2.1.25.3.1.3\", instance=\"10.11.0.182\", job=\"snmp\"}",
+                "{__name__=\"hrDeviceType\", hrDeviceIndex=\"13\", hrDeviceType=\"1.3.6.1.2.1.25.3.1.3\", instance=\"10.11.0.181\", job=\"snmp\"}",
+                "{__name__=\"hrDeviceType\", hrDeviceIndex=\"12\", hrDeviceType=\"1.3.6.1.2.1.25.3.1.3\", instance=\"10.11.0.185\", job=\"snmp\"}",
+                "{__name__=\"hrDeviceType\", hrDeviceIndex=\"12\", hrDeviceType=\"1.3.6.1.2.1.25.3.1.3\", instance=\"10.11.0.186\", job=\"snmp\"}",
+                "{__name__=\"hrDeviceType\", hrDeviceIndex=\"12\", hrDeviceType=\"1.3.6.1.2.1.25.3.1.3\", instance=\"10.11.0.184\", job=\"snmp\"}",
+                "{__name__=\"hrDeviceType\", hrDeviceIndex=\"12\", hrDeviceType=\"1.3.6.1.2.1.25.3.1.3\", instance=\"10.11.0.183\", job=\"snmp\"}",
+                "{__name__=\"hrDeviceType\", hrDeviceIndex=\"12\", hrDeviceType=\"1.3.6.1.2.1.25.3.1.3\", instance=\"10.11.0.182\", job=\"snmp\"}",
+                "{__name__=\"hrDeviceType\", hrDeviceIndex=\"12\", hrDeviceType=\"1.3.6.1.2.1.25.3.1.3\", instance=\"10.11.0.181\", job=\"snmp\"}",
+                "{__name__=\"hrDeviceType\", hrDeviceIndex=\"111\", hrDeviceType=\"1.3.6.1.2.1.25.3.1.3\", instance=\"10.11.0.182\", job=\"snmp\"}",
+                "{__name__=\"hrDeviceType\", hrDeviceIndex=\"112\", hrDeviceType=\"1.3.6.1.2.1.25.3.1.3\", instance=\"10.11.0.182\", job=\"snmp\"}",
+                "{__name__=\"hrDeviceType\", hrDeviceIndex=\"110\", hrDeviceType=\"1.3.6.1.2.1.25.3.1.3\", instance=\"10.11.0.182\", job=\"snmp\"}",
+                "{__name__=\"hrDeviceType\", hrDeviceIndex=\"11\", hrDeviceType=\"1.3.6.1.2.1.25.3.1.3\", instance=\"10.11.0.186\", job=\"snmp\"}",
+                "{__name__=\"hrDeviceType\", hrDeviceIndex=\"11\", hrDeviceType=\"1.3.6.1.2.1.25.3.1.3\", instance=\"10.11.0.184\", job=\"snmp\"}",
+                "{__name__=\"hrDeviceType\", hrDeviceIndex=\"11\", hrDeviceType=\"1.3.6.1.2.1.25.3.1.3\", instance=\"10.11.0.185\", job=\"snmp\"}",
+                "{__name__=\"hrDeviceType\", hrDeviceIndex=\"11\", hrDeviceType=\"1.3.6.1.2.1.25.3.1.3\", instance=\"10.11.0.183\", job=\"snmp\"}",
+                "{__name__=\"hrDeviceType\", hrDeviceIndex=\"11\", hrDeviceType=\"1.3.6.1.2.1.25.3.1.3\", instance=\"10.11.0.182\", job=\"snmp\"}",
+                "{__name__=\"hrDeviceType\", hrDeviceIndex=\"109\", hrDeviceType=\"1.3.6.1.2.1.25.3.1.3\", instance=\"10.11.0.182\", job=\"snmp\"}",
+                "{__name__=\"hrDeviceType\", hrDeviceIndex=\"11\", hrDeviceType=\"1.3.6.1.2.1.25.3.1.3\", instance=\"10.11.0.181\", job=\"snmp\"}",
+                "{__name__=\"hrDeviceType\", hrDeviceIndex=\"108\", hrDeviceType=\"1.3.6.1.2.1.25.3.1.3\", instance=\"10.11.0.182\", job=\"snmp\"}",
+                "{__name__=\"hrDeviceType\", hrDeviceIndex=\"107\", hrDeviceType=\"1.3.6.1.2.1.25.3.1.3\", instance=\"10.11.0.182\", job=\"snmp\"}",
+                "{__name__=\"hrDeviceType\", hrDeviceIndex=\"105\", hrDeviceType=\"1.3.6.1.2.1.25.3.1.3\", instance=\"10.11.0.182\", job=\"snmp\"}",
+                "{__name__=\"hrDeviceType\", hrDeviceIndex=\"106\", hrDeviceType=\"1.3.6.1.2.1.25.3.1.3\", instance=\"10.11.0.182\", job=\"snmp\"}",
+                "{__name__=\"hrDeviceType\", hrDeviceIndex=\"104\", hrDeviceType=\"1.3.6.1.2.1.25.3.1.3\", instance=\"10.11.0.182\", job=\"snmp\"}",
+                "{__name__=\"hrDeviceType\", hrDeviceIndex=\"103\", hrDeviceType=\"1.3.6.1.2.1.25.3.1.3\", instance=\"10.11.0.182\", job=\"snmp\"}",
+                "{__name__=\"hrDeviceType\", hrDeviceIndex=\"101\", hrDeviceType=\"1.3.6.1.2.1.25.3.1.3\", instance=\"10.11.0.182\", job=\"snmp\"}",
+                "{__name__=\"hrDeviceType\", hrDeviceIndex=\"102\", hrDeviceType=\"1.3.6.1.2.1.25.3.1.3\", instance=\"10.11.0.182\", job=\"snmp\"}",
+                "{__name__=\"hrDeviceType\", hrDeviceIndex=\"100\", hrDeviceType=\"1.3.6.1.2.1.25.3.1.3\", instance=\"10.11.0.182\", job=\"snmp\"}",
+                "{__name__=\"hrDeviceType\", hrDeviceIndex=\"10\", hrDeviceType=\"1.3.6.1.2.1.25.3.1.3\", instance=\"10.11.0.186\", job=\"snmp\"}",
+                "{__name__=\"hrDeviceType\", hrDeviceIndex=\"10\", hrDeviceType=\"1.3.6.1.2.1.25.3.1.3\", instance=\"10.11.0.184\", job=\"snmp\"}",
+                "{__name__=\"hrDeviceType\", hrDeviceIndex=\"10\", hrDeviceType=\"1.3.6.1.2.1.25.3.1.3\", instance=\"10.11.0.185\", job=\"snmp\"}",
+                "{__name__=\"hrDeviceType\", hrDeviceIndex=\"10\", hrDeviceType=\"1.3.6.1.2.1.25.3.1.3\", instance=\"10.11.0.183\", job=\"snmp\"}",
+                "{__name__=\"hrDeviceType\", hrDeviceIndex=\"10\", hrDeviceType=\"1.3.6.1.2.1.25.3.1.3\", instance=\"10.11.0.182\", job=\"snmp\"}",
+                "{__name__=\"hrDeviceType\", hrDeviceIndex=\"10\", hrDeviceType=\"1.3.6.1.2.1.25.3.1.3\", instance=\"10.11.0.181\", job=\"snmp\"}",
+                "{__name__=\"hrDeviceType\", hrDeviceIndex=\"1\", hrDeviceType=\"1.3.6.1.2.1.25.3.1.3\", instance=\"10.11.0.186\", job=\"snmp\"}",
+                "{__name__=\"hrDeviceType\", hrDeviceIndex=\"1\", hrDeviceType=\"1.3.6.1.2.1.25.3.1.3\", instance=\"10.11.0.184\", job=\"snmp\"}",
+                "{__name__=\"hrDeviceType\", hrDeviceIndex=\"1\", hrDeviceType=\"1.3.6.1.2.1.25.3.1.3\", instance=\"10.11.0.185\", job=\"snmp\"}",
+                "{__name__=\"hrDeviceType\", hrDeviceIndex=\"1\", hrDeviceType=\"1.3.6.1.2.1.25.3.1.3\", instance=\"10.11.0.183\", job=\"snmp\"}"
+              ],
+              "reducer": "sum"
+            },
+            "replaceFields": false
+          }
+        },
+        {
+          "id": "calculateField",
+          "options": {
+            "binary": {
+              "left": "x86 total",
+              "operator": "/",
+              "reducer": "sum",
+              "right": "2"
+            },
+            "mode": "binary",
+            "reduce": {
+              "reducer": "sum"
+            }
+          }
+        },
+        {
+          "id": "calculateField",
+          "options": {
+            "alias": "s390x total",
+            "binary": {
+              "left": "{__name__=\"zhmc_partition_ifl_processor_count\", cpc=\"MENSA\", hmc=\"mensahma1\", instance=\"localhost:9291\", job=\"zhmc\", partition=\"MENSA03\", pod=\"mypod\"}",
+              "operator": "/",
+              "reducer": "sum",
+              "right": "2"
+            },
+            "mode": "binary",
+            "reduce": {
+              "include": [
+                "{__name__=\"zhmc_partition_ifl_processor_count\", cpc=\"MENSA\", hmc=\"mensahma1\", instance=\"localhost:9291\", job=\"zhmc\", partition=\"MENSA03\", pod=\"mypod\"}"
+              ],
+              "reducer": "sum"
+            }
+          }
+        },
+        {
+          "id": "calculateField",
+          "options": {
+            "binary": {
+              "left": "x86 total / 2",
+              "operator": "/",
+              "reducer": "sum",
+              "right": "s390x total"
+            },
+            "mode": "binary",
+            "reduce": {
+              "reducer": "sum"
+            },
+            "replaceFields": true
+          }
+        }
+      ],
+      "type": "stat"
+    },
+    {
+      "datasource": {
+        "type": "prometheus",
+        "uid": "ipRBv6P4k"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "fixedColor": "dark-blue",
+            "mode": "fixed"
+          },
+          "decimals": 0,
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              },
+              {
+                "color": "red",
+                "value": 80
+              }
+            ]
+          },
+          "unit": "short"
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 3,
+        "w": 10,
+        "x": 14,
+        "y": 47
+      },
+      "hideTimeOverride": true,
+      "id": 42,
+      "interval": "15s",
+      "maxDataPoints": 10,
+      "options": {
+        "colorMode": "background",
+        "graphMode": "none",
+        "justifyMode": "auto",
+        "orientation": "auto",
+        "reduceOptions": {
+          "calcs": [
+            "lastNotNull"
+          ],
+          "fields": "",
+          "values": false
+        },
+        "text": {},
+        "textMode": "auto"
+      },
+      "pluginVersion": "9.4.7",
+      "targets": [
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "ipRBv6P4k"
+          },
+          "editorMode": "code",
+          "expr": "zhmc_partition_ifl_processor_count{cpc=\"MENSA\", partition=\"MENSA03\"}",
+          "hide": false,
+          "legendFormat": "__auto",
+          "range": true,
+          "refId": "A"
+        }
+      ],
+      "timeFrom": "5m",
+      "title": "IBM Z Cores (IFLs)",
+      "transformations": [
+        {
+          "id": "calculateField",
+          "options": {
+            "alias": "ifl_processor_count",
+            "binary": {
+              "left": "{__name__=\"zhmc_partition_ifl_processor_count\", cpc=\"MENSA\", hmc=\"mensahma1\", instance=\"localhost:9291\", job=\"zhmc\", partition=\"MENSA03\", pod=\"mypod\"}",
+              "operator": "/",
+              "reducer": "sum",
+              "right": "2"
+            },
+            "mode": "binary",
+            "reduce": {
+              "reducer": "sum"
+            },
+            "replaceFields": true
+          }
+        }
+      ],
+      "type": "stat"
+    },
+    {
+      "datasource": {
+        "type": "prometheus",
+        "uid": "ipRBv6P4k"
+      },
+      "description": "",
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "fixedColor": "#808080",
+            "mode": "fixed"
+          },
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "#ffffff",
+                "value": null
+              }
+            ]
+          },
+          "unit": "cores"
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 3,
+        "w": 2,
+        "x": 0,
+        "y": 50
+      },
+      "id": 98,
+      "interval": "15s",
+      "options": {
+        "colorMode": "value",
+        "graphMode": "none",
+        "justifyMode": "auto",
+        "orientation": "auto",
+        "reduceOptions": {
+          "calcs": [
+            "lastNotNull"
+          ],
+          "fields": "",
+          "values": false
+        },
+        "textMode": "auto"
+      },
+      "pluginVersion": "9.4.7",
+      "targets": [
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "ipRBv6P4k"
+          },
+          "editorMode": "builder",
+          "expr": "hrDeviceType{instance=\"10.11.0.181\", hrDeviceType=\"1.3.6.1.2.1.25.3.1.3\"}",
+          "legendFormat": "__auto",
+          "range": true,
+          "refId": "A"
+        }
+      ],
+      "title": "SR650",
+      "transformations": [
+        {
+          "id": "calculateField",
+          "options": {
+            "mode": "reduceRow",
+            "reduce": {
+              "include": [],
+              "reducer": "sum"
+            },
+            "replaceFields": true
+          }
+        },
+        {
+          "id": "calculateField",
+          "options": {
+            "binary": {
+              "left": "Total",
+              "operator": "/",
+              "reducer": "sum",
+              "right": "2"
+            },
+            "mode": "binary",
+            "reduce": {
+              "reducer": "sum"
+            },
+            "replaceFields": true
+          }
+        }
+      ],
+      "type": "stat"
+    },
+    {
+      "datasource": {
+        "type": "prometheus",
+        "uid": "ipRBv6P4k"
+      },
+      "description": "",
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "fixed"
+          },
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "#ffffff",
+                "value": null
+              }
+            ]
+          },
+          "unit": "cores"
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 3,
+        "w": 2,
+        "x": 2,
+        "y": 50
+      },
+      "id": 99,
+      "interval": "15s",
+      "options": {
+        "colorMode": "value",
+        "graphMode": "none",
+        "justifyMode": "auto",
+        "orientation": "auto",
+        "reduceOptions": {
+          "calcs": [
+            "lastNotNull"
+          ],
+          "fields": "",
+          "values": false
+        },
+        "textMode": "auto"
+      },
+      "pluginVersion": "9.4.7",
+      "targets": [
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "ipRBv6P4k"
+          },
+          "editorMode": "builder",
+          "expr": "hrDeviceType{instance=\"10.11.0.182\", hrDeviceType=\"1.3.6.1.2.1.25.3.1.3\"}",
+          "legendFormat": "__auto",
+          "range": true,
+          "refId": "A"
+        }
+      ],
+      "title": "SR650",
+      "transformations": [
+        {
+          "id": "calculateField",
+          "options": {
+            "mode": "reduceRow",
+            "reduce": {
+              "include": [],
+              "reducer": "sum"
+            },
+            "replaceFields": true
+          }
+        },
+        {
+          "id": "calculateField",
+          "options": {
+            "binary": {
+              "left": "Total",
+              "operator": "/",
+              "reducer": "sum",
+              "right": "2"
+            },
+            "mode": "binary",
+            "reduce": {
+              "reducer": "sum"
+            },
+            "replaceFields": true
+          }
+        }
+      ],
+      "type": "stat"
+    },
+    {
+      "datasource": {
+        "type": "prometheus",
+        "uid": "ipRBv6P4k"
+      },
+      "description": "",
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "fixed"
+          },
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "#ffffff",
+                "value": null
+              }
+            ]
+          },
+          "unit": "cores"
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 3,
+        "w": 2,
+        "x": 4,
+        "y": 50
+      },
+      "id": 100,
+      "interval": "15s",
+      "options": {
+        "colorMode": "value",
+        "graphMode": "none",
+        "justifyMode": "auto",
+        "orientation": "auto",
+        "reduceOptions": {
+          "calcs": [
+            "lastNotNull"
+          ],
+          "fields": "",
+          "values": false
+        },
+        "textMode": "auto"
+      },
+      "pluginVersion": "9.4.7",
+      "targets": [
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "ipRBv6P4k"
+          },
+          "editorMode": "builder",
+          "expr": "hrDeviceType{instance=\"10.11.0.183\", hrDeviceType=\"1.3.6.1.2.1.25.3.1.3\"}",
+          "legendFormat": "__auto",
+          "range": true,
+          "refId": "A"
+        }
+      ],
+      "title": "SR650",
+      "transformations": [
+        {
+          "id": "calculateField",
+          "options": {
+            "mode": "reduceRow",
+            "reduce": {
+              "include": [],
+              "reducer": "sum"
+            },
+            "replaceFields": true
+          }
+        },
+        {
+          "id": "calculateField",
+          "options": {
+            "binary": {
+              "left": "Total",
+              "operator": "/",
+              "reducer": "sum",
+              "right": "2"
+            },
+            "mode": "binary",
+            "reduce": {
+              "reducer": "sum"
+            },
+            "replaceFields": true
+          }
+        }
+      ],
+      "type": "stat"
+    },
+    {
+      "datasource": {
+        "type": "prometheus",
+        "uid": "ipRBv6P4k"
+      },
+      "description": "",
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "fixed"
+          },
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "#ffffff",
+                "value": null
+              }
+            ]
+          },
+          "unit": "cores"
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 3,
+        "w": 2,
+        "x": 6,
+        "y": 50
+      },
+      "id": 101,
+      "options": {
+        "colorMode": "value",
+        "graphMode": "none",
+        "justifyMode": "auto",
+        "orientation": "auto",
+        "reduceOptions": {
+          "calcs": [
+            "lastNotNull"
+          ],
+          "fields": "",
+          "values": false
+        },
+        "textMode": "auto"
+      },
+      "pluginVersion": "9.4.7",
+      "targets": [
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "ipRBv6P4k"
+          },
+          "editorMode": "builder",
+          "expr": "hrDeviceType{instance=\"10.11.0.184\", hrDeviceType=\"1.3.6.1.2.1.25.3.1.3\"}",
+          "legendFormat": "__auto",
+          "range": true,
+          "refId": "A"
+        }
+      ],
+      "title": "SR650",
+      "transformations": [
+        {
+          "id": "calculateField",
+          "options": {
+            "mode": "reduceRow",
+            "reduce": {
+              "include": [],
+              "reducer": "sum"
+            },
+            "replaceFields": true
+          }
+        },
+        {
+          "id": "calculateField",
+          "options": {
+            "binary": {
+              "left": "Total",
+              "operator": "/",
+              "reducer": "sum",
+              "right": "2"
+            },
+            "mode": "binary",
+            "reduce": {
+              "reducer": "sum"
+            },
+            "replaceFields": true
+          }
+        }
+      ],
+      "type": "stat"
+    },
+    {
+      "datasource": {
+        "type": "prometheus",
+        "uid": "ipRBv6P4k"
+      },
+      "description": "",
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "fixed"
+          },
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "#ffffff",
+                "value": null
+              }
+            ]
+          },
+          "unit": "cores"
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 3,
+        "w": 2,
+        "x": 8,
+        "y": 50
+      },
+      "id": 126,
+      "interval": "15s",
+      "options": {
+        "colorMode": "value",
+        "graphMode": "none",
+        "justifyMode": "auto",
+        "orientation": "auto",
+        "reduceOptions": {
+          "calcs": [
+            "lastNotNull"
+          ],
+          "fields": "",
+          "values": false
+        },
+        "textMode": "auto"
+      },
+      "pluginVersion": "9.4.7",
+      "targets": [
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "ipRBv6P4k"
+          },
+          "editorMode": "builder",
+          "expr": "hrDeviceType{instance=\"10.11.0.184\", hrDeviceType=\"1.3.6.1.2.1.25.3.1.3\"}",
+          "legendFormat": "__auto",
+          "range": true,
+          "refId": "A"
+        }
+      ],
+      "title": "SR650",
+      "transformations": [
+        {
+          "id": "calculateField",
+          "options": {
+            "mode": "reduceRow",
+            "reduce": {
+              "include": [],
+              "reducer": "sum"
+            },
+            "replaceFields": true
+          }
+        },
+        {
+          "id": "calculateField",
+          "options": {
+            "binary": {
+              "left": "Total",
+              "operator": "/",
+              "reducer": "sum",
+              "right": "2"
+            },
+            "mode": "binary",
+            "reduce": {
+              "reducer": "sum"
+            },
+            "replaceFields": true
+          }
+        }
+      ],
+      "type": "stat"
+    },
+    {
+      "datasource": {
+        "type": "prometheus",
+        "uid": "ipRBv6P4k"
+      },
+      "description": "",
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "fixed"
+          },
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "#ffffff",
+                "value": null
+              }
+            ]
+          },
+          "unit": "cores"
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 3,
+        "w": 2,
+        "x": 10,
+        "y": 50
+      },
+      "id": 102,
+      "interval": "15s",
+      "options": {
+        "colorMode": "value",
+        "graphMode": "none",
+        "justifyMode": "auto",
+        "orientation": "auto",
+        "reduceOptions": {
+          "calcs": [
+            "lastNotNull"
+          ],
+          "fields": "",
+          "values": false
+        },
+        "textMode": "auto"
+      },
+      "pluginVersion": "9.4.7",
+      "targets": [
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "ipRBv6P4k"
+          },
+          "editorMode": "builder",
+          "expr": "hrDeviceType{instance=\"10.11.0.185\", hrDeviceType=\"1.3.6.1.2.1.25.3.1.3\"}",
+          "legendFormat": "__auto",
+          "range": true,
+          "refId": "A"
+        }
+      ],
+      "title": "x3650 M5",
+      "transformations": [
+        {
+          "id": "calculateField",
+          "options": {
+            "mode": "reduceRow",
+            "reduce": {
+              "include": [],
+              "reducer": "sum"
+            },
+            "replaceFields": true
+          }
+        },
+        {
+          "id": "calculateField",
+          "options": {
+            "binary": {
+              "left": "Total",
+              "operator": "/",
+              "reducer": "sum",
+              "right": "2"
+            },
+            "mode": "binary",
+            "reduce": {
+              "reducer": "sum"
+            },
+            "replaceFields": true
+          }
+        }
+      ],
+      "type": "stat"
+    },
+    {
+      "datasource": {
+        "type": "datasource",
+        "uid": "-- Dashboard --"
+      },
+      "description": "",
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "fixedColor": "dark-blue",
+            "mode": "fixed"
+          },
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "#ffffff",
+                "value": null
+              }
+            ]
+          },
+          "unit": "cores"
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 3,
+        "w": 12,
+        "x": 12,
+        "y": 50
+      },
+      "id": 103,
+      "options": {
+        "colorMode": "value",
+        "graphMode": "none",
+        "justifyMode": "auto",
+        "orientation": "auto",
+        "reduceOptions": {
+          "calcs": [
+            "lastNotNull"
+          ],
+          "fields": "",
+          "values": false
+        },
+        "textMode": "auto"
+      },
+      "pluginVersion": "9.4.7",
+      "targets": [
+        {
+          "datasource": {
+            "type": "datasource",
+            "uid": "-- Dashboard --"
+          },
+          "panelId": 42,
+          "refId": "A"
+        }
+      ],
+      "title": "IBM z17",
+      "transformations": [
+        {
+          "id": "calculateField",
+          "options": {
+            "binary": {
+              "left": "{__name__=\"zhmc_partition_ifl_processor_count\", cpc=\"MENSA\", hmc=\"mensahma1\", instance=\"localhost:9291\", job=\"zhmc\", partition=\"MENSA03\", pod=\"mypod\"}",
+              "operator": "/",
+              "reducer": "sum",
+              "right": "2"
+            },
+            "mode": "binary",
+            "reduce": {
+              "include": [],
+              "reducer": "sum"
+            },
+            "replaceFields": true
+          }
+        }
+      ],
+      "type": "stat"
+    },
+    {
+      "datasource": {
+        "type": "prometheus",
+        "uid": "ipRBv6P4k"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "palette-classic"
+          },
+          "custom": {
+            "axisCenteredZero": false,
+            "axisColorMode": "text",
+            "axisLabel": "",
+            "axisPlacement": "auto",
+            "barAlignment": 0,
+            "drawStyle": "line",
+            "fillOpacity": 0,
+            "gradientMode": "none",
+            "hideFrom": {
+              "legend": false,
+              "tooltip": false,
+              "viz": false
+            },
+            "lineInterpolation": "linear",
+            "lineWidth": 1,
+            "pointSize": 5,
+            "scaleDistribution": {
+              "type": "linear"
+            },
+            "showPoints": "auto",
+            "spanNulls": false,
+            "stacking": {
+              "group": "A",
+              "mode": "none"
+            },
+            "thresholdsStyle": {
+              "mode": "off"
+            }
+          },
+          "mappings": [],
+          "max": 100,
+          "min": 100,
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              },
+              {
+                "color": "red",
+                "value": 80
+              }
+            ]
+          },
+          "unit": "percent"
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 8,
+        "w": 12,
+        "x": 0,
+        "y": 53
+      },
+      "id": 128,
+      "interval": "15s",
+      "options": {
+        "legend": {
+          "calcs": [],
+          "displayMode": "list",
+          "placement": "bottom",
+          "showLegend": false
+        },
+        "tooltip": {
+          "mode": "multi",
+          "sort": "none"
+        }
+      },
+      "targets": [
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "ipRBv6P4k"
+          },
+          "editorMode": "code",
+          "expr": "ipmi_sensor_value{id=\"99\", name=\"CPU Utilization\"}",
+          "legendFormat": "__auto",
+          "range": true,
+          "refId": "A"
+        },
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "ipRBv6P4k"
+          },
+          "editorMode": "code",
+          "expr": "ipmi_sensor_value{id=\"7\", name=\"CPU Utilization\"}",
+          "hide": false,
+          "legendFormat": "__auto",
+          "range": true,
+          "refId": "B"
+        }
+      ],
+      "title": "CPU Utilization - x86",
+      "transformations": [
+        {
+          "id": "calculateField",
+          "options": {
+            "alias": "10.11.0.191 [32 cores] (cpu %)",
+            "mode": "reduceRow",
+            "reduce": {
+              "include": [
+                "{__name__=\"ipmi_sensor_value\", id=\"99\", instance=\"10.11.0.191\", job=\"ipmi_exporter\", name=\"CPU Utilization\", type=\"Other Units Based Sensor\"}"
+              ],
+              "reducer": "sum"
+            }
+          }
+        },
+        {
+          "id": "calculateField",
+          "options": {
+            "alias": "10.11.0.192 [56 cores] (cpu %)",
+            "mode": "reduceRow",
+            "reduce": {
+              "include": [
+                "{__name__=\"ipmi_sensor_value\", id=\"99\", instance=\"10.11.0.192\", job=\"ipmi_exporter\", name=\"CPU Utilization\", type=\"Other Units Based Sensor\"}"
+              ],
+              "reducer": "sum"
+            }
+          }
+        },
+        {
+          "id": "calculateField",
+          "options": {
+            "alias": "10.11.0.193 [48 cores] (cpu %)",
+            "mode": "reduceRow",
+            "reduce": {
+              "include": [
+                "{__name__=\"ipmi_sensor_value\", id=\"99\", instance=\"10.11.0.193\", job=\"ipmi_exporter\", name=\"CPU Utilization\", type=\"Other Units Based Sensor\"}"
+              ],
+              "reducer": "sum"
+            }
+          }
+        },
+        {
+          "id": "calculateField",
+          "options": {
+            "alias": "10.11.0.194 [48 cores] (cpu %)",
+            "mode": "reduceRow",
+            "reduce": {
+              "include": [
+                "{__name__=\"ipmi_sensor_value\", id=\"99\", instance=\"10.11.0.194\", job=\"ipmi_exporter\", name=\"CPU Utilization\", type=\"Other Units Based Sensor\"}"
+              ],
+              "reducer": "sum"
+            }
+          }
+        },
+        {
+          "id": "calculateField",
+          "options": {
+            "alias": "10.11.0.195 [48 cores] (cpu %)",
+            "mode": "reduceRow",
+            "reduce": {
+              "include": [
+                "{__name__=\"ipmi_sensor_value\", id=\"7\", instance=\"10.11.0.195\", job=\"ipmi_exporter\", name=\"CPU Utilization\", type=\"Other Units Based Sensor\"}"
+              ],
+              "reducer": "sum"
+            }
+          }
+        },
+        {
+          "id": "calculateField",
+          "options": {
+            "alias": "10.11.0.196 [24 cores] (cpu %)",
+            "mode": "reduceRow",
+            "reduce": {
+              "include": [
+                "{__name__=\"ipmi_sensor_value\", id=\"99\", instance=\"10.11.0.196\", job=\"ipmi_exporter\", name=\"CPU Utilization\", type=\"Other Units Based Sensor\"}"
+              ],
+              "reducer": "sum"
+            },
+            "replaceFields": false
+          }
+        },
+        {
+          "id": "calculateField",
+          "options": {
+            "binary": {
+              "left": "32",
+              "operator": "/",
+              "reducer": "sum",
+              "right": "256"
+            },
+            "mode": "binary",
+            "reduce": {
+              "reducer": "sum"
+            }
+          }
+        },
+        {
+          "id": "calculateField",
+          "options": {
+            "binary": {
+              "left": "48",
+              "operator": "/",
+              "reducer": "sum",
+              "right": "256"
+            },
+            "mode": "binary",
+            "reduce": {
+              "reducer": "sum"
+            }
+          }
+        },
+        {
+          "id": "calculateField",
+          "options": {
+            "binary": {
+              "left": "24",
+              "operator": "/",
+              "reducer": "sum",
+              "right": "256"
+            },
+            "mode": "binary",
+            "reduce": {
+              "reducer": "sum"
+            }
+          }
+        },
+        {
+          "id": "calculateField",
+          "options": {
+            "binary": {
+              "left": "56",
+              "operator": "/",
+              "reducer": "sum",
+              "right": "256"
+            },
+            "mode": "binary",
+            "reduce": {
+              "reducer": "sum"
+            }
+          }
+        },
+        {
+          "id": "calculateField",
+          "options": {
+            "binary": {
+              "left": "10.11.0.191 [32 cores] (cpu %)",
+              "operator": "*",
+              "reducer": "sum",
+              "right": "32 / 256"
+            },
+            "mode": "binary",
+            "reduce": {
+              "reducer": "sum"
+            }
+          }
+        },
+        {
+          "id": "calculateField",
+          "options": {
+            "binary": {
+              "left": "10.11.0.192 [56 cores] (cpu %)",
+              "operator": "*",
+              "reducer": "sum",
+              "right": "56 / 256"
+            },
+            "mode": "binary",
+            "reduce": {
+              "reducer": "sum"
+            }
+          }
+        },
+        {
+          "id": "calculateField",
+          "options": {
+            "binary": {
+              "left": "10.11.0.193 [48 cores] (cpu %)",
+              "operator": "*",
+              "reducer": "sum",
+              "right": "48 / 256"
+            },
+            "mode": "binary",
+            "reduce": {
+              "include": [
+                "10.11.0.193 [48 cores] (cpu %)"
+              ],
+              "reducer": "sum"
+            }
+          }
+        },
+        {
+          "id": "calculateField",
+          "options": {
+            "binary": {
+              "left": "10.11.0.194 [48 cores] (cpu %)",
+              "operator": "*",
+              "reducer": "sum",
+              "right": "48 / 256"
+            },
+            "mode": "binary",
+            "reduce": {
+              "include": [
+                "10.11.0.194 [48 cores] (cpu %)"
+              ],
+              "reducer": "sum"
+            }
+          }
+        },
+        {
+          "id": "calculateField",
+          "options": {
+            "binary": {
+              "left": "10.11.0.195 [48 cores] (cpu %)",
+              "operator": "*",
+              "reducer": "sum",
+              "right": "48 / 256"
+            },
+            "mode": "binary",
+            "reduce": {
+              "reducer": "sum"
+            }
+          }
+        },
+        {
+          "id": "calculateField",
+          "options": {
+            "binary": {
+              "left": "10.11.0.196 [24 cores] (cpu %)",
+              "operator": "*",
+              "reducer": "sum",
+              "right": "24 / 256"
+            },
+            "mode": "binary",
+            "reduce": {
+              "reducer": "sum"
+            }
+          }
+        },
+        {
+          "id": "calculateField",
+          "options": {
+            "alias": "Average [256 cores] (cpu %)",
+            "mode": "reduceRow",
+            "reduce": {
+              "include": [
+                "10.11.0.192 [56 cores] (cpu %) * 56 / 256",
+                "10.11.0.193 [48 cores] (cpu %) * 48 / 256",
+                "10.11.0.194 [48 cores] (cpu %) * 48 / 256",
+                "10.11.0.195 [48 cores] (cpu %) * 48 / 256",
+                "10.11.0.196 [24 cores] (cpu %) * 24 / 256",
+                "10.11.0.191 [32 cores] (cpu %) * 32 / 256"
+              ],
+              "reducer": "sum"
+            }
+          }
+        },
+        {
+          "id": "filterFieldsByName",
+          "options": {
+            "include": {
+              "names": [
+                "Time",
+                "10.11.0.191 [32 cores] (cpu %)",
+                "10.11.0.192 [56 cores] (cpu %)",
+                "10.11.0.193 [48 cores] (cpu %)",
+                "10.11.0.194 [48 cores] (cpu %)",
+                "10.11.0.195 [48 cores] (cpu %)",
+                "10.11.0.196 [24 cores] (cpu %)",
+                "Average [256 cores] (cpu %)"
+              ]
+            }
+          }
+        }
+      ],
+      "type": "timeseries"
+    },
+    {
+      "datasource": {
+        "type": "influxdb",
+        "uid": "pcyUYEpHk"
+      },
+      "description": "",
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "fixedColor": "orange",
+            "mode": "fixed"
+          },
+          "custom": {
+            "axisCenteredZero": false,
+            "axisColorMode": "text",
+            "axisLabel": "",
+            "axisPlacement": "auto",
+            "axisSoftMin": 0,
+            "barAlignment": 0,
+            "drawStyle": "line",
+            "fillOpacity": 5,
+            "gradientMode": "none",
+            "hideFrom": {
+              "legend": false,
+              "tooltip": false,
+              "viz": false
+            },
+            "lineInterpolation": "linear",
+            "lineWidth": 1,
+            "pointSize": 3,
+            "scaleDistribution": {
+              "type": "linear"
+            },
+            "showPoints": "auto",
+            "spanNulls": false,
+            "stacking": {
+              "group": "A",
+              "mode": "none"
+            },
+            "thresholdsStyle": {
+              "mode": "off"
+            }
+          },
+          "mappings": [],
+          "max": 100,
+          "min": 100,
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "blue",
+                "value": null
+              },
+              {
+                "color": "green",
+                "value": 0.2
+              },
+              {
+                "color": "yellow",
+                "value": 0.7
+              },
+              {
+                "color": "red",
+                "value": 0.9
+              }
+            ]
+          },
+          "unit": "percent"
+        },
+        "overrides": [
+          {
+            "matcher": {
+              "id": "byFrameRefID",
+              "options": "A"
+            },
+            "properties": [
+              {
+                "id": "color",
+                "value": {
+                  "fixedColor": "blue",
+                  "mode": "fixed"
+                }
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byFrameRefID",
+              "options": "B"
+            },
+            "properties": [
+              {
+                "id": "color",
+                "value": {
+                  "fixedColor": "green",
+                  "mode": "fixed"
+                }
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byFrameRefID",
+              "options": "C"
+            },
+            "properties": [
+              {
+                "id": "color",
+                "value": {
+                  "fixedColor": "orange",
+                  "mode": "fixed"
+                }
+              }
+            ]
+          }
+        ]
+      },
+      "gridPos": {
+        "h": 8,
+        "w": 12,
+        "x": 12,
+        "y": 53
+      },
+      "id": 118,
+      "interval": "15s",
+      "options": {
+        "legend": {
+          "calcs": [],
+          "displayMode": "list",
+          "placement": "bottom",
+          "showLegend": false
+        },
+        "tooltip": {
+          "mode": "multi",
+          "sort": "desc"
+        }
+      },
+      "pluginVersion": "9.0.1",
+      "targets": [
+        {
+          "datasource": {
+            "type": "influxdb",
+            "uid": "pcyUYEpHk"
+          },
+          "query": "SELECT \"processor-usage\" FROM \"LPAR Metrics\" WHERE $timeFilter AND \"cpc\" = 'MENSA' AND \"lpar\" = 'MENSA03'",
+          "rawQuery": true,
+          "refId": "A",
+          "resultFormat": "time_series"
+        }
+      ],
+      "title": "CPU Utilization - IBM Z",
+      "transformations": [
+        {
+          "id": "calculateField",
+          "options": {
+            "alias": "MENSA 03 LPAR [16 cores] (cpu %)",
+            "mode": "reduceRow",
+            "reduce": {
+              "include": [
+                "LPAR Metrics.processor-usage"
+              ],
+              "reducer": "sum"
+            },
+            "replaceFields": true
+          }
+        }
+      ],
+      "type": "timeseries"
+    }
+  ],
+  "refresh": "5s",
+  "revision": 1,
+  "schemaVersion": 38,
+  "style": "dark",
+  "tags": [],
+  "templating": {
+    "list": [
+      {
+        "current": {
+          "isNone": true,
+          "selected": false,
+          "text": "None",
+          "value": ""
+        },
+        "datasource": {
+          "type": "datasource",
+          "uid": "grafana"
+        },
+        "definition": "",
+        "hide": 0,
+        "includeAll": false,
+        "multi": false,
+        "name": "query0",
+        "options": [],
+        "query": "",
+        "refresh": 1,
+        "regex": "",
+        "skipUrlSync": false,
+        "sort": 0,
+        "type": "query"
+      }
+    ]
+  },
+  "time": {
+    "from": "now-15m",
+    "to": "now"
+  },
+  "timepicker": {},
+  "timezone": "America/New_York",
+  "title": "IT Optimization with IBM Z",
+  "uid": "SdxL_QpHk",
+  "version": 24,
+  "weekStart": ""
+}
