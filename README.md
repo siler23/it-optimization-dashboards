@@ -1,6 +1,6 @@
-# IT Optimization Dashboards
+# IT Optimization Grafana Dashboards
 
-Dashboards showing the migration from x86 to IBM LinuxONE and x86 to IBM Z displaying the core consolidation, performance and energy savings.
+Grafana dashboards showing the migration from x86 to IBM LinuxONE and x86 to IBM Z displaying the core consolidation, performance and energy savings.
 
 ## How to Use
 
@@ -26,7 +26,7 @@ Additionally, here is a link to a live snaspshot of the dashboard from when a te
 
 ## Migrating from x86 to IBM Z
 
-Use the [IT Opimization with IBM Z dashboard](dashboards/IT%20Optimization%20with%20IBM%20Z.json)
+Use the [IT Opimization with IBM Z dashboard](dashboards/IT%20Optimization%20with%20IBM%20Z.json)l
 
 ### Example
 
